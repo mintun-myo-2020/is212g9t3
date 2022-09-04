@@ -1,4 +1,8 @@
 # is212g9t3
 
 ## REMEMBER TO DO THIS FIRST: 
-`pip install -r requirements.txt`
+```
+python -m venv venv
+venv/Scripts/activate.bat
+pip install -r requirements.txt
+```
