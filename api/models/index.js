@@ -20,5 +20,9 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Staff = require("./staff.js")(sequelize, Sequelize);
+db.LearningJourney = require("./learning_journey")(sequelize, Sequelize);
+db.Course = require("./course")(sequelize, Sequelize);
+db.Skill = require("./skill")(sequelize, Sequelize);
+db.Role = require("./role")(sequelize, Sequelize);
 
 module.exports = db;
