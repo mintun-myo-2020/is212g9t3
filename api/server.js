@@ -16,9 +16,7 @@ db.sequelize.sync()
     console.log("Failed to sync db: " + err.message);
   });   
 
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-});
+db.sequelize.sync();
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
