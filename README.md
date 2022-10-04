@@ -2,6 +2,7 @@
 
 ## REMEMBER TO DO THIS FIRST: 
 ```
+cd api
 npm install
 
 ```

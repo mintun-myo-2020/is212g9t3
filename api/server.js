@@ -28,7 +28,7 @@ db.Role.belongsToMany(db.Skill, {through: 'roleskill'})
 
 
 
-db.sequelize.sync({force: true})
+db.sequelize.sync({alter: true})
   .then(() => {
     console.log("Synced db.");
   })
@@ -52,7 +52,8 @@ app.get("/", (req, res) => {
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
-require("./routes/turorial.routes")(app);
+require("./routes/staff.routes")(app);
+require("./routes/skill.routes")(app);
 
 
 app.listen(PORT, () => {
