@@ -16,8 +16,5 @@ module.exports = app => {
     // Delete a Staff with id
     router.delete("/:staff_id", staff.delete);
   
-    // Delete all Staffs
-    router.delete("/", staff.deleteAll);
-  
     app.use('/api/staff', router);
   };

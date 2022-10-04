@@ -8,9 +8,10 @@ var corsOptions = {
 };
 const db = require("./models");
 
+//one to many association between Staff and LJ
+db.Staff.hasMany(db.LearningJourney)
 
-// one to one association between Role and LJ 
-
+// one to many association between Role and LJ 
 db.Role.hasMany(db.LearningJourney)
 
 // many to many association between Course and LJ

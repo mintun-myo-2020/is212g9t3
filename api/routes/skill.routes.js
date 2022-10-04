@@ -6,16 +6,19 @@ module.exports = app => {
     // Create a new Tutorial
     router.post("/", skill.create);
 
-    // Retrieve all Staffs
+    // Retrieve all Skills
     router.get("/", skill.findAll);  
   
-    // Retrieve a single Staff with id
+    // Retrieve a single Skill with id
     router.get("/:skill_id", skill.findOne);
   
-    // Update a Staff with id
+    // Update a Skill with id
     router.put("/:skill_id", skill.update);
+
+    // Archive a Skill with id
+    router.put("/:skill_id", skill.archive)
   
-    // Delete a Staff with id
+    // Delete a Skill with id
     router.delete("/:skill_id", skill.delete);
   
     app.use('/api/skill', router);

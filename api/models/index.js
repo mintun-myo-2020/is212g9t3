@@ -19,10 +19,10 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.Staff = require("./staff.js")(sequelize, Sequelize);
-db.LearningJourney = require("./learning_journey")(sequelize, Sequelize);
-db.Course = require("./course")(sequelize, Sequelize);
-db.Skill = require("./skill")(sequelize, Sequelize);
-db.Role = require("./role")(sequelize, Sequelize);
+db.Staff = require("./staff.model")(sequelize, Sequelize);
+db.LearningJourney = require("./learning_journey.model")(sequelize, Sequelize);
+db.Course = require("./course.model")(sequelize, Sequelize);
+db.Skill = require("./skill.model")(sequelize, Sequelize);
+db.Role = require("./role.model")(sequelize, Sequelize);
 
 module.exports = db;

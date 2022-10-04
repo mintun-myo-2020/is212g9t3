@@ -15,6 +15,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       competency_level: {
         type: Sequelize.INTEGER
+      },
+      archived: {
+        type: Sequelize.BOOLEAN
       }
     },
     {timestamps: false});
