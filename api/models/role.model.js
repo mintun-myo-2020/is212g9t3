@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       role_name: {
         type: Sequelize.STRING
+      },
+      arhived: {
+        type: Sequelize.BOOLEAN
       }
     },
     {timestamps: false});
