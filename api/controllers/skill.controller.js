@@ -72,6 +72,7 @@ exports.findOne = (req, res) => {
       });
   };
 
+// Find all skills associated with a Role
 exports.findByRole = (req, res) => {
   const role_id = req.params.role_id;
 

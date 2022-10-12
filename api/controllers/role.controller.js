@@ -1,5 +1,7 @@
+const { Skill } = require("../models");
 const db = require("../models");
 const role = db.Role;
+const skill = db.Skill;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Role
@@ -69,6 +71,25 @@ exports.findOne = (req, res) => {
         });
       });
   };
+
+// Find all skills associated with a Role
+exports.findAssociatedSkills = (req, res) => {
+  const skill_id = req.params.skill_id;
+
+  role.findAll({
+    include: Skill,
+    where: {'$skills.skill_id$': skill_id}
+  }).then(data =>{
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving skill."
+    });
+  })
+}
+
 
 // Update a role by the role_id in the request
 exports.update = (req, res) => {

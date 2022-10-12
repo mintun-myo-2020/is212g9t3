@@ -12,6 +12,9 @@ module.exports = app => {
     // Retrieve a single Role with id
     router.get("/:role_id", role.findOne);
   
+    // Retrieve ALL skills associated with role_id
+    router.get("/by-skill/:skill_id", role.findAssociatedSkills);
+
     // Update a Role with id
     router.put("/:role_id", role.update);
 
