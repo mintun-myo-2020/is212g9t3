@@ -351,14 +351,14 @@
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Select a role</option>
-                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }}</option>
-                            </select>
+                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }} </option>
+                        </select>
                     </div>
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Select a skill</option>
                             <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{ skill.skill_name }}</option>
-                            </select>
+                        </select>
                     </div>
                     <!--Need to read from database when user click the role and skills will show the courses related to it-->
                     <div class="mb-3">

@@ -4,9 +4,10 @@ const main = Vue.createApp({
 
     // Data Properties
     data() {
+
         return {
             roles: [],
-            skills: []
+            skills: [],
         }
     },
 
@@ -35,7 +36,7 @@ const main = Vue.createApp({
 
             // Assign response.data.records (Array) to
             // 'people' data property
-            this.roles = response.data
+            this.skills = response.data
         })
         .catch(error => {
             console.log( error.message )
