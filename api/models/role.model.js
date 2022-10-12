@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
       role_name: {
         type: Sequelize.STRING
       },
-      arhived: {
+      archived: {
         type: Sequelize.BOOLEAN
       }
     },

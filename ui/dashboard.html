@@ -22,6 +22,8 @@
 
 <body>
     <!--Side navigation bar-->
+
+
     <div class="container-fluid">
         <div class="sidebar">
             <div class="logo-details">
@@ -306,6 +308,8 @@
         </section>
     </div>
     </div>
+
+    
     <script>
         let sidebar = document.querySelector(".sidebar");
         let closeBtn = document.querySelector("#btn");
@@ -333,8 +337,9 @@
     </script>
 </body>
 <!-- Modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div  id="role-select" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
@@ -345,19 +350,15 @@
                 <form action="#">
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Select your role</option>
-                            <option value="1">Engineer</option>
-                            <option value="2">HR</option>
-                            <option value="3">Finance</option>
-                        </select>
+                            <option selected>Select a role</option>
+                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }}</option>
+                            </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Select the skills related</option>
-                            <option value="1">Management</option>
-                            <option value="2">HR</option>
-                            <option value="3">Finance</option>
-                        </select>
+                            <option selected>Select a skill</option>
+                            <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{ skill.skill_name }}</option>
+                            </select>
                     </div>
                     <!--Need to read from database when user click the role and skills will show the courses related to it-->
                     <div class="mb-3">
@@ -378,6 +379,15 @@
         </div>
     </div>
 </div>
+
 <!--End of modal-->
+<!-- Vue.js 3 CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>  
+
+<!-- Axios CDN -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- Refer to my own external JS -->
+<script src="./js/vue.js"></script>
 
 </html>
