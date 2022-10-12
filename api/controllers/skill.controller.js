@@ -1,3 +1,5 @@
+const { where } = require("sequelize");
+const { Role } = require("../models");
 const db = require("../models");
 const skill = db.Skill;
 const Op = db.Sequelize.Op;
@@ -69,6 +71,24 @@ exports.findOne = (req, res) => {
         });
       });
   };
+
+exports.findByRole = (req, res) => {
+  const role_id = req.params.role_id;
+
+  skill.findAll({
+    include: Role,
+    where: {'$roles.role_id$': role_id}
+  }).then(data =>{
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving skill."
+    });
+  })
+}
+
 
 // Update a skill by the skill_id in the request
 exports.update = (req, res) => {

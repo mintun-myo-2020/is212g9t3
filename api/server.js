@@ -10,27 +10,6 @@ var corsOptions = {
 };
 const db = require("./models");
 
-//one to many association between Staff and LJ
-db.Staff.hasMany(db.LearningJourney)
-
-// one to many association between Role and LJ 
-db.Role.hasMany(db.LearningJourney)
-
-// many to many association between Course and LJ
-db.LearningJourney.belongsToMany(db.Course, {through: 'ljcourse'})
-db.Course.belongsToMany(db.LearningJourney, {through: 'ljcourse'})
-
-
-// many to many association between Skill and Course
-db.Skill.belongsToMany(db.Course, {through: 'skillcourse'})
-db.Course.belongsToMany(db.Skill, {through: 'skillcourse'})
-
-// many to many association between Skill and Role
-db.Skill.belongsToMany(db.Role, {through: 'roleskill'})
-db.Role.belongsToMany(db.Skill, {through: 'roleskill'})
-
-
-
 db.sequelize.sync({alter: true})
   .then(() => {
     console.log("Synced db.");
