@@ -9,6 +9,9 @@
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- This is a development version of Vue.js! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <!-- Bootstrap CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -21,6 +24,8 @@
 </head>
 
 <body>
+    <div id="app">
+
     <!--Side navigation bar-->
     <div class="container-fluid">
         <div class="sidebar">
@@ -178,6 +183,7 @@
     </section>
     </div>
     </div>
+    </div>
     <script>
 
         let sidebar = document.querySelector(".sidebar");
@@ -206,8 +212,9 @@
     </script>
 </body>
 <!-- Modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div  id="role-select" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
@@ -218,39 +225,44 @@
                 <form action="#">
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Select your role</option>
-                            <option value="1">Engineer</option>
-                            <option value="2">HR</option>
-                            <option value="3">Finance</option>
+                            <option selected>Select a role</option>
+                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }} </option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Select the skills related</option>
-                            <option value="1">Management</option>
-                            <option value="2">HR</option>
-                            <option value="3">Finance</option>
+                            <option selected>Select a skill</option>
+                            <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{ skill.skill_name }}</option>
                         </select>
                     </div>
                     <!--Need to read from database when user click the role and skills will show the courses related to it-->
                     <div class="mb-3">
                         <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
                         <label class="btn btn-outline-primary" for="btn-check-outlined">Leadership management</label>
-                        <br>  
+                        <br>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
             </div>
-            </div>
-            
+
         </div>
     </div>
 </div>
+
 <!--End of modal-->
+<!-- Vue.js 3 CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>  
+
+<!-- Axios CDN -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- Refer to my own external JS -->
+<script src="./js/vue.js"></script>
 
 </html>
