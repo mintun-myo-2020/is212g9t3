@@ -7,7 +7,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new skill
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.skill_name) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
@@ -16,9 +16,10 @@ exports.create = (req, res) => {
   
     // Create a skill
     const skill = {
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      skill_name: req.body.skill_name,
+      skill_status: req.body.skill_status,
+      competency_level: req.body.competency_level,
+      archived: req.body.archived
     };
   
     // Save skill in the database
