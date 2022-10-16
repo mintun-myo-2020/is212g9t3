@@ -1,6 +1,6 @@
-const { Skill } = require("../models");
+const { Skill, Role } = require("../models");
 const db = require("../models");
-const role = db.Role;
+const role  = db.Role;
 const skill = db.Skill;
 const Op = db.Sequelize.Op;
 
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     };
   
     // Save role in the database
-    role.create(role)
+    Role.create(role)
       .then(data => {
         res.send(data);
       })

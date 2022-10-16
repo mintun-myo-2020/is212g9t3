@@ -1,3 +1,4 @@
+const { Staff } = require("../models")
 const db = require("../models");
 const staff = db.Staff;
 const Op = db.Sequelize.Op;
