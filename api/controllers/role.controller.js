@@ -7,7 +7,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Role
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.role_name) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
@@ -16,9 +16,8 @@ exports.create = (req, res) => {
   
     // Create a role
     const role = {
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      role_name: req.body.role_name,
+      archived: req.body.archived,
     };
   
     // Save role in the database
