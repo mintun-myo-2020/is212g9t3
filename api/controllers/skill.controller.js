@@ -74,11 +74,11 @@ exports.findOne = (req, res) => {
 
 // Find all skills associated with a Role
 exports.findByRole = (req, res) => {
-  const role_id = req.params.role_id;
+  const role_name= req.params.role_name;
 
   skill.findAll({
     include: Role,
-    where: {'$roles.role_id$': role_id}
+    where: {'$roles.role_name$': role_name}
   }).then(data =>{
     res.send(data);
   })
