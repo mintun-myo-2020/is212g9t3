@@ -3,7 +3,7 @@ const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
-exports.createRole = (req, res) => {
+exports.create = (req, res) => {
     // Validate request
     if (!req.body.title) {
       res.status(400).send({
