@@ -21,5 +21,7 @@ module.exports = app => {
     // Delete a Course with id
     router.delete("/:course_id", course.delete);
   
+    //Assign course to skill
+    
     app.use('/api/course', router);
   };
