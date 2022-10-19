@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
       res.status(400).send({
-        message: req.body.skillSkillId
+        message: "Boo"
       });
       return;
     }
@@ -16,13 +16,16 @@ exports.create = (req, res) => {
     const assignment = {
       skillSkillId: req.body.skillSkillId,
       courseCourseId: req.body.courseCourseId,
-      createdAt:  Date.now()
+      createdAt: Date.now()
     };
 
-    // Save course in the database
+
     skillcourse.create(assignment)
       .then(data => {
-        res.send(data);
+        res.send({
+            message:"Course " + assignment.courseCourseId + " has been assigned to skill " + assignment.skillSkillId
+          }
+          );
       })
       .catch(err => {
         res.status(500).send({
