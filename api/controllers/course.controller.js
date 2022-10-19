@@ -14,9 +14,11 @@ exports.create = (req, res) => {
 
     // Create a course
     const course = {
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      course_name: req.body.course_name,
+      course_desc: req.body.course_desc,
+      course_status: req.body.course_status,
+      course_type: req.body.course_type,
+      course_category:req.body.course_category
     };
 
     // Save course in the database

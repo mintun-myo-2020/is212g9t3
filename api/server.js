@@ -37,6 +37,7 @@ const PORT = process.env.PORT || 8080;
 require("./routes/staff.routes")(app);
 require("./routes/skill.routes")(app);
 require("./routes/role.routes")(app);
+require("./routes/skillcourse.routes")(app);
 
 
 app.listen(PORT, () => {

@@ -4,7 +4,7 @@ const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
-  operatorsAliases: false,
+  operatorsAliases: 0,
 
   pool: {
     max: dbConfig.pool.max,
@@ -24,7 +24,7 @@ db.LearningJourney = require("./learning_journey.model")(sequelize, Sequelize);
 db.Course = require("./course.model")(sequelize, Sequelize);
 db.Skill = require("./skill.model")(sequelize, Sequelize);
 db.Role = require("./role.model")(sequelize, Sequelize);
-
+db.SkillCourse = require("./skillcourse.model")(sequelize, Sequelize);
 //one to many association between Staff and LJ
 db.Staff.hasMany(db.LearningJourney)
 
