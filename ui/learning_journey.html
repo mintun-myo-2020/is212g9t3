@@ -230,9 +230,9 @@
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
-                        
+                        <!-- vmodel selected role need to update  -->
                             <p>Select skills</p>
-                            <span v-for="skill in skills">
+                            <span v-for="skill in skills[role]">
                               <input type="checkbox" :value="skill.skill_id"> <span class="checkbox-label"> {{skill.skill_name}} </span> <br>
                             </span>
 
