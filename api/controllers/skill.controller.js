@@ -214,7 +214,30 @@ exports.assignCourse = (req, res) => {
 
 };
 
+//Unassign course from skill
+exports.unassignCourse = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
 
+  const assignment = {
+    courseCourseId: req.body.courseCourseId,
+    skillSkillId: req.body.skillSkillId
+  };
+
+  skill.findOne({
+    where: { skill_id: assignment.skillSkillId }
+    }).then(skill => {
+        skill.removeCourses([assignment.courseCourseId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
+
+
+};
 
 
 

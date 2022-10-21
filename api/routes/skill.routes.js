@@ -26,6 +26,9 @@ module.exports = app => {
 
     // Assign a course to skill
     router.post("/assigncourse", skill.assignCourse);
+
+    // Unassign a course to skill
+    router.post("/unassigncourse", skill.unassignCourse);
   
     app.use('/api/skill', router);
   };
