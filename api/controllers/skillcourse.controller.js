@@ -14,8 +14,8 @@ exports.create = (req, res) => {
 
     // Create an assignment
     const assignment = {
-      skillSkillId: req.body.skillSkillId,
-      courseCourseId: req.body.courseCourseId,
+      Course_ID: req.body.Course_ID,
+      Skill_ID: req.body.Skill_ID,
       createdAt: Date.now()
     };
 
@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     skillcourse.create(assignment)
       .then(data => {
         res.send({
-            message:"Course " + assignment.courseCourseId + " has been assigned to skill " + assignment.skillSkillId
+            message:"Course " + assignment.Course_ID + " has been assigned to skill " + assignment.Skill_ID
           }
           );
       })
