@@ -40,8 +40,14 @@ db.Course.belongsToMany(db.LearningJourney, {through: 'ljcourse'})
 db.Skill.belongsToMany(db.Course, {through: 'skillcourse'})
 db.Course.belongsToMany(db.Skill, {through: 'skillcourse'})
 
+
+
 // many to many association between Skill and Role
-db.Skill.belongsToMany(db.Role, {through: 'roleskill'})
-db.Role.belongsToMany(db.Skill, {through: 'roleskill'})
+var roleskill = sequelize.define('roleskill',
+{},
+{tableName: 'roleskill', timestamps: false}
+);
+db.Skill.belongsToMany(db.Role, {through: roleskill});
+db.Role.belongsToMany(db.Skill, {through: roleskill});
 
 module.exports = db;
