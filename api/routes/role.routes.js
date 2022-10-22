@@ -23,6 +23,10 @@ module.exports = app => {
   
     // Delete a Role with id
     router.delete("/:role_id", role.delete);
+
+    // Assign a role to skill
+    router.post("/assignskill", role.assignSkill);
   
     app.use('/api/role', router);
+    
   };

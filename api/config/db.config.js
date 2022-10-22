@@ -1,8 +1,12 @@
 require('dotenv').config('../.env')
 
-HOST = process.env.HOST
-USER = process.env.USER
-PASSWORD = process.env.PASSWORD
+// HOST = process.env.HOST
+// USER = process.env.USER
+// PASSWORD = process.env.PASSWORD
+
+HOST = 'spmdb2.cnkc1tisp0k3.ap-southeast-1.rds.amazonaws.com'
+USER = 'admin'
+PASSWORD = 'adminadmin'
 
 module.exports = {
     HOST: HOST,
