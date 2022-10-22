@@ -211,3 +211,31 @@ exports.assignSkill = (req, res) => {
     }).catch(e => console.log(e));
 
 };
+
+
+
+
+//Unassign skill from role
+exports.unassignSkill = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  const assignment = {
+    skillSkillId: req.body.skillSkillId,
+    roleRoleId: req.body.roleRoleId,
+  };
+
+  role.findOne({
+    where: { role_id: assignment.roleRoleId }
+    }).then(role => {
+        role.removeSkill([assignment.roleRoleId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
+
+
+};
