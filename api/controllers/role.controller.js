@@ -52,24 +52,23 @@ exports.findAll = (req, res) => {
 
 // Find a single role with an role_id
 exports.findOne = (req, res) => {
-    const role_id = req.params.role_id;
-  
-    role.findByPk(role_id)
-      .then(data => {
-        if (data) {
-          res.send(data);
-        } else {
-          res.status(404).send({
-            message: `Cannot find role with role_id=${role_id}.`
-          });
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error retrieving role with role_id=" + role_id
+  const role_id = req.params.role_id;
+  role.findByPk(role_id)
+    .then(data => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find role with role_id=${role_id}.`
         });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving role with role_id=" + role_id
       });
-  };
+    });
+};
 
 // Find all skills associated with a Role
 exports.findAssociatedSkills = (req, res) => {
@@ -217,18 +216,55 @@ exports.deleteAll = (req, res) => {
       });
   };
 
+//Assign skill to course
+exports.assignSkill = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  const assignment = {
+    skillSkillId: req.body.skillSkillId,
+    roleRoleId: req.body.roleRoleId
+  };
+
+
+  role.findOne({
+    where: { role_id: assignment.roleRoleId }
+    }).then(role => {
+        role.setSkills([assignment.skillSkillId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
+
+};
 
 
 
 
+//Unassign skill from role
+exports.unassignSkill = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  const assignment = {
+    skillSkillId: req.body.skillSkillId,
+    roleRoleId: req.body.roleRoleId,
+  };
+
+  role.findOne({
+    where: { role_id: assignment.roleRoleId }
+    }).then(role => {
+        role.removeSkill([assignment.roleRoleId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
 
 
-
-
-
-
-
-
-
-
-
+};

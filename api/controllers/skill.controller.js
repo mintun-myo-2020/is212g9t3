@@ -5,6 +5,7 @@ const skill = db.Skill;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new skill
+//new skill
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.skill_name) {
