@@ -1,4 +1,4 @@
-// require('dotenv').config('../.env')
+require('dotenv').config('../.env')
 
 // HOST = process.env.HOST
 // USER = process.env.USER
