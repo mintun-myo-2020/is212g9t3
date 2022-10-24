@@ -1,2 +1,4 @@
 .env
 api/.env
+api/nod_modules
+api/config/db.config.js

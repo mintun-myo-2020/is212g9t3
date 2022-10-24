@@ -3,7 +3,7 @@ module.exports = app => {
   
     var router = require("express").Router();
     
-    // Create a new Tutorial
+    // Create a new Skill
     router.post("/", skill.create);
 
     // Retrieve all Skills
@@ -29,6 +29,6 @@ module.exports = app => {
 
     // Unassign a course to skill
     router.post("/unassigncourse", skill.unassignCourse);
-  
+     
     app.use('/api/skill', router);
   };
