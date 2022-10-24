@@ -4,5 +4,4 @@
 ```
 cd api
 npm install
-npm install jest --save-dev
 ```
