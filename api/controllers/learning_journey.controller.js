@@ -1,6 +1,6 @@
 const db = require("../models");
-const { Skill, Role, Course } = require("../models");
-const LearningJourney = db.learningJourneys;
+const { Skill, Role, Course, Staff } = require("../models");
+const LearningJourney = db.LearningJourney;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new LearningJourney
@@ -12,43 +12,24 @@ exports.create = (req, res) => {
       });
       return;
     }
-  
-    lj_name - req.body.lj_name
-    role_id = req.body.role_id;
-    skills = req.body.skills; // array of skill ids
-    courses = req.body.courses; // array of course ids
+    
+    const staff_id = req.body.staff_id;
+    const lj_name = req.body.lj_name;
+    const role_id = req.body.role_id;
+    // const skills = req.body.skills; // array of skill ids
+    // const courses = req.body.courses; // array of course ids
 
     // Create a LearningJourney
     const learningJourney = {
-      lj_name: lj_name
+      lj_name: lj_name,
+      staffStaffId: staff_id,
+      roleRoleId: role_id
     };
 
-    // Save LearningJourney in the database
     LearningJourney.create(learningJourney)
       .then(data => {
-        res.send(data);
+        res.send(data)        
       })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the LearningJourney."
-        });
-      });
-
-    // Create associations with roles and skills (foreach id)
-
-    const assignment = {
-        skills : skills,
-        courses: courses
-      };
-    
-    LearningJourney.findOne({
-    where: { skill_id: assignment.skillSkillId }
-    }).then(skill => {
-        skill.setCourses([assignment.courseCourseId])
-        res.sendStatus(200);
-    }).catch(e => console.log(e));
-  
 
   };
 
