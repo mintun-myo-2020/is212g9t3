@@ -189,6 +189,34 @@ exports.delete = (req, res) => {
 //   };
 
 
+//Assign course to skill
+exports.assignCourse = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  const assignment = {
+    courseCourseId: req.body.courseCourseId,
+    skillSkillId: req.body.skillSkillId
+  };
+
+  skill.findOne({
+    where: { skill_id: assignment.skillSkillId }
+    }).then(skill => {
+        skill.setCourses([assignment.courseCourseId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
+
+
+};
+
+
+
+
 
 
 

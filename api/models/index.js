@@ -4,7 +4,7 @@ const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
-  operatorsAliases: false,
+  operatorsAliases: 0,
 
   pool: {
     max: dbConfig.pool.max,
@@ -24,7 +24,6 @@ db.LearningJourney = require("./learning_journey.model")(sequelize, Sequelize);
 db.Course = require("./course.model")(sequelize, Sequelize);
 db.Skill = require("./skill.model")(sequelize, Sequelize);
 db.Role = require("./role.model")(sequelize, Sequelize);
-
 //one to many association between Staff and LJ
 db.Staff.hasMany(db.LearningJourney)
 
@@ -37,8 +36,12 @@ db.Course.belongsToMany(db.LearningJourney, {through: 'ljcourse'})
 
 
 // many to many association between Skill and Course
-db.Skill.belongsToMany(db.Course, {through: 'skillcourse'})
-db.Course.belongsToMany(db.Skill, {through: 'skillcourse'})
+
+const SkillCourse = sequelize.define('skillcourse', {},
+{tableName:'skillcourse',timestamps:false}
+);
+db.Skill.belongsToMany(db.Course, {through: SkillCourse})
+db.Course.belongsToMany(db.Skill, {through: SkillCourse})
 
 
 
