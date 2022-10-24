@@ -114,6 +114,35 @@ exports.update = (req, res) => {
       });
   };
 
+// Unassign skill from role
+exports.unassign = (req, res) => {
+
+  const role_id = req.body.role_id;
+  const skill_id = req.params.skill_id;
+
+  role.findOne({
+    where: {role_id: role_id}
+  }).then(data => {
+    if (data) {
+      data.removeSkill([parseInt(skill_id)]);
+      res.send({
+        message: `${role_id} unassigned from ${skill_id}`
+      })
+    } else {
+      res.status(404).send({
+        message: `Cannot find role with role_id=${role_id} OR skill_id=${skill_id}.`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error retrieving role with role_id=" + role_id
+    });
+  });
+
+
+}
+
 
 // Archive a skill by the skill_id in the request
 
