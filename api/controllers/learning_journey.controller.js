@@ -1,24 +1,28 @@
 const db = require("../models");
+const { Skill, Role, Course } = require("../models");
 const LearningJourney = db.learningJourneys;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new LearningJourney
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.lj_name) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
     }
   
+    lj_name - req.body.lj_name
+    role_id = req.body.role_id;
+    skills = req.body.skills; // array of skill ids
+    courses = req.body.courses; // array of course ids
+
     // Create a LearningJourney
     const learningJourney = {
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      lj_name: lj_name
     };
-  
+
     // Save LearningJourney in the database
     LearningJourney.create(learningJourney)
       .then(data => {
@@ -30,6 +34,22 @@ exports.create = (req, res) => {
             err.message || "Some error occurred while creating the LearningJourney."
         });
       });
+
+    // Create associations with roles and skills (foreach id)
+
+    const assignment = {
+        skills : skills,
+        courses: courses
+      };
+    
+    LearningJourney.findOne({
+    where: { skill_id: assignment.skillSkillId }
+    }).then(skill => {
+        skill.setCourses([assignment.courseCourseId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
+  
+
   };
 
 // Retrieve all LearningJourneys from the database.

@@ -32,14 +32,15 @@ db.Staff.hasMany(db.LearningJourney)
 db.Role.hasMany(db.LearningJourney)
 
 // many to many association between Course and LJ
-db.LearningJourney.belongsToMany(db.Course, {through: 'ljcourse'})
-db.Course.belongsToMany(db.LearningJourney, {through: 'ljcourse'})
+const LJCourse = sequelize.define('ljcourse', {},
+{tableName: 'ljcourse', timestamps: false});
+db.LearningJourney.belongsToMany(db.Course, {through: LJCourse})
+db.Course.belongsToMany(db.LearningJourney, {through: LJCourse})
 
 
 // many to many association between Skill and Course
 db.Skill.belongsToMany(db.Course, {through: 'skillcourse'})
 db.Course.belongsToMany(db.Skill, {through: 'skillcourse'})
-
 
 
 // many to many association between Skill and Role
@@ -48,5 +49,15 @@ const Roleskill = sequelize.define('roleskill', {},
 );
 db.Skill.belongsToMany(db.Role, {through: Roleskill});
 db.Role.belongsToMany(db.Skill, {through: Roleskill});
+
+// many to many association between LearningJourney and Role
+const LJRole = sequelize.define('ljrole', {},
+{tableName: 'ljrole', timestamps: false}
+);
+db.LearningJourney.belongsToMany(db.Role, {through: LJRole});
+db.Role.belongsToMany(db.LearningJourney, {through: LJRole});
+
+
+
 
 module.exports = db;
