@@ -235,6 +235,7 @@
 
                             </div>
                             <!--Last Col-->
+
                             <!--Start of Second Col-->
                             <div class="col-lg-4 mb-4">
                                 <div class="card">
@@ -278,12 +279,18 @@
     
                                         </div>
     
-    
-    
-    
-    
                                     </div>
+
                                 </div>
+                                <!--End of card -->
+                                <hr>
+                                
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" 
+                                data-bs-target="#exampleModal">
+                                Add skills
+                            </button>
+
                             </div>
 
                             <!--End of Second Col-->
@@ -370,12 +377,13 @@
     <div id="role-select" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Staff</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!--Form submission-->
                 <form action="#">
+                    <!--UPDATE THE FORM TMR-->
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Select a role</option>
@@ -395,14 +403,16 @@
                         <label class="btn btn-outline-primary" for="btn-check-outlined">Leadership management</label>
                         <br>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    
+                    </div>
                 </form>
 
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
+                
             </div>
 
         </div>
