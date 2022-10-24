@@ -8,6 +8,7 @@ const main = Vue.createApp({
         return {
             roles: [],
             skills: [],
+            courses: [],
         }
     },
 
@@ -16,6 +17,7 @@ const main = Vue.createApp({
 
         let role_endpoint_ = "http://localhost:8080/api/role"
         let skill_endpoint_ = "http://localhost:8080/api/skill"
+        let course_endpoint_ = "http://localhost:8080/api/course"
 
         axios.get(role_endpoint_)
         .then(response => {
@@ -37,6 +39,18 @@ const main = Vue.createApp({
             // Assign response.data.records (Array) to
             // 'people' data property
             this.skills = response.data
+        })
+        .catch(error => {
+            console.log( error.message )
+        })
+
+        axios.get(course_endpoint_)
+        .then(response => {
+            console.log( response.data )
+
+            // Assign response.data.records (Array) to
+            // 'people' data property
+            this.course = response.data
         })
         .catch(error => {
             console.log( error.message )
