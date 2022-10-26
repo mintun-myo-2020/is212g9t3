@@ -1,5 +1,5 @@
 const db = require("../models");
-const { Skill, Role, Course, Staff } = require("../models");
+const { Skill, Role, Course, Staff,  } = require("../models");
 const LearningJourney = db.LearningJourney;
 const Op = db.Sequelize.Op;
 
@@ -16,19 +16,32 @@ exports.create = (req, res) => {
     const staff_id = req.body.staff_id;
     const lj_name = req.body.lj_name;
     const role_id = req.body.role_id;
-    // const skills = req.body.skills; // array of skill ids
-    // const courses = req.body.courses; // array of course ids
+    const skills = req.body.skills; // array of skill ids
+    const courses = req.body.courses; // array of course ids
 
     // Create a LearningJourney
     const learningJourney = {
       lj_name: lj_name,
       staffStaffId: staff_id,
-      roleRoleId: role_id
+      roleRoleId: role_id,
+      skills: skills,
+      courses: courses
     };
 
     LearningJourney.create(learningJourney)
       .then(data => {
-        res.send(data)        
+        LearningJourney.findByPk(data.lj_id)
+        .then(lj => {
+          for (course of courses){
+            lj.setCourses([course]);
+          }
+          for (skill of skills) {
+            lj.setSkills([skill]);
+          }
+          res.send(lj);
+          // res.send(lj.courses);
+        })     
+        
       })
 
   };
