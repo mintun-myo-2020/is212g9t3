@@ -104,7 +104,7 @@
 
                                     <div class="card-body">
                                         <!--First Row with welcome message -->
-                                        <h5 class="card-title text-primary">Welcome back Human Resource Manager 🎉</h5>
+                                        <h5 class="card-title text-primary">Welcome back, Manager 🎉</h5>
                                         <!-- <p class="mb-4">
                                                 You have completed <span class="fw-bold">72%</span> of learning today.
                                                 Check
@@ -134,39 +134,42 @@
                                         <!--Start of search -->
                                         <h5>Search for Staff</h5>
 
-                                        <input type="text" id="myInput" onkeyup="myFunction()"
+                                        <input type="text" id="myStaff" onkeyup="myStaff()"
                                             placeholder="Search for names..">
 
-                                        <table id="myTable">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Staff ID</th>
-                                                    <th scope="col">First Name</th>
-                                                    <th scope="col">Last Name</th>
-                                                    <th scope="col">Skills Accquire</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                            <table id="myTableStaff" class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Staff ID</th>
+                                                        <th scope="col">First Name</th>
+                                                        <th scope="col">Last Name</th>
+                                                        <th scope="col">Skills Accquired</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Mark</td>
+                                                        <td>Otto</td>
+                                                        <td>@mdo</td>
+                                                        <!--need to connect to back end and delete-->
+                                                        
 
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>Jacob</td>
+                                                        <td>Thornton</td>
+                                                        <td>@fat fat</td>
+
+                                                       
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        <!--End of search staff-->    
 
                                     </div>
 
@@ -183,7 +186,7 @@
                                     <div class="card-title d-flex align-items-start justify-content-between">
 
                                     </div>
-                                    <span class="fw-semibold d-block mb-1">My Homework</span>
+                                    <span class="fw-semibold d-block mb-1">My Progression</span>
 
                                     <div class="d-flex align-items-center progmain">
                                         <span class="stars">
@@ -242,12 +245,7 @@
                 </div>
                 
             </div>
-            <!-- / Content -->
-
-
-
-
-            <!-- Content wrapper -->
+          
 
 
 
@@ -282,12 +280,12 @@
             }
         }
         //
-        function myFunction() {
+        function myStaff() {
             // Declare variables
             var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
+            input = document.getElementById("myStaff");
             filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
+            table = document.getElementById("myTableStaff");
             tr = table.getElementsByTagName("tr");
 
             // Loop through all table rows, and hide those who don't match the search query
