@@ -355,10 +355,18 @@
   padding: 0;
 }
 
+.myTableLJ.no-cellpadding td{
+  padding: 0;
+}
+
 
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;
+  }
+  .modal-xl {
+    width: 90%;
+   max-width:1200px;
   }
 }
 
