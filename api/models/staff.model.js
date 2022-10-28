@@ -13,16 +13,13 @@ module.exports = (sequelize, Sequelize) => {
       staff_lname: {
         type: Sequelize.STRING
       },
-      staff_type: {
-        type: Sequelize.STRING
-      },
       dept: {
         type: Sequelize.STRING
       },
       email: {
         type: Sequelize.STRING
       },
-      designation_id: {
+      role: {
         type: Sequelize.INTEGER
       }
     },

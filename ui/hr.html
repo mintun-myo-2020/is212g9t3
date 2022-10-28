@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body id="app">
 
     <div class="container-fluid">
         <!--Side navigation bar-->
@@ -232,11 +232,11 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>Thornton</td>
+                                                        <tr v-for="each in skills">
+                                                            <th scope="row">{{ each.skill_id }}</th>
+                                                            <td>{{ each.skill_name }}</td>
+                                                            <td>{{ each.skill_status }}</td>
+                                                            <td>{{ each.skill_id }}</td>
 
 
                                                             <!--need to connect to back end and delete-->
@@ -252,23 +252,6 @@
                                                             </td>
 
                                                         </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Jacob</td>
-                                                            <td>Thornton</td>
-                                                            <td>Thornton</td>
-                                                            <td>
-                                                                <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModal"></i>
-
-                                                                <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModal">
-                                                                </iconify-icon>
-
-                                                            </td>
-                                                        </tr>
-
                                                     </tbody>
                                                 </table>
 
@@ -298,14 +281,14 @@
                                                             <th scope="col">Role ID</th>
                                                             <th scope="col">Role Name</th>
 
-                                                            <th scope="col">Actions</th>
+                                                            <!-- <th scope="col">Actions</th> -->
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
+                                                        <tr v-for = "each in roles">
+                                                            <th scope="row"> {{each.role_id}}</th>
+                                                            <td>{{each.role_name}}</td>
 
 
 
@@ -323,22 +306,6 @@
                                                             </td>
 
                                                         </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Jacob</td>
-
-                                                            <td>
-                                                                <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModal"></i>
-
-                                                                <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModal">
-                                                                </iconify-icon>
-
-                                                            </td>
-                                                        </tr>
-
                                                     </tbody>
                                                 </table>
 
@@ -377,50 +344,27 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Mark</td>
-                                                            <td>Mark</td>
-                                                            <td>Mark</td>
-                                                            <td>Mark</td>
-
-
-
+                                                        <tr v-for = "each in courses">
+                                                            <th scope="row">{{each.course_id}}</th>
+                                                            <td>{{each.course_name}}</td>
+                                                            <td>{{each.course_desc}}</td>
+                                                            <td>{{each.course_status}}</td>
+                                                            <td>{{each.course_type}}</td>
+                                                            <td>{{each.course_category}}</td>
 
                                                             <!--need to connect to back end and delete-->
                                                             <td>
                                                                 <i class='bx bxs-edit-alt' data-bs-toggle="modal"
                                                                     data-bs-target="#editModal"></i>
-
+                                                                
                                                                 <iconify-icon icon="bx:trash" style="color: crimson;"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModal">
+                                                                    data-bs-target="#deleteModal" @click = "deleteCourse(each.course_id)">
                                                                 </iconify-icon>
 
                                                             </td>
 
                                                         </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Jacob</td>
-                                                            <td>Jacob</td>
-                                                            <td>Jacob</td>
-                                                            <td>Jacob</td>
-                                                            <td>Jacob</td>
-
-                                                            <td>
-                                                                <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModal"></i>
-
-                                                                <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModal">
-                                                                </iconify-icon>
-
-                                                            </td>
-                                                        </tr>
-
                                                     </tbody>
                                                 </table>
 
