@@ -50,15 +50,28 @@ const main = Vue.createApp({
 
             // Assign response.data.records (Array) to
             // 'people' data property
-            this.course = response.data
+            this.courses = response.data
         })
         .catch(error => {
             console.log( error.message )
         })
+    },
+    methods : {
+    deleteCourse ({ course_id }) {
+        console.log(course_id);
+        return new Promise((resolve, reject) => {
+          axios.delete(`http://localhost:8080/api/course/${course_id}`).then(response => {
+            resolve(response)
+          }).catch(error => {
+            reject(error)
+          })
+        })
+      }
+
     }
     
 
 })
 
 // Link this Vue instance with <div id="app">
-main.mount("#role-select")
+main.mount("#app")
