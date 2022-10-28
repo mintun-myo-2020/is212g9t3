@@ -339,6 +339,23 @@
   background-color: #f1f1f1;
 }
 
+.myTableStaff.no-cellpadding td{
+  padding: 0;
+}
+
+.myTableSkill.no-cellpadding td{
+  padding: 0;
+}
+
+.myTableRole.no-cellpadding td {
+  padding:0;
+}
+
+.myTableCourse.no-cellpadding td{
+  padding: 0;
+}
+
+
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;
