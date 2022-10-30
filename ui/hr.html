@@ -297,8 +297,7 @@
                                                                     data-bs-target="#editModalRole"></i>
 
                                                                 <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModalRole">
+                                                                    @click = deleteRole(each.role_id)>
                                                                 </iconify-icon>
 
                                                             </td>
@@ -356,8 +355,7 @@
                                                                     data-bs-target="#editModalCourse"></i>
                                                                 
                                                                 <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModalCourse" @click = "deleteCourse(each.course_id)">
+                                                                    @click = "deleteCourse(each.course_id)">
                                                                 </iconify-icon>
 
                                                             </td>

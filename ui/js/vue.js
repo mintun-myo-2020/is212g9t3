@@ -57,18 +57,48 @@ const main = Vue.createApp({
         })
     },
     methods : {
-    deleteCourse ({ course_id }) {
-        console.log(course_id);
+    deleteCourse ( course_id ) {
         return new Promise((resolve, reject) => {
           axios.delete(`http://localhost:8080/api/course/${course_id}`).then(response => {
             resolve(response)
+            document.location.reload()
           }).catch(error => {
             reject(error)
           })
         })
-      }
+      },
+    deleteRole ( role_id ) {
+    return new Promise((resolve, reject) => {
+        axios.delete(`http://localhost:8080/api/role/${role_id}`).then(response => {
+        resolve(response)
+        document.location.reload()
+        }).catch(error => {
+        reject(error)
+        })
+    })
+    },
+    deleteStaff ( staff_id ) {
+        return new Promise((resolve, reject) => {
+            axios.delete(`http://localhost:8080/api/staff/${staff_id}`).then(response => {
+            resolve(response)
+            }).catch(error => {
+            reject(error)
+            })
+        })
+        }
 
+    },
+    deleteSkill ( skill_id ) {
+        return new Promise((resolve, reject) => {
+            axios.delete(`http://localhost:8080/api/skill/${skill_id}`).then(response => {
+            resolve(response)
+            }).catch(error => {
+            reject(error)
+            })
+        })
     }
+
+
     
 
 })
