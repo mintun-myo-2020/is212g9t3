@@ -155,42 +155,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
+                                                    <tr v-for="each in staff">
+                                                        <th scope="row">{{each.staff_id}}</th>
+                                                        <td>{{each.staff_fname}}</td>
+                                                        <td>{{each.staff_lname}}</td>
+                                                        <td>{{each.dept}}</td>
+                                                        <td>{{each.email}}</td>
                                                         <!--need to connect to back end and delete-->
                                                         <td>
                                                             <i class='bx bxs-edit-alt' data-bs-toggle="modal"
                                                                 data-bs-target="#editModalStaff"></i>
 
                                                             <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                data-bs-toggle="modal" data-bs-target="#deleteModalStaff">
+                                                            @click = deleteStaff(each.staff_id)>
                                                             </iconify-icon>
 
                                                         </td>
 
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat fat</td>
-                                                        <td>@fat fat</td>
-
-                                                        <td>
-                                                            <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                            data-bs-target="#editModalStaff"></i>
-
-                                                        <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                            data-bs-toggle="modal" data-bs-target="#deleteModalStaff">
-                                                        </iconify-icon>
-
-                                                        </td>
-                                                    </tr>
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -244,7 +226,7 @@
 
                                                                 <iconify-icon icon="bx:trash" style="color: crimson;"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModalSkill">
+                                                                    data-bs-target="#deleteModalSkill" @click = "deleteSkill(each.skill_id)">
                                                                 </iconify-icon>
 
                                                             </td>
@@ -454,123 +436,6 @@
     </div>
     </div>
 
-    <!--Script Files-->
-    <script>
-        // modal
-        let sidebar = document.querySelector(".sidebar");
-        let closeBtn = document.querySelector("#btn");
-        let searchBtn = document.querySelector(".bx-search");
-
-        closeBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("open");
-            menuBtnChange(); //calling the function(optional)
-        });
-
-        searchBtn.addEventListener("click", () => {
-            // Sidebar open when you click on the search iocn
-            sidebar.classList.toggle("open");
-            menuBtnChange(); //calling the function(optional)
-        });
-
-        // following are the code to change sidebar button(optional)
-        function menuBtnChange() {
-            if (sidebar.classList.contains("open")) {
-                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
-            } else {
-                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
-            }
-        }
-        //
-        function myStaff() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myStaff");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTableStaff");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        function mySkill() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("mySkill");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTableSkill");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        function myRole() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myRole");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTableRole");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        function myViewCourse() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myViewCourse");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTableCourse");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-</body>
-<!-- Modal -->
 
 <!--Create Skill Modal -->
 <div class="modal fade" id="createSkillModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -608,7 +473,7 @@
                     
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary" @click="createSkill()">Create</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                     </div>
@@ -734,6 +599,125 @@
 </div>
 <!--End of edit Staff modal-->
 
+
+    <!--Script Files-->
+    <script>
+        // modal
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", () => {
+            // Sidebar open when you click on the search iocn
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+            if (sidebar.classList.contains("open")) {
+                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+            } else {
+                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+            }
+        }
+        //
+        function myStaff() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myStaff");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableStaff");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function mySkill() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("mySkill");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableSkill");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function myRole() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myRole");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableRole");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function myViewCourse() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myViewCourse");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableCourse");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+<!-- Modal -->
+
 <!--Start of delete Staff modal-->
 <div class="modal fade" id="deleteModalStaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div id="role-select" class="modal-dialog">
@@ -836,7 +820,7 @@
 </div>
 <!--End of edit Skills modal-->
 
-<!--Start of delete Staff modal-->
+<!--Start of delete skill modal-->
 <div class="modal fade" id="deleteModalSkill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div id="role-select" class="modal-dialog">
         <div class="modal-content">
