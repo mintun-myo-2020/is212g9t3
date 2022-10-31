@@ -9,9 +9,6 @@
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- This is a development version of Vue.js! -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
     <!-- Bootstrap CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -21,6 +18,11 @@
         crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/10ee65637f.js" crossorigin="anonymous"></script>
+
+    <!--Datatable CDN-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+
 </head>
 
 <body>
@@ -85,29 +87,7 @@
 
                     <div class="row">
                         <div class="col-lg-8 mb-4 order-0">
-                            <div class="card">
-                                <div class="d-flex align-items-end row">
-
-                                    <div class="card-body">
-                                        <!--First Row with welcome message -->
-                                        <h5 class="card-title text-primary">Welcome back,Learner 🎉</h5>
-                                        <!-- <p class="mb-4">
-                                                You have completed <span class="fw-bold">72%</span> of learning today.
-                                                Check
-                                                your new badge in
-                                                your profile.
-                                            </p> -->
-
-                                        <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
-                                            profile</a>
-                                    </div>
-
-
-                                    <div class="card-body pb-0 px-0 px-md-4">
-                                        <img src="../ui/img/man.png" height="140" alt="View Badge User" />
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <!--Second row -->
                             <div class="card">
                                 <div class="card-body">
@@ -138,30 +118,74 @@
                                                         <th scope="col">Courses</th>
                                                         <th scope="col">Skills Accquired</th>
                                                         <th scope="col">Status</th>
+                                                        <th scope="col">Actions</th>
                                                         
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
+                                                        <td>LJ_1</td>
+                                                        <td>Engineer</td>
+                                                        <td>
+                                                            <span>Effective Leadership</span> 
+                                                            <hr>
+                                                            <span>Managing People</span>
+                                
+                                                        </td>
+                                                        <td>
+                                                            <span> Speaking </span> 
+                                                            <hr>
+                                                            <span>Management</span>
+                                
+                                                        </td>
+                                                        <td>In-Progress</td>
                                                         <!--need to connect to back end and delete-->
                                                         
+                                                        
+                                                         <td>
+                                                            <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                                                                data-bs-target="#editLJModal"></i>
+
+                                                            <iconify-icon icon="bx:trash" style="color: crimson;"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#deleteLJModal">
+                                                            </iconify-icon>
+
+                                                        </td>
 
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat fat</td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
+                                                        <td>LJ_2</td>
+                                                        <td>Engineer</td>
+                                                        <td>
+                                                            <span>Effective Leadership</span> 
+                                                            <hr>
+                                                            <span>Managing People</span>
+                                
+                                                        </td>
+                                                        <td>
+                                                            <span> Speaking </span> 
+                                                            <hr>
+                                                            <span>Management</span>
+                                
+                                                        </td>
+                                                        <td>In-Progress</td>
+                                                        <!--need to connect to back end and delete-->
+                                                        
+                                                        
+                                                         <td>
+                                                            <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                                                                data-bs-target="#editLJModal"></i>
 
-                                                       
+                                                            <iconify-icon icon="bx:trash" style="color: crimson;"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#deleteLJModal">
+                                                            </iconify-icon>
+
+                                                        </td>
+
                                                     </tr>
 
                                                 </tbody>
@@ -307,6 +331,7 @@
 </body>
 <!-- Modal -->
 
+<!-- Create Learning Journey Modal-->
 <div class="modal fade" id="CreateLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div  id="role-select" class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -356,6 +381,98 @@
         </div>
     </div>
 </div>
+
+<!-- Edit Learning Journey Modal-->
+<div class="modal fade" id="editLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div  id="role-select" class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Learning Journey</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--Form submission-->
+                <form action="#" id="'newModalForm" class="needs-validation" novalidate>
+                    <div class="mb-3 mt-3">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Select a role</option>
+                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }} </option>
+                        </select>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <!-- vmodel selected role need to update  -->
+                            <p>Select skills</p>
+                            <span v-for="each in skills[role]">
+                              <input type="checkbox" :value="skill.skill_id"> <span class="checkbox-label"> {{skill.skill_name}} </span> <br>
+                            </span>
+
+                            <hr>
+
+                    </div>
+                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
+                    <!--Need to enter some fake courses inside-->
+                    <div class="mb-3">
+                        <p>Select courses</p>
+                        <span v-for="course in courses">
+                          <input type="checkbox" :value="course.course_id"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
+                        </span>
+                        <br>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    
+                    </div>
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Delete LJ Modal-->
+<div class="modal fade" id="deleteLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div id="role-select" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--Form submission-->
+                <form action="#">
+                    <div class="mb-3 mt-3">
+                        <div class="form-group">
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                    </div>
+
+
+                    <!--Show all the completed courses for each staff-->
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        <input type="submit" class="btn btn-danger" value="Delete">
+
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 
 <!--End of modal-->
 <!-- Vue.js 3 CDN -->
