@@ -9,9 +9,6 @@ module.exports = app => {
     // Retrieve all learningJourney
     router.get("/", learningJourney.findAll);
   
-    // Retrieve all published learningJourney
-    router.get("/published", learningJourney.findAllPublished);
-  
     // Retrieve a single learningJourney with id
     router.get("/:id", learningJourney.findOne);
   

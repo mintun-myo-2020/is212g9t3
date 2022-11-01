@@ -28,16 +28,17 @@ exports.create = (req, res) => {
       courses: courses
     };
 
-    LearningJourney.create(learningJourney)
+    LearningJourney.create(learningJourney,  {include: courses, skills})
       .then(data => {
         LearningJourney.findByPk(data.lj_id)
         .then(lj => {
-          for (course of courses){
-            lj.setCourses([course]);
-          }
-          for (skill of skills) {
-            lj.setSkills([skill]);
-          }
+          // for (course of courses){
+          //   lj.setCourses([course]);
+          // }
+          // console.log(lj.setCourses);
+          // for (skill of skills) {
+          //   lj.setSkills([skill]);
+          // }
           res.send(lj);
           // res.send(lj.courses);
         })     
@@ -151,19 +152,6 @@ exports.deleteAll = (req, res) => {
       });
   };
 
-// Find all published LearningJourneys
-exports.findAllPublished = (req, res) => {
-    LearningJourney.findAll({ where: { published: true } })
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving learningJourneys."
-        });
-      });
-  };
 
 
 
