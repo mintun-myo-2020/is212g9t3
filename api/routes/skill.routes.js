@@ -29,6 +29,8 @@ module.exports = app => {
 
     // Unassign a course to skill
     router.post("/unassigncourse", skill.unassignCourse);
+
+    router.post("/removeSkillLJ", skill.removeSkillLJ);
      
     app.use('/api/skill', router);
   };

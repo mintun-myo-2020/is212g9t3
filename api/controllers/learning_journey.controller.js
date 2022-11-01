@@ -174,13 +174,30 @@ exports.findAllPublished = (req, res) => {
 
 
 
-//Remove skill from learning Journey
-exports.removeSkillLJ(req, res) => {
-  
+//Remove skill from learning Journey. 
+//Get the skill id then unassign the skills id if its associated with a course, remove course also. 
+exports.removeSkillLJ = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  const assignment = {
+    skill : skills,
+    courses: courses
+  };
+
+  skill.findOne({
+    where: { skill_id: assignment.skill }
+    }).then(skill => {
+        skill.unassignCourse([assignment.courses])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
 
 };
-
-
 
 
 
