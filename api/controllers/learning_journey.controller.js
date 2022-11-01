@@ -174,7 +174,11 @@ exports.findAllPublished = (req, res) => {
 
 
 
+//Remove skill from learning Journey
+exports.removeSkillLJ(req, res) => {
+  
 
+};
 
 
 
