@@ -4,7 +4,7 @@
   "description": "Node.js Rest Apis with Express, Sequelize & MySQL.",
   "main": "server.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest",
     "start": "nodemon server.js"
   },
   "author": "",
