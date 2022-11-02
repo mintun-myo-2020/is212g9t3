@@ -185,15 +185,17 @@ exports.removeSkillLJ = (req, res) => {
     return;
   }
 
-  const assignment = {
-    skill : skills,
-    courses: courses
+  const removal = {
+    learningJourneyID: req.body.learningJourneyID,
+    skillSkillId : req.body.skillSkillId,
+    courseCourseId: req.body.courseCourseId
   };
 
-  skill.findOne({
-    where: { skill_id: assignment.skill }
+  skillSkillId.findOne({
+    where: { skill_id: removal.skillSkillId }
     }).then(skill => {
-        skill.unassignCourse([assignment.courses])
+        skill.unassignCourse([removal.courseCourseId])
+        skill.archive([removal.skillSkillId])
         res.sendStatus(200);
     }).catch(e => console.log(e));
 
