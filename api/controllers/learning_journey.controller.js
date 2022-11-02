@@ -28,17 +28,16 @@ exports.create = (req, res) => {
       courses: courses
     };
 
-    LearningJourney.create(learningJourney,  {include: courses, skills})
+    LearningJourney.create(learningJourney)
       .then(data => {
         LearningJourney.findByPk(data.lj_id)
         .then(lj => {
-          // for (course of courses){
-          //   lj.setCourses([course]);
-          // }
-          // console.log(lj.setCourses);
-          // for (skill of skills) {
-          //   lj.setSkills([skill]);
-          // }
+          for (course of courses){
+            lj.setCourses([course]);
+          }
+          for (skill of skills) {
+            lj.setSkills([skill]);
+          }
           res.send(lj);
           // res.send(lj.courses);
         })     
