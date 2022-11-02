@@ -151,7 +151,30 @@ exports.deleteAll = (req, res) => {
       });
   };
 
+//Remove course from lj
+exports.removeCourseLj = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
 
+  const removal = {
+    learningjourneyLjId: req.body.learningjourneyLjId,
+    courseCourseId: req.body.courseCourseId
+  };
+
+  LearningJourney.findOne({
+    where: { lj_id: removal.learningjourneyLjId }
+    }).then(skill => {
+        skill.removeCourses([removal.courseCourseId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
+
+
+};
 
 
 

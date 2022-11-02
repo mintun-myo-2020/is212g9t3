@@ -20,6 +20,9 @@ module.exports = app => {
   
     // Delete all learningJourney
     router.delete("/", learningJourney.deleteAll);
+
+    // Remove course from learningJourney
+    router.post("/removecourse", learningJourney.removeCourseLj);
   
     app.use('/api/learningjourney', router);
   };
