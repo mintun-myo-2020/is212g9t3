@@ -3,8 +3,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Course = sequelize.define("course", {
       course_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
+        type: Sequelize.STRING,
         primaryKey: true
       },
       course_name: {
