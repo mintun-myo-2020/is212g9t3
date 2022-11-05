@@ -15,16 +15,45 @@
     </div>
     <div class="col-md-6">
       <h4>Tutorials List</h4>
-      <ul class="list-group">
-        <li class="list-group-item"
-          :class="{ active: index == currentIndex }"
-          v-for="(tutorial, index) in tutorials"
-          :key="index"
-          @click="setActiveTutorial(tutorial, index)"
-        >
-          {{ tutorial.title }}
-        </li>
-      </ul>
+
+      <table class="table">
+
+      <thead>
+        <tr>
+          <th scope="col">Staff ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Department</th>
+          <th scope="col">Skills Accquired</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+
+    <tbody>
+      <tr :class="{ active: index == currentIndex }"
+          v-for="(tutorial, index) in tutorials"  :key="index">
+          <th scope="row">{{tutorial.staff_id}}</th>
+          <td>{{tutorial.staff_fname}}</td>
+          <td>{{tutorial.staff_lname}}</td>
+          <td>{{tutorial.dept}}</td>
+          <td>{{tutorial.email}}</td>
+          <td>
+              <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                  data-bs-target="#editModalStaff"></i>
+
+              <iconify-icon icon="bx:trash" style="color: crimson;"
+              @click = deleteStaff(each.staff_id)>
+              </iconify-icon>
+
+          </td>
+
+      </tr>
+    </tbody>
+
+
+      </table>
+      
 
       <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
         Remove All
@@ -44,10 +73,6 @@
         </div>
 
         <router-link :to="'/tutorials/' + currentTutorial.id" class="badge badge-warning">Edit</router-link>
-      </div>
-      <div v-else>
-        <br />
-        <p>Please click on a Tutorial...</p>
       </div>
     </div>
   </div>
