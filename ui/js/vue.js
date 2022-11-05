@@ -19,7 +19,9 @@ const main = Vue.createApp({
                 role : {
                     name : ''
                 }
-            }
+                
+            },
+            passedData: {staff_id:null , staff_fname:null, staff_lname:null, dept:null,email:null}
         }
     },
 
@@ -134,11 +136,13 @@ const main = Vue.createApp({
             reject(error)
             })
         })
-    }
+    },
     
+   sendInfo(each) {
+    this.passedData = each
+   },
 
     }
-    
 
 })
 
