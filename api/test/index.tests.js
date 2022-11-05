@@ -4,7 +4,7 @@ var app = require('../server');
 var db = require('../models');
 
 before(function(done) {
-  db.sequelize.sync({ force: true }).then(function() {
+  db.sequelize.sync({ force: false }).then(function() {
     done();
   });
 });
@@ -15,10 +15,10 @@ describe('Test LJ endpoints', function() {
         .post('/api/learningjourney')
         .send({
           lj_name: "Test",
-          staffStaffId: 2,
-          roleRoleId: 2,
-          skills: ["teamwork"],
-          courses: ["team building 101"]
+          staffStaffId: 1,
+          roleRoleId: 1,
+          skills: [1],
+          courses: ["FIN003"]
         })
         .expect(200,done)
     });
@@ -28,33 +28,42 @@ describe('Test LJ endpoints', function() {
         .expect(200,done)
     });
     it('Get learning journey by id', function(done) {
-      let id = 1;
+      let id = 2;
       request(app)
         .get('/api/learningjourney/' + id)
-        .expect(200,done)
+        .expect(404,done)
     });
     it('Update learning journey by id', function(done) {
-      let id = 1;
+      let id = 2;
       request(app)
         .put('/api/learningjourney/' + id)
         .send({
           lj_name: "UPDATED test",
-          staffStaffId: 1,
-          roleRoleId: 1,
-          skills: ["teamwork"],
-          courses: ["team building 101"]
+          staffStaffId: 2,
+          roleRoleId: 2,
+          skills: [1],
+          courses: ["FIN004"]
         })
         .expect(200,done)
     });
-    it('Delete all learning journeys', function(done) {
-      request(app)
-        .delete('/api/learningjourney')
-        .expect(200,done)
-    });
+    // it('Delete all learning journeys', function(done) {
+    //   request(app)
+    //     .delete('/api/learningjourney')
+    //     .expect(200,done)
+    // });
     it('Delete learning journey by id', function(done) {
-      let id = 1;
+      let id = 2;
       request(app)
         .delete('/api/learningjourney/' + id)
+        .expect(200,done)
+    });
+    it('Remove courses from learning journey', function(done) {
+      request(app)
+        .post('/api/learningjourney/removecourse')
+        .send({
+          learningjourneyLjId: 1,
+          courseCourseId:"FIN003"
+      })
         .expect(200,done)
     });
   });

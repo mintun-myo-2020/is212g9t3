@@ -89,7 +89,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
   
     LearningJourney.update(req.body, {
-      where: { id: id }
+      where: { lj_id: id }
     })
       .then(num => {
         if (num == 1) {
@@ -104,7 +104,7 @@ exports.update = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating LearningJourney with id=" + id
+          message: err
         });
       });
   };
@@ -114,7 +114,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
   
     LearningJourney.destroy({
-      where: { id: id }
+      where: { lj_id: id }
     })
       .then(num => {
         if (num == 1) {
