@@ -41,6 +41,32 @@ exports.findOne = (req, res) => {
         });
       });
   };
+//sends array of enrolled courses of staff
+exports.findEnrolledCourses = (req, res) => {
+  const staff_id = req.params.staff_id;
+  var enrolled_courses = [];
+  staff.findOne({
+    where: { staff_id: staff_id },
+    include: db.Course
+  })
+  .then(data => {
+    if (data) {
+      for(var course of data.courses){
+        enrolled_courses.push(course.course_id);
+      }
+      res.send(enrolled_courses);
+    } else {
+      res.status(404).send({
+        message: `Cannot find staff with staff_id=${staff_id}.`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error retrieving staff with staff_id=" + staff_id
+    });
+  });
+  };
 
 // Update a  by the staff_id in the request
 exports.update = (req, res) => {
@@ -109,19 +135,7 @@ exports.deleteAll = (req, res) => {
       });
   };
 
-// // Find all published Tutorials
-// exports.findAllPublished = (req, res) => {
-//     staff.findAll({ where: { published: true } })
-//       .then(data => {
-//         res.send(data);
-//       })
-//       .catch(err => {
-//         res.status(500).send({
-//           message:
-//             err.message || "Some error occurred while retrieving tutorials."
-//         });
-//       });
-//   };
+
 
 
 

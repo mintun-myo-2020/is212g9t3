@@ -68,3 +68,12 @@ describe('Test LJ endpoints', function() {
     });
   });
 
+describe('Test enrolled courses by staff', function() {
+    it('Get learning journey by id', function(done) {
+      let id = 150233;
+      request(app)
+        .get('/api/staff/enrolledcourses' + id)
+        .expect(404,done)
+    });
+  });
+
