@@ -15,6 +15,7 @@ const sequelize = new Sequelize(dbConfig[env].DB, dbConfig[env].USER, dbConfig[e
 });
 
 const db = {};
+var DataTypes = require('sequelize/lib/data-types');
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
@@ -68,6 +69,32 @@ const LJRole = sequelize.define('ljrole', {},
 db.LearningJourney.belongsToMany(db.Role, {through: LJRole});
 db.Role.belongsToMany(db.LearningJourney, {through: LJRole});
 
+//staff course
+var staffcourse = sequelize.define('staffcourse',
+{
+  reg_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
+  reg_status: {
+    type: DataTypes.STRING,
+    primaryKey: false,
+    autoIncrement: false,
+    allowNull: false
+  },
+  completion_status: {
+    type: DataTypes.STRING,
+    primaryKey: false,
+    autoIncrement: false,
+    allowNull: false
+  }
+},
+{tableName: 'staffcourse', timestamps: false}
+);
+db.Course.belongsToMany(db.Staff, {through: staffcourse});
+db.Staff.belongsToMany(db.Course, {through: staffcourse});
 
 
 
