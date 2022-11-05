@@ -1,16 +1,16 @@
 const dbConfig = require("../config/db.config.js");
-
+const env = process.env.NODE_ENV;
 const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
+const sequelize = new Sequelize(dbConfig[env].DB, dbConfig[env].USER, dbConfig[env].PASSWORD, {
+  host: dbConfig[env].HOST,
+  dialect: dbConfig[env].dialect,
   operatorsAliases: 0,
 
   pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
+    max: dbConfig[env].pool.max,
+    min: dbConfig[env].pool.min,
+    acquire: dbConfig[env].pool.acquire,
+    idle: dbConfig[env].pool.idle
   }
 });
 
@@ -25,11 +25,18 @@ db.LearningJourney = require("./learning_journey.model")(sequelize, Sequelize);
 db.Course = require("./course.model")(sequelize, Sequelize);
 db.Skill = require("./skill.model")(sequelize, Sequelize);
 db.Role = require("./role.model")(sequelize, Sequelize);
+
 //one to many association between Staff and LJ
 db.Staff.hasMany(db.LearningJourney)
 
 // one to many association between Role and LJ 
 db.Role.hasMany(db.LearningJourney)
+
+// many to many association between Skill and LJ
+const LJSkill = sequelize.define('ljskill', {},
+{tableName: 'ljskill', timestamps: false});
+db.LearningJourney.belongsToMany(db.Skill, {through: LJSkill})
+db.Skill.belongsToMany(db.LearningJourney, {through: LJSkill})
 
 // many to many association between Course and LJ
 const LJCourse = sequelize.define('ljcourse', {},
@@ -39,7 +46,6 @@ db.Course.belongsToMany(db.LearningJourney, {through: LJCourse})
 
 
 // many to many association between Skill and Course
-
 const SkillCourse = sequelize.define('skillcourse', {},
 {tableName:'skillcourse',timestamps:false}
 );
