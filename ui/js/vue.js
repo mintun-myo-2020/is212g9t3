@@ -21,7 +21,7 @@ const main = Vue.createApp({
                 }
                 
             },
-            passedData: {staff_id:null , staff_fname:null, staff_lname:null, dept:null,email:null}
+           
         }
     },
 
@@ -138,9 +138,7 @@ const main = Vue.createApp({
         })
     },
     
-   sendInfo(each) {
-    this.passedData = each
-   },
+ 
 
     }
 
