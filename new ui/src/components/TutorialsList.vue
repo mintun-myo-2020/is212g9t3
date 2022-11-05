@@ -2,11 +2,11 @@
   <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by title"
+        <input type="text" class="form-control" placeholder="Search by Name"
           v-model="title"/>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button"
-            @click="searchTitle"
+            @click="searchName"
           >
             Search
           </button>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <h4>Tutorials List</h4>
+      <h4>Staff List</h4>
 
       <table class="table">
 
@@ -45,6 +45,9 @@
               <iconify-icon icon="bx:trash" style="color: crimson;"
               @click = deleteStaff(each.staff_id)>
               </iconify-icon>
+
+              <button type="button" class="btn btn-warning">Edit</button>
+               <button type="button" class="btn btn-danger">Delete</button>
 
           </td>
 
@@ -79,7 +82,7 @@
 </template>
 
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import StaffDataService from "../services/StaffDataService";
 
 export default {
   name: "tutorials-list",
@@ -93,7 +96,7 @@ export default {
   },
   methods: {
     retrieveTutorials() {
-      TutorialDataService.getAll()
+      StaffDataService.getAll()
         .then(response => {
           this.tutorials = response.data;
           console.log(response.data);
@@ -115,7 +118,7 @@ export default {
     },
 
     removeAllTutorials() {
-      TutorialDataService.deleteAll()
+      StaffDataService.deleteAll()
         .then(response => {
           console.log(response.data);
           this.refreshList();
@@ -125,8 +128,8 @@ export default {
         });
     },
     
-    searchTitle() {
-      TutorialDataService.findByTitle(this.title)
+    searchName() {
+      StaffDataService.findByName(this.name)
         .then(response => {
           this.tutorials = response.data;
           this.setActiveTutorial(null);

@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-class TutorialDataService {
+class StaffDataService {
   getAll() {
     return http.get("/staff");
   }
@@ -25,9 +25,9 @@ class TutorialDataService {
   //   return http.delete(`/tutorials`);
   // }
 
-  findByTitle(name) {
+  findByName(name) {
     return http.get(`/api/staff?name=${name}`);
   }
 }
 
-export default new TutorialDataService();
+export default new StaffDataService();
