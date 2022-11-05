@@ -4,22 +4,20 @@
   "description": "Node.js Rest Apis with Express, Sequelize & MySQL.",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "mocha",
     "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@sinclair/typebox": "^0.24.51",
-    "chai": "^4.3.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "mocha": "^10.1.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.23.2",
-    "sinclair": "^0.2.0",
-    "supertest": "^6.3.1"
+    "sinclair": "^0.2.0"
   },
   "devDependencies": {
     "jest": "^29.2.1",
