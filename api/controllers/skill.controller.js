@@ -1,5 +1,5 @@
 const { where } = require("sequelize");
-const { Role, Skill } = require("../models");
+const { Role, Skill, SkillCourse } = require("../models");
 const db = require("../models");
 const skill = db.Skill;
 const Op = db.Sequelize.Op;
@@ -204,13 +204,11 @@ exports.assignCourse = (req, res) => {
     skillSkillId: req.body.skillSkillId
   };
 
-  skill.findOne({
-    where: { skill_id: assignment.skillSkillId }
-    }).then(skill => {
-        skill.setCourses([assignment.courseCourseId])
-        res.sendStatus(200);
+    skill.findByPk(assignment.skillSkillId).then( skillz => {
+      skillz.addCourse(skillz, {through: SkillCourse}).then(
+        res.sendStatus(200)
+      )
     }).catch(e => console.log(e));
-
 
 };
 

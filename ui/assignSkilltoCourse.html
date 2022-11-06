@@ -98,20 +98,21 @@
                                         <h5 class="text-nowrap mb-2"></h5>
 
                                         <!--Start of search -->
-                                        <h5>Assign skill to role</h5>
+                                        <h5>Assign course to skill</h5>
 
                                         
-                                        <form v-on:submit.prevent=assignSkilltoRole() class="was-validated">
+                                        <form v-on:submit.prevent=assignSkilltoCourse() class="was-validated">
                                             <div class="mb-3 mt-3">
 
                                           <label for="skill" class="form-label">Skill Name: </label>
-                                          <select name="skill" id="skills" v-model="skilltoRole.skillSkillId">
+                                          <select name="skill" id="skills" v-model="skilltoCourse.skillSkillId">
                                             <option v-for="skill in skills" :value="skill.skill_id">{{skill.skill_name}}</option>
                                           </select>
-                                          <label for="role" class="form-label">Role Name: </label>
-                                          <select name="roles" id="roles" v-model="skilltoRole.roleRoleId">
-                                            <option v-for="role in roles" :value="role.role_id">{{role.role_name}}</option>
+                                          <label for="course" class="form-label">Course Name: </label>
+                                          <select name="courses" id="courses" v-model="skilltoCourse.courseCourseId">
+                                            <option v-for="course in courses" :value="course.course_id">{{course.course_name}}</option>
                                           </select>
+                                          {{skilltoCourse}}
                                           <!-- <input v-model="form.role_name.name" type="text" class="form-control" id="role_name" placeholder="Enter Role name" name="role_name" required> -->
                                           <!-- <div class="valid-feedback">Valid.</div>
                                           <div class="invalid-feedback">Please fill out this field.</div> -->
