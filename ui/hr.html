@@ -792,7 +792,7 @@
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form action="#">
+                <form v-on:submit.prevent=newSkill(this.updateSkillList.skill_id) class="was-validated">
 
                     <div class="mb-3 mt-3">
                         <div class="form-group">
@@ -806,18 +806,14 @@
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <label>Skill Name</label>
-                            <input type="text" class="form-control" :placeholder="updateSkillList.skill_name" v-model=value required>
+                            <input type="text" class="form-control" :placeholder="updateSkillList.skill_name" v-model="form.skill_name.name" id="{{this.updateSkillList.skill_id}}" required>
+
+
                         </div>
                     </div>
 
 
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Skill Status</option>
-                            <!-- <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{skill.skill_name }}
-                            </option> -->
-                        </select>
-                    </div>
+                    
 
 
                     <!--Need to read from database when user click the role and skills will show the courses related to it-->
@@ -852,7 +848,7 @@
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form action="#">
+                <form action="#" v-on:submit.prevent="up">
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <p>Are you sure you want to delete these Records?</p>

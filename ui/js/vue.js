@@ -1,5 +1,7 @@
 // Create a new Vue instance
 
+// const { each } = require("bluebird")
+
 const main = Vue.createApp({
     watch() {
 
@@ -10,6 +12,7 @@ const main = Vue.createApp({
         return {
             lj_data: [],
             roles: [],
+            passedData: [],
             skills: [],
             courses: [],
             staff: [],
@@ -42,6 +45,7 @@ const main = Vue.createApp({
                 skillSkillId: '',
                 courseCourseId: ''
             }, 
+
             userdata:0,
             updateSkillList:[],
             updateSkillobj:{},
@@ -56,6 +60,7 @@ const main = Vue.createApp({
             },
             lj_id:'',
             currentLj: {}
+
         }
     },
 
@@ -295,8 +300,56 @@ const main = Vue.createApp({
         })
     },
 
+    //update skill 
+  
+    updateSkill (skill_id) {
+        this.userdata = skill_id;
+        
+        for (idx in this.skills) {
+            this.updateSkillobj = this.skills[idx];
+            // console.log(this.skills[idx])
+            // console.log(this.userdata)
+            // console.log("space")
+            // console.log(this.updateSkillobj.skill_id)
+            if (this.updateSkillobj.skill_id === this.userdata){
+                this.updateSkillList = this.updateSkillobj
+                console.log(this.updateSkillList)
+            }
+            else {
+                console.log("cannot push")
+            }
+        }
+        
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/skill/${this.userdata}`, )
+            .then(response => { 
+            
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        }
+        )
+    },
 
-
+   newSkill(skill_id){
+    
+    return new Promise((resolve, reject) => {
+        axios.put(`http://localhost:8080/api/skill/${skill_id}`, 
+        {skill_name: this.form.skill_name.name,
+        archived:0})
+       
+        .then(response => {
+        alert("Skill updated added", location)
+        location.href = "http://127.0.0.1:5500//ui/hr.html"
+        console.log(response)
+        resolve(response)
+        }).catch(error => {
+         console.log(error)
+        })
+    })
+   },
 
     getRoleSkill(sr_id){
         console.log(this.sr_id)
