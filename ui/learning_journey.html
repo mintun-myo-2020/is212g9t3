@@ -123,41 +123,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
+                                                    <tr v-for="lj of ljs">
                                                         <th scope="row">1</th>
-                                                        <td>LJ_1</td>
-                                                        <td>Engineer</td>
-                                                        <td>
-                                                            <span>Effective Leadership</span> 
-                                                            <hr>
-                                                            <span>Managing People</span>
-                                
-                                                        </td>
-                                                        <td>
-                                                            <span> Speaking </span> 
-                                                            <hr>
-                                                            <span>Management</span>
-                                
-                                                        </td>
-                                                        <td>In-Progress</td>
-                                                        <!--need to connect to back end and delete-->
-                                                        
-                                                        
-                                                         <td>
-                                                            <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                data-bs-target="#editLJModal"></i>
-
-                                                            <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#deleteLJModal">
-                                                            </iconify-icon>
-
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>LJ_2</td>
+                                                        <td>{{lj.lj_name}}</td>
                                                         <td>Engineer</td>
                                                         <td>
                                                             <span>Effective Leadership</span> 
@@ -333,7 +301,7 @@
 
 <!-- Create Learning Journey Modal-->
 <div class="modal fade" id="CreateLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div  id="role-select" class="modal-dialog modal-xl">
+    <div id="role-select" class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
@@ -350,7 +318,6 @@
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
-                        <!-- vmodel selected role need to update  -->
                             <p>Select skills</p>
                             <span v-for="skill in skills">
                               <input type="checkbox" :value="skill.skill_id" v-model="lj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
@@ -359,8 +326,6 @@
                             <hr>
 
                     </div>
-                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    <!--Need to enter some fake courses inside-->
                     <div class="mb-3">
                         <p>Select courses</p>
                         <span v-for="course in courses">
@@ -369,7 +334,6 @@
                         <br>
                         
                     </div>
-                    {{lj}}
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Create</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -386,41 +350,41 @@
 
 <!-- Edit Learning Journey Modal-->
 <div class="modal fade" id="editLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div  id="role-select" class="modal-dialog modal-xl">
+    <div id="role-select" class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Learning Journey</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Learning Journey {{}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#"></button>
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=createLearningJourney()>
+                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=createLearningJourney()>
                     <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example" v-model="role_lj" :required @change="getRole()">
-                            <option >Select a role</option>
-                            <option v-for="role in roles" v-bind:value="role.role_id"  > {{ role.role_name }} </option>
+                        <select class="form-select" aria-label="Default select example" v-model="lj.role_id" :required @change="getRole()">
+                            
+                            <option>Select a role</option>
+                            <option v-for="role in roles" :value="role.role_id"  > {{ role.role_name }} </option>
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
-                        <!-- vmodel selected role need to update  -->
                             <p>Select skills</p>
-                            <span v-for="each in skills[role]">
-                              <input type="checkbox" :value="skill.skill_id"> <span class="checkbox-label"> {{skill.skill_name}} </span> <br>
+                            <span v-for="skill in skills">
+                              <input type="checkbox" :value="skill.skill_id" v-model="lj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
                             </span>
+
                             <hr>
+
                     </div>
-                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    <!--Need to enter some fake courses inside-->
                     <div class="mb-3">
                         <p>Select courses</p>
                         <span v-for="course in courses">
-                          <input type="checkbox" :value="course.course_id"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
+                          <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
                         </span>
                         <br>
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Confirm</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
     
                     </div>

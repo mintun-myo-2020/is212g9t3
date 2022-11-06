@@ -39,7 +39,8 @@ const main = Vue.createApp({
             skilltoCourse: {
                 skillSkillId: '',
                 courseCourseId: ''
-            }
+            },
+            ljs:[]
         }
     },
 
