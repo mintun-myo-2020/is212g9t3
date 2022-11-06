@@ -6,19 +6,23 @@ class SkillDataService {
   }
 
   get(id) {
-    return http.get(`/api/skill/${id}`);
+    return http.get(`/skill/${id}`);
+  }
+
+  create(data) {
+    return http.post("/skill", data);
   }
 
   update(id, data) {
-    return http.put(`/api/skill/${id}`, data);
+    return http.put(`/skill/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/api/skill/${id}`);
+    return http.delete(`/skill/${id}`);
   }
 
   findByName(name) {
-    return http.get(`/api/skill?name=${name}`);
+    return http.get(`/skill?name=${name}`);
   }
 }
 

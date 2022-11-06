@@ -6,27 +6,19 @@ class StaffDataService {
   }
 
   get(id) {
-    return http.get(`/api/staff/${id}`);
+    return http.get(`/staff/${id}`);
   }
 
-  // create(data) {
-  //   return http.post("/tutorials", data);
-  // }
-
   update(id, data) {
-    return http.put(`/api/staff/${id}`, data);
+    return http.put(`/staff/${id}`, data);
   }
 
   delete(id) {
     return http.delete(`/staff/${id}`);
   }
 
-  // deleteAll() {
-  //   return http.delete(`/tutorials`);
-  // }
-
   findByName(name) {
-    return http.get(`/api/staff?name=${name}`);
+    return http.get(`/staff?name=${name}`);
   }
 }
 

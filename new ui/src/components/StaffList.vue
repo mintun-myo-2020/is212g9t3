@@ -3,7 +3,6 @@
     <div class="col-md-8">
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search by Name"
-          v-model="title"/>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button"
             @click="searchName"
@@ -32,16 +31,16 @@
 
     <tbody>
       <tr :class="{ active: index == currentIndex }"
-          v-for="(tutorial, index) in tutorials"  :key="index">
-          <th scope="row">{{tutorial.staff_id}}</th>
-          <td>{{tutorial.staff_fname}}</td>
-          <td>{{tutorial.staff_lname}}</td>
-          <td>{{tutorial.dept}}</td>
-          <td>{{tutorial.email}}</td>
+          v-for="(staff, index) in staffs"  :key="index">
+          <th scope="row">{{staff.staff_id}}</th>
+          <td>{{staff.staff_fname}}</td>
+          <td>{{staff.staff_lname}}</td>
+          <td>{{staff.dept}}</td>
+          <td>{{staff.email}}</td>
           <td>
 
-              <button type="button" class="btn btn-warning">Edit</button>
-               <button type="button" class="btn btn-danger"  @click="deleteStaff(tutorial.staff_id)">Delete</button>
+              <button type="button" class="btn btn-warning" @click = "editStaff('hi')">Edit</button>
+               <button type="button" class="btn btn-danger"  @click="deleteStaff(staff.staff_id)">Delete</button>
 
           </td>
 
@@ -82,17 +81,17 @@ export default {
   name: "tutorials-list",
   data() {
     return {
-      tutorials: [],
+      staffs: [],
       currentTutorial: null,
       currentIndex: -1,
       title: ""
     };
   },
   methods: {
-    retrieveTutorials() {
+    retrieveStaff() {
       StaffDataService.getAll()
         .then(response => {
-          this.tutorials = response.data;
+          this.staffs = response.data;
           console.log(response.data);
         })
         .catch(e => {
@@ -101,25 +100,7 @@ export default {
     },
 
     refreshList() {
-      this.retrieveTutorials();
-      this.currentTutorial = null;
-      this.currentIndex = -1;
-    },
-
-    setActiveTutorial(tutorial, index) {
-      this.currentTutorial = tutorial;
-      this.currentIndex = tutorial ? index : -1;
-    },
-
-    removeAllTutorials() {
-      StaffDataService.deleteAll()
-        .then(response => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      this.retrieveStaff();
     },
     
     searchName() {
@@ -139,7 +120,19 @@ export default {
         .then(response => {
           console.log(response.data);
           
-          window.location.reload();
+          this.refreshList();
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
+    editStaff(data) {
+      StaffDataService.update(data)
+        .then(response => {
+          console.log(response.data);
+          
+          this.refreshList();
         })
         .catch(e => {
           console.log(e);
@@ -147,9 +140,11 @@ export default {
     }
 
 
+
+
   },
   mounted() {
-    this.retrieveTutorials();
+    this.retrieveStaff();
   }
 };
 </script>

@@ -6,19 +6,23 @@ class RoleDataService {
   }
 
   get(id) {
-    return http.get(`/api/role/${id}`);
+    return http.get(`/role/${id}`);
+  }
+
+  create(data) {
+    return http.post("/role", data);
   }
 
   update(id, data) {
-    return http.put(`/api/role/${id}`, data);
+    return http.put(`/role/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/api/role/${id}`);
+    return http.delete(`/role/${id}`);
   }
 
   findByName(name) {
-    return http.get(`/api/role?name=${name}`);
+    return http.get(`/role?name=${name}`);
   }
 }
 
