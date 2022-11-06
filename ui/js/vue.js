@@ -47,7 +47,8 @@ const main = Vue.createApp({
                 skills: [],
                 courses: []
             },
-            testlj:{}
+            lj_id:'',
+            currentLj: {}
         }
     },
 
@@ -199,10 +200,11 @@ const main = Vue.createApp({
     },
 
     getLearningJourney(lj_id){
+        this.lj_id = lj_id;
+
         axios.get(`http://localhost:8080/api/learningjourney/${lj_id}`)
           .then(function (response) {
-            this.testlj = response.data;
-            console.log(response.data);
+            console.log(this.lj_id);
           })
           .catch(function (error) {
             console.log(error);
@@ -221,9 +223,10 @@ const main = Vue.createApp({
     },
 
     updateLearningJourney(lj_id){
-        axios.put(`http://localhost:8080/api/learningjourney/${lj_id}`)
+        axios.put(`http://localhost:8080/api/learningjourney/${lj_id}`,this.lj)
           .then(function (response) {
             console.log(response);
+            alert("Hello! I am an alert box!!");
           })
           .catch(function (error) {
             console.log(error);
