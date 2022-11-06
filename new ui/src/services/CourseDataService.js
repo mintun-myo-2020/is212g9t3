@@ -6,19 +6,19 @@ class CourseDataService {
   }
 
   get(id) {
-    return http.get(`/course/${id}`);
+    return http.get(`/api/course/${id}`);
   }
 
   update(id, data) {
-    return http.put(`/course/${id}`, data);
+    return http.put(`/api/course/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/course/${id}`);
+    return http.delete(`/api/course/${id}`);
   }
 
   findByName(name) {
-    return http.get(`/course?name=${name}`);
+    return http.get(`/api/course?name=${name}`);
   }
 }
 
