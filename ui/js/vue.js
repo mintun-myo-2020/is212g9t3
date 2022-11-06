@@ -41,6 +41,11 @@ const main = Vue.createApp({
                 courseCourseId: ''
             },
             ljs:[]
+            }, 
+            userdata:0,
+            
+           
+            }
         }
     },
 
