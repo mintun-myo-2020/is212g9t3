@@ -87,7 +87,7 @@ exports.findLjbyStaffId = (req, res) => {
     const id = req.params.id;
   
     LearningJourney.findAll({
-      where: { staffStaffId: removal.id }
+      where: { staffStaffId: id }
       }).then(data => {
           res.send(data);
       }).catch(e => console.log(e));
