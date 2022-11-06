@@ -44,7 +44,7 @@ const main = Vue.createApp({
             
            
             }
-        }
+        
     },
 
     // 'hook'
@@ -232,10 +232,42 @@ const main = Vue.createApp({
 
     getRoleSkill(){
 
-    }
+    },
+
+    //update skill 
+  
+    updateSkill (skill_id) {
+        this.userdata = skill_id;
+        
+        for (idx in this.skills) {
+            this.updateSkillobj = this.skills[idx];
+            // console.log(this.skills[idx])
+            // console.log(this.userdata)
+            // console.log("space")
+            // console.log(this.updateSkillobj.skill_id)
+            if (this.updateSkillobj.skill_id === this.userdata){
+                this.updateSkillList = this.updateSkillobj
+                console.log(this.updateSkillList)
+            }
+            else {
+                console.log("cannot push")
+            }
+        }
+        
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/skill/${this.userdata}`, )
+            .then(response => { 
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
+    },
 
 
-    }
+
+}
 
 })
 
