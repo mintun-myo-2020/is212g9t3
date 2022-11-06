@@ -114,6 +114,8 @@ const main = Vue.createApp({
             axios.post(`http://localhost:8080/api/role/`, 
             {role_name: this.form.role_name.name})
             .then(response => {
+                alert("Role successfully added", location)
+            location.href = "http://127.0.0.1:5500//ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -150,7 +152,10 @@ const main = Vue.createApp({
             axios.post(`http://localhost:8080/api/skill/`, 
             {skill_name: this.form.skill_name.name,
             archived:0})
+           
             .then(response => {
+            alert("Skill successfully added", location)
+            location.href = "http://127.0.0.1:5500//ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
