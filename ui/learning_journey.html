@@ -292,10 +292,10 @@
                 <!--Form submission-->
                 <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=createLearningJourney()>
                     <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example" v-model="lj.role_id" :required @change="getRole()">
+                        <select class="form-select" aria-label="Default select example" v-model="lj.role_id" :required >
                             
-                            <option>Select a role</option>
-                            <option v-for="role in roles" :value="role.role_id"  > {{ role.role_name }} </option>
+                            <option @change="getRoleSkill(sr_id)">Select a role</option>
+                            <option v-for="role in roles" :value="role.role_id" v-model="sr_id" > {{ role.role_name }} </option>
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
@@ -338,10 +338,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#"></button>
             </div>
             <div class="modal-body">
-                <!--Form submission-->
-                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=updateLearningJourney()>
+
+                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=updateLearningJourney(lj_id)>
+                    Name: {{updatedLj.lj_name}}
                     <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example" v-model="lj.role_id" :required @change="getRole()">
+                        <select class="form-select" aria-label="Default select example" v-model="updatedLj.role_id" :required @change="getRole()">
                             <option>Select a role</option>
                             <option v-for="role in roles" :value="role.role_id"  > {{ role.role_name }} </option>
                         </select>
@@ -349,7 +350,7 @@
                     <div class="mb-3 mt-3">
                             <p>Select skills</p>
                             <span v-for="skill in skills">
-                              <input type="checkbox" :value="skill.skill_id" v-model="lj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
+                              <input type="checkbox" :value="skill.skill_id" v-model="updatedLj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
                             </span>
 
                             <hr>
@@ -358,13 +359,13 @@
                     <div class="mb-3">
                         <p>Select courses</p>
                         <span v-for="course in courses">
-                          <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
+                          <input type="checkbox" :value="course.course_id" v-model="updatedLj.courses"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
                         </span>
                         <br>
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
     
                     </div>
