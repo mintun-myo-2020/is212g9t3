@@ -3,4 +3,5 @@ api/.env
 api/node_modules
 api/config/db.config.js
 db.config.js
+new ui/node_modules
 
