@@ -3,7 +3,9 @@
 // const { each } = require("bluebird")
 
 const main = Vue.createApp({
+    watch() {
 
+    },
     // Data Properties
     data() {
 
@@ -12,6 +14,10 @@ const main = Vue.createApp({
             skills: [],
             courses: [],
             staff: [],
+            selectedRole: [],
+            roleskills : [],
+            role_lj: 'Select a role',
+            key :'',
             form : {
                 skill_name : {
                     name : '',
@@ -22,16 +28,23 @@ const main = Vue.createApp({
                 }
             },
             lj:{
-                staff_id: '',
-                lj_name: '',
+                staff_id: 150566,
+                lj_name: 'Creating Learning Journey!',
                 role_id: '',
                 skills: [],
                 courses: []
             },
-            userdata : 0,
-            updateSkillobj: '',
-            updateSkillList:{}
-
+            skilltoRole: {
+                skillSkillId: '',
+                roleRoleId: ''
+            },
+            skilltoCourse: {
+                skillSkillId: '',
+                courseCourseId: ''
+            }, 
+            userdata: 0,
+            updateSkillList: [],
+            updateSkillobj: []
         }
     },
 
@@ -169,12 +182,45 @@ const main = Vue.createApp({
             })
         })
     },
-    
+
     createLearningJourney(){
+        axios.post('http://localhost:8080/api/learningjourney', this.lj)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    assignSkilltoRole(){
+        axios.post('http://localhost:8080/api/role/assignskill', this.skilltoRole)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    assignSkilltoCourse(){
+        axios.post('http://localhost:8080/api/skill/assigncourse', this.skilltoCourse)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+
+    getRole(){
+        console.log(this.role_lj)
+        console.log('hi')
         return new Promise((resolve, reject) => {
-            axios.post(`http://localhost:8080/api/learningjourney/`, this.lj)
-            .then(response => {
+            axios.post(`http://localhost:8080/api/role/`, id).then(response => {
             console.log(response)
+            this.selectedRole = response.body
             resolve(response)
             }).catch(error => {
             reject(error)
@@ -213,6 +259,11 @@ const main = Vue.createApp({
             })
         })
     },
+
+
+    getRoleSkill(){
+
+    }
 
     }
     

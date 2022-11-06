@@ -76,11 +76,11 @@ exports.findOne = (req, res) => {
 
 // Find all skills associated with a Role
 exports.findByRole = (req, res) => {
-  const role_name= req.params.role_name;
+  const role_name= req.params.role_id;
 
   skill.findAll({
     include: Role,
-    where: {'$roles.role_name$': role_name}
+    where: {'$roles.role_id$': role_id}
   }).then(data =>{
     res.send(data);
   })
@@ -204,13 +204,12 @@ exports.assignCourse = (req, res) => {
     skillSkillId: req.body.skillSkillId
   };
 
-  skill.findOne({
+  skill.findByPk(assignment.skillSkillId).then({
     where: { skill_id: assignment.skillSkillId }
     }).then(skill => {
-        skill.setCourses([assignment.courseCourseId])
+        skill.addCourses([assignment.courseCourseId])
         res.sendStatus(200);
     }).catch(e => console.log(e));
-
 
 };
 
