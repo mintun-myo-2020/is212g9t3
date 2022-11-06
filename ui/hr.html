@@ -164,7 +164,7 @@
                                                         <!--need to connect to back end and delete-->
                                                         <td>
                                                             <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                data-bs-target="#editModalStaff"></i>
+                                                                data-bs-target="#editModalStaff" ></i>
 
                                                             <iconify-icon icon="bx:trash" style="color: crimson;"
                                                             @click = deleteStaff(each.staff_id)>
@@ -410,7 +410,7 @@
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal"
-                                data-bs-target="#createSkillModal">
+                                data-bs-target="#createSkillModal" onClick="createSkill()">
                                 Create Skill
                             </button>
 
@@ -713,6 +713,10 @@
                     }
                 }
             }
+        }
+
+        function createSkill(){
+            window.location.href="http://127.0.0.1:5500/ui/createskill.html"
         }
     </script>
 </body>

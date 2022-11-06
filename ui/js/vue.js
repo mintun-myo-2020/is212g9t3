@@ -11,10 +11,9 @@ const main = Vue.createApp({
             courses: [],
             staff: [],
             form : {
-                skill : {
+                skill_name : {
                     name : '',
-                    status : '',
-                    level: ''
+                   
                 },
                 role : {
                     name : ''
@@ -114,6 +113,7 @@ const main = Vue.createApp({
         return new Promise((resolve, reject) => {
             axios.delete(`http://localhost:8080/api/staff/${staff_id}`).then(response => {
             resolve(response)
+            alert("Confirm Delete Staff?")
             document.location.reload()
             }).catch(error => {
             reject(error)
@@ -134,11 +134,14 @@ const main = Vue.createApp({
 
     createSkill(){
         return new Promise((resolve, reject) => {
-            axios.post(`http://localhost:8080/api/skill/`, this.form.skill).then(response => {
+            axios.post(`http://localhost:8080/api/skill/`, 
+            {skill_name: this.form.skill_name.name,
+            archived:0})
+            .then(response => {
             console.log(response)
             resolve(response)
             }).catch(error => {
-            reject(error)
+             console.log(error)
             })
         })
     },

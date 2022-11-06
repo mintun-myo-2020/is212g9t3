@@ -335,49 +335,6 @@
         }
     </script>
 </body>
-<!-- Modal -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div  id="role-select" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!--Form submission-->
-                <form action="#">
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select a role</option>
-                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }} </option>
-                        </select>
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select a skill</option>
-                            <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{ skill.skill_name }}</option>
-                        </select>
-                    </div>
-                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    <div class="mb-3">
-                        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btn-check-outlined">Leadership management</label>
-                        <br>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 <!--End of modal-->
 <!-- Vue.js 3 CDN -->
