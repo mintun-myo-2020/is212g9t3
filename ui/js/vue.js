@@ -11,6 +11,7 @@ const main = Vue.createApp({
 
         return {
             roles: [],
+            passedData: [],
             skills: [],
             courses: [],
             staff: [],
@@ -44,7 +45,8 @@ const main = Vue.createApp({
             }, 
             userdata: 0,
             updateSkillList: [],
-            updateSkillobj: []
+            updateSkillobj: [],
+            
         }
     },
 
@@ -257,10 +259,27 @@ const main = Vue.createApp({
             }).catch(error => {
              console.log(error)
             })
-        })
+        }
+        )
     },
 
-
+   newSkill(skill_id){
+    
+    return new Promise((resolve, reject) => {
+        axios.put(`http://localhost:8080/api/skill/${skill_id}`, 
+        {skill_name: this.form.skill_name.name,
+        archived:0})
+       
+        .then(response => {
+        alert("Skill updated added", location)
+        location.href = "http://127.0.0.1:5500//ui/hr.html"
+        console.log(response)
+        resolve(response)
+        }).catch(error => {
+         console.log(error)
+        })
+    })
+   },
 
     getRoleSkill(){
 
