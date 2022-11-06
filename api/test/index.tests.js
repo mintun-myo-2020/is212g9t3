@@ -28,13 +28,13 @@ describe('Test LJ endpoints', function() {
         .expect(200,done)
     });
     it('Get learning journey by id', function(done) {
-      let id = 2;
+      let id = 1;
       request(app)
         .get('/api/learningjourney/' + id)
         .expect(200,done)
     });
     it('Update learning journey by id', function(done) {
-      let id = 2;
+      let id = 1;
       request(app)
         .put('/api/learningjourney/' + id)
         .send({
