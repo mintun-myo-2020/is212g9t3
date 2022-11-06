@@ -1,7 +1,9 @@
 // Create a new Vue instance
 
 const main = Vue.createApp({
+    watch() {
 
+    },
     // Data Properties
     data() {
 
@@ -10,6 +12,10 @@ const main = Vue.createApp({
             skills: [],
             courses: [],
             staff: [],
+            selectedRole: [],
+            roleskills : [],
+            role_lj: 'Select a role',
+            key :'',
             form : {
                 skill_name : {
                     name : '',
@@ -201,6 +207,26 @@ const main = Vue.createApp({
           .catch(function (error) {
             console.log(error);
           });
+
+    },
+
+    getRole(){
+        console.log(this.role_lj)
+        console.log('hi')
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/api/role/`, id).then(response => {
+            console.log(response)
+            this.selectedRole = response.body
+            resolve(response)
+            }).catch(error => {
+            reject(error)
+            })
+        })
+    },
+
+
+
+    getRoleSkill(){
 
     }
 
