@@ -1,5 +1,7 @@
 // Create a new Vue instance
 
+// const { each } = require("bluebird")
+
 const main = Vue.createApp({
 
     // Data Properties
@@ -25,7 +27,11 @@ const main = Vue.createApp({
                 role_id: '',
                 skills: [],
                 courses: []
-            }
+            },
+            userdata : 0,
+            updateSkillobj: '',
+            updateSkillList:{}
+
         }
     },
 
@@ -166,14 +172,47 @@ const main = Vue.createApp({
     
     createLearningJourney(){
         return new Promise((resolve, reject) => {
-            axios.post(`http://localhost:8080/api/learningjourney/`, this.lj).then(response => {
+            axios.post(`http://localhost:8080/api/learningjourney/`, this.lj)
+            .then(response => {
             console.log(response)
             resolve(response)
             }).catch(error => {
             reject(error)
             })
         })
-    }
+    },
+
+    //update skill 
+  
+    updateSkill (skill_id) {
+        this.userdata = skill_id;
+        
+        for (idx in this.skills) {
+            this.updateSkillobj = this.skills[idx];
+            // console.log(this.skills[idx])
+            // console.log(this.userdata)
+            // console.log("space")
+            // console.log(this.updateSkillobj.skill_id)
+            if (this.updateSkillobj.skill_id === this.userdata){
+                this.updateSkillList = this.updateSkillobj
+                console.log(this.updateSkillList)
+            }
+            else {
+                console.log("cannot push")
+            }
+        }
+        
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/skill/${this.userdata}`, )
+            .then(response => { 
+            
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
+    },
 
     }
     

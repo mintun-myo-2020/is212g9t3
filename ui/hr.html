@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" id="app">
 
 <head>
     <meta charset="UTF-8" />
@@ -25,7 +25,7 @@
 
 </head>
 
-<body id="app">
+<body >
 
     <div class="container-fluid">
         <!--Side navigation bar-->
@@ -213,7 +213,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr v-for="each in skills">
-                                                            <th scope="row">{{ each.skill_id }}</th>
+                                                            <th scope="row" v:model="each.skill_id">{{ each.skill_id }}</th>
                                                             <td>{{ each.skill_name }}</td>
                                                             <td>{{ each.skill_status }}</td>
                                                             <td>{{ each.skill_id }}</td>
@@ -222,7 +222,7 @@
                                                             <!--need to connect to back end and delete-->
                                                             <td>
                                                                 <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModalSkill"></i>
+                                                                    data-bs-target="#editModalSkill" @click= "updateSkill(each.skill_id)"></i>
 
                                                                 <iconify-icon icon="bx:trash" style="color: crimson;"
                                                                     data-bs-toggle="modal"
@@ -422,6 +422,7 @@
                         </div>
 
                         <!--End of Second Col-->
+
 
                     </div>
 
@@ -770,7 +771,7 @@
     <div id="role-select" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Staff</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Skill</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -780,13 +781,16 @@
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <label>Skill ID </label>
+                            <div>
+                                {{userdata}}
+                            </div>
                         </div>
                     </div>
 
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <label>Skill Name</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" :placeholder="updateSkillList.skill_name" v-model=value required>
                         </div>
                     </div>
                     
@@ -801,13 +805,7 @@
 
                  
                     <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Competency Level</option>
-                            <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{skill.skill_name }}
-                            </option>
-                        </select>
-                    </div>
+                    
                     <!--Show all the completed courses for each staff-->
                 
 
