@@ -18,7 +18,7 @@ class StaffDataService {
   }
 
   delete(id) {
-    return http.delete(`/api/staff/${id}`);
+    return http.delete(`/staff/${id}`);
   }
 
   // deleteAll() {

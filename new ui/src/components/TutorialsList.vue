@@ -41,7 +41,7 @@
           <td>
 
               <button type="button" class="btn btn-warning">Edit</button>
-               <button type="button" class="btn btn-danger"  @click="deleteTutorial(tutorial.staff_id)">Delete</button>
+               <button type="button" class="btn btn-danger"  @click="deleteStaff(tutorial.staff_id)">Delete</button>
 
           </td>
 
@@ -134,11 +134,12 @@ export default {
         });
     },
 
-    deleteTutorial(id) {
+    deleteStaff(id) {
       StaffDataService.delete(id)
         .then(response => {
           console.log(response.data);
-          this.$router.push({ name: "tutorials" });
+          
+          window.location.reload();
         })
         .catch(e => {
           console.log(e);
