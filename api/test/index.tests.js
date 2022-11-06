@@ -31,7 +31,7 @@ describe('Test LJ endpoints', function() {
       let id = 2;
       request(app)
         .get('/api/learningjourney/' + id)
-        .expect(404,done)
+        .expect(200,done)
     });
     it('Update learning journey by id', function(done) {
       let id = 2;

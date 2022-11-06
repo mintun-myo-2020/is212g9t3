@@ -36,8 +36,10 @@ exports.create = (req, res) => {
           for (skill of skills) {
             lj.setSkills([skill]);
           }
-          res.send(lj);
-        })     
+          res.send(lj)
+        }
+        
+        )     
         
       })
 

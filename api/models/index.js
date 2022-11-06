@@ -37,9 +37,13 @@ const LJCourse = sequelize.define('ljcourse', {},
 db.LearningJourney.belongsToMany(db.Course, {through: LJCourse})
 db.Course.belongsToMany(db.LearningJourney, {through: LJCourse})
 
+// many to many association between Course and LJ
+const LJSkill = sequelize.define('ljskill', {},
+{tableName: 'ljskill', timestamps: false});
+db.LearningJourney.belongsToMany(db.Skill, {through: LJSkill})
+db.Skill.belongsToMany(db.LearningJourney, {through: LJSkill})
 
 // many to many association between Skill and Course
-
 const SkillCourse = sequelize.define('skillcourse', {},
 {tableName:'skillcourse',timestamps:false}
 );
