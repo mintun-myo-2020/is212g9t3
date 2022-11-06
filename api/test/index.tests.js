@@ -70,9 +70,9 @@ describe('Test LJ endpoints', function() {
 
 describe('Test enrolled courses by staff', function() {
     it('Get enrolled courses of a staff', function(done) {
-      let id = 150233;
+      let staff_id = 1;
       request(app)
-        .get('/api/staff/enrolledcourses' + id)
-        .expect(404,done)
+        .get('/api/staff/enrolledcourses/' + staff_id)
+        .expect(200,done)
     });
   });
