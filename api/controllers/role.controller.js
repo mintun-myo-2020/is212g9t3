@@ -1,4 +1,4 @@
-const { Skill, Role } = require("../models");
+const { Skill, Role, roleskill } = require("../models");
 const db = require("../models");
 const role  = db.Role;
 const skill = db.Skill;
@@ -216,7 +216,7 @@ exports.deleteAll = (req, res) => {
       });
   };
 
-//Assign skill to course
+//Assign skill to role
 exports.assignSkill = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -232,10 +232,10 @@ exports.assignSkill = (req, res) => {
   };
 
 
-  role.findOne({
+  role.findByPk(assignment.roleRoleId).then({
     where: { role_id: assignment.roleRoleId }
     }).then(role => {
-        role.setSkills([assignment.skillSkillId])
+        role.addSkills([assignment.skillSkillId])
         res.sendStatus(200);
     }).catch(e => console.log(e));
 
@@ -259,12 +259,12 @@ exports.unassignSkill = (req, res) => {
     roleRoleId: req.body.roleRoleId,
   };
 
-  role.findOne({
-    where: { role_id: assignment.roleRoleId }
-    }).then(role => {
-        role.removeSkill([assignment.roleRoleId])
-        res.sendStatus(200);
-    }).catch(e => console.log(e));
+  role.findByPk(assignment.roleRoleId).then( rolez => {
+    rolez.addSkill(rolez, {through: roleskill}).then(
+      res.sendStatus(200)
+    )
+  }).catch(e => console.log(e));
+    
 
 
 };

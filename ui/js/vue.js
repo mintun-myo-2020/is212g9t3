@@ -1,7 +1,9 @@
 // Create a new Vue instance
 
 const main = Vue.createApp({
+    watch() {
 
+    },
     // Data Properties
     data() {
 
@@ -10,16 +12,18 @@ const main = Vue.createApp({
             skills: [],
             courses: [],
             staff: [],
+            selectedRole: [],
+            roleskills : [],
+            role_lj: 'Select a role',
+            key :'',
             form : {
-                skill : {
+                skill_name : {
                     name : '',
-                    status : '',
-                    level: ''
+                   
                 },
-                role : {
+                role_name : {
                     name : ''
                 }
-                
             },
             lj:{
                 staff_id: 150566,
@@ -39,6 +43,7 @@ const main = Vue.createApp({
             userdata:0,
             
            
+            }
         }
     },
 
@@ -121,11 +126,27 @@ const main = Vue.createApp({
         })
     })
     },
+
+    createRole(){
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/api/role/`, 
+            {role_name: this.form.role_name.name})
+            .then(response => {
+                alert("Role successfully added", location)
+            location.href = "http://127.0.0.1:5500//ui/hr.html"
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
+    },
     
     deleteStaff( staff_id ) {
         return new Promise((resolve, reject) => {
             axios.delete(`http://localhost:8080/api/staff/${staff_id}`).then(response => {
             resolve(response)
+            alert("Confirm Delete Staff?")
             document.location.reload()
             }).catch(error => {
             reject(error)
@@ -146,16 +167,73 @@ const main = Vue.createApp({
 
     createSkill(){
         return new Promise((resolve, reject) => {
-            axios.post(`http://localhost:8080/api/skill/`, this.form.skill).then(response => {
+            axios.post(`http://localhost:8080/api/skill/`, 
+            {skill_name: this.form.skill_name.name,
+            archived:0})
+           
+            .then(response => {
+            alert("Skill successfully added", location)
+            location.href = "http://127.0.0.1:5500//ui/hr.html"
             console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
+    },
+
+    createLearningJourney(){
+        axios.post('http://localhost:8080/api/learningjourney', this.lj)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    assignSkilltoRole(){
+        axios.post('http://localhost:8080/api/role/assignskill', this.skilltoRole)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    assignSkilltoCourse(){
+        axios.post('http://localhost:8080/api/skill/assigncourse', this.skilltoCourse)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+
+    getRole(){
+        console.log(this.role_lj)
+        console.log('hi')
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/api/role/`, id).then(response => {
+            console.log(response)
+            this.selectedRole = response.body
             resolve(response)
             }).catch(error => {
             reject(error)
             })
         })
     },
-    
- 
+
+
+
+
+    getRoleSkill(){
+
+    }
+
 
     }
 
