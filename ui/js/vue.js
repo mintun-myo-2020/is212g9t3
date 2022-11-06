@@ -25,6 +25,10 @@ const main = Vue.createApp({
                 role_id: '',
                 skills: [],
                 courses: []
+            },
+            skilltoRole: {
+                skillSkillId: '',
+                roleRoleId: ''
             }
         }
     },
@@ -173,6 +177,17 @@ const main = Vue.createApp({
             reject(error)
             })
         })
+    },
+
+    assignSkilltoRole(){
+        axios.post('http://localhost:8080/api/role/assignskill', this.skilltoRole)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
     }
 
     }

@@ -216,7 +216,7 @@ exports.deleteAll = (req, res) => {
       });
   };
 
-//Assign skill to course
+//Assign skill to role
 exports.assignSkill = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -232,7 +232,7 @@ exports.assignSkill = (req, res) => {
   };
 
 
-  role.findOne({
+  role.findByPk(assignment.roleRoleId)({
     where: { role_id: assignment.roleRoleId }
     }).then(role => {
         role.setSkills([assignment.skillSkillId])
