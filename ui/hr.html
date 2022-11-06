@@ -415,7 +415,7 @@
                             </button>
 
                             <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal"
-                                data-bs-target="#createRoleModal">
+                                data-bs-target="#createRoleModal" onClick="createNewRole()">
                                 Create Role
                             </button>
 
@@ -717,6 +717,10 @@
 
         function createSkill(){
             window.location.href="http://127.0.0.1:5500/ui/createskill.html"
+        }
+
+        function createNewRole(){
+            window.location.href="http://127.0.0.1:5500/ui/createRole.html"
         }
     </script>
 </body>

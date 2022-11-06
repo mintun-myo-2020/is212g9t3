@@ -15,7 +15,7 @@ const main = Vue.createApp({
                     name : '',
                    
                 },
-                role : {
+                role_name : {
                     name : ''
                 }
             },
@@ -107,6 +107,19 @@ const main = Vue.createApp({
         reject(error)
         })
     })
+    },
+
+    createRole(){
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/api/role/`, 
+            {role_name: this.form.role_name.name})
+            .then(response => {
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
     },
     
     deleteStaff( staff_id ) {
