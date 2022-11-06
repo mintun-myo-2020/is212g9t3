@@ -25,8 +25,9 @@
 
 </head>
 
-<body>
-    <div id="app">
+<body id="app">
+    <div >
+
     <!--Side navigation bar-->
     <div class="container-fluid">
         <div class="sidebar">
@@ -327,7 +328,7 @@
         }
 
     </script>
-</body>
+
 <!-- Modal -->
 
 <!-- Create Learning Journey Modal-->
@@ -336,15 +337,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="createLearningJourney.html"></button>
             </div>
             <div class="modal-body">
                 <!--Form submission-->
                 <form action="#" id="'newModalForm" class="needs-validation" novalidate>
                     <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select a role</option>
-                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }} </option>
+                        <select class="form-select" aria-label="Default select example" v-model="role_lj" :required @change="getRole()">
+                            
+                            <option >Select a role</option>
+                            <option v-for="role in roles" v-bind:value="role.role_id"  > {{ role.role_name }} </option>
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
@@ -393,9 +395,10 @@
                 <!--Form submission-->
                 <form action="#" id="'newModalForm" class="needs-validation" novalidate>
                     <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select a role</option>
-                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }} </option>
+                        <select class="form-select" aria-label="Default select example" v-model="role_lj" :required @change="getRole()">
+                            
+                            <option >Select a role</option>
+                            <option v-for="role in roles" v-bind:value="role.role_id"  > {{ role.role_name }} </option>
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
@@ -470,6 +473,8 @@
         </div>
     </div>
 </div>
+
+</body>
 
 
 
