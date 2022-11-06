@@ -1,5 +1,7 @@
 // Create a new Vue instance
 
+// const { each } = require("bluebird")
+
 const main = Vue.createApp({
     watch() {
 
@@ -9,6 +11,7 @@ const main = Vue.createApp({
 
         return {
             roles: [],
+            passedData: [],
             skills: [],
             courses: [],
             staff: [],
@@ -40,19 +43,10 @@ const main = Vue.createApp({
                 skillSkillId: '',
                 courseCourseId: ''
             }, 
-            userdata:0,
-            updateSkillList:[],
-            updateSkillobj:{},
+            userdata: 0,
+            updateSkillList: [],
+            updateSkillobj: [],
             
-           
-            ljs:[],
-            updatedLj:{
-                lj_name: 'Creating Learning Journey!',
-                role_id: '',
-                skills: [],
-                courses: []
-            },
-            testlj:{}
         }
     },
 
@@ -63,7 +57,7 @@ const main = Vue.createApp({
         let skill_endpoint_ = "http://localhost:8080/api/skill"
         let course_endpoint_ = "http://localhost:8080/api/course"
         let staff_endpoint_ = "http://localhost:8080/api/staff"
-        let lj_endpoint_ = "http://localhost:8080/api/learningjourney/staff/150566"
+        
 
         axios.get(role_endpoint_)
         .then(response => {
@@ -72,18 +66,6 @@ const main = Vue.createApp({
             // Assign response.data.records (Array) to
             // 'people' data property
             this.roles = response.data
-        })
-        .catch(error => {
-            console.log( error.message )
-        })
-
-        axios.get(lj_endpoint_)
-        .then(response => {
-            console.log( response.data )
-
-            // Assign response.data.records (Array) to
-            // 'people' data property
-            this.ljs = response.data
         })
         .catch(error => {
             console.log( error.message )
@@ -203,30 +185,8 @@ const main = Vue.createApp({
         })
     },
 
-    getLearningJourney(lj_id){
-        axios.get(`http://localhost:8080/api/learningjourney/${lj_id}`)
-          .then(function (response) {
-            this.testlj = response.data;
-            console.log(response.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-
-    },
     createLearningJourney(){
         axios.post('http://localhost:8080/api/learningjourney', this.lj)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-
-    },
-
-    updateLearningJourney(lj_id){
-        axios.put(`http://localhost:8080/api/learningjourney/${lj_id}`)
           .then(function (response) {
             console.log(response);
           })
@@ -270,13 +230,6 @@ const main = Vue.createApp({
         })
     },
 
-
-
-
-    getRoleSkill(){
-
-    },
-
     //update skill 
   
     updateSkill (skill_id) {
@@ -298,19 +251,42 @@ const main = Vue.createApp({
         }
         
         return new Promise((resolve, reject) => {
-            axios.put(`http://localhost:8080/api/skill/${this.userdata}`, this.updateSkillList )
+            axios.put(`http://localhost:8080/api/skill/${this.userdata}`, )
             .then(response => { 
+            
             console.log(response)
             resolve(response)
             }).catch(error => {
              console.log(error)
             })
-        })
+        }
+        )
     },
 
+   newSkill(skill_id){
+    
+    return new Promise((resolve, reject) => {
+        axios.put(`http://localhost:8080/api/skill/${skill_id}`, 
+        {skill_name: this.form.skill_name.name,
+        archived:0})
+       
+        .then(response => {
+        alert("Skill updated added", location)
+        location.href = "http://127.0.0.1:5500//ui/hr.html"
+        console.log(response)
+        resolve(response)
+        }).catch(error => {
+         console.log(error)
+        })
+    })
+   },
+
+    getRoleSkill(){
+
+    }
 
 
-}
+    }
 
 })
 
