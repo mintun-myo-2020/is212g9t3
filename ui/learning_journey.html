@@ -337,23 +337,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="createLearningJourney.html"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#"></button>
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form action="#" id="'newModalForm" class="needs-validation" novalidate>
+                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=createLearningJourney()>
                     <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example" v-model="role_lj" :required @change="getRole()">
+                        <select class="form-select" aria-label="Default select example" v-model="lj.role_id" :required @change="getRole()">
                             
-                            <option >Select a role</option>
-                            <option v-for="role in roles" v-bind:value="role.role_id"  > {{ role.role_name }} </option>
+                            <option>Select a role</option>
+                            <option v-for="role in roles" :value="role.role_id"  > {{ role.role_name }} </option>
                         </select>
                     </div>
                     <div class="mb-3 mt-3">
                         <!-- vmodel selected role need to update  -->
                             <p>Select skills</p>
-                            <span v-for="each in skills[role]">
-                              <input type="checkbox" :value="skill.skill_id"> <span class="checkbox-label"> {{skill.skill_name}} </span> <br>
+                            <span v-for="skill in skills">
+                              <input type="checkbox" :value="skill.skill_id" v-model="lj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
                             </span>
 
                             <hr>
@@ -364,11 +364,12 @@
                     <div class="mb-3">
                         <p>Select courses</p>
                         <span v-for="course in courses">
-                          <input type="checkbox" :value="course.course_id"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
+                          <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
                         </span>
                         <br>
                         
                     </div>
+                    {{lj}}
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Create</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -393,10 +394,9 @@
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form action="#" id="'newModalForm" class="needs-validation" novalidate>
+                <form id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=createLearningJourney()>
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example" v-model="role_lj" :required @change="getRole()">
-                            
                             <option >Select a role</option>
                             <option v-for="role in roles" v-bind:value="role.role_id"  > {{ role.role_name }} </option>
                         </select>
@@ -407,9 +407,7 @@
                             <span v-for="each in skills[role]">
                               <input type="checkbox" :value="skill.skill_id"> <span class="checkbox-label"> {{skill.skill_name}} </span> <br>
                             </span>
-
                             <hr>
-
                     </div>
                     <!--Need to read from database when user click the role and skills will show the courses related to it-->
                     <!--Need to enter some fake courses inside-->

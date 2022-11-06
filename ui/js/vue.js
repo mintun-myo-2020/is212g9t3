@@ -26,8 +26,8 @@ const main = Vue.createApp({
                 }
             },
             lj:{
-                staff_id: '',
-                lj_name: '',
+                staff_id: 150566,
+                lj_name: 'Creating Learning Journey!',
                 role_id: '',
                 skills: [],
                 courses: []
@@ -177,18 +177,17 @@ const main = Vue.createApp({
             })
         })
     },
-    
-    createLearningJourney(){
-        return new Promise((resolve, reject) => {
-            axios.post(`http://localhost:8080/api/learningjourney/`, this.lj).then(response => {
-            console.log(response)
-            resolve(response)
-            }).catch(error => {
-            reject(error)
-            })
-        })
-    },
 
+    createLearningJourney(){
+        axios.post('http://localhost:8080/api/learningjourney', this.lj)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
     assignSkilltoRole(){
         axios.post('http://localhost:8080/api/role/assignskill', this.skilltoRole)
           .then(function (response) {
