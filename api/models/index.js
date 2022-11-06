@@ -71,18 +71,6 @@ var staffcourse = sequelize.define('staffcourse',
     primaryKey: true,
     autoIncrement: true,
     allowNull: false
-  },
-  reg_status: {
-    type: DataTypes.STRING,
-    primaryKey: false,
-    autoIncrement: false,
-    allowNull: false
-  },
-  completion_status: {
-    type: DataTypes.STRING,
-    primaryKey: false,
-    autoIncrement: false,
-    allowNull: false
   }
 },
 {tableName: 'staffcourse', timestamps: false}
