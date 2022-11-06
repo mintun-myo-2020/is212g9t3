@@ -41,8 +41,12 @@ require("./routes/staff.routes")(app);
 require("./routes/skill.routes")(app);
 require("./routes/role.routes")(app);
 require("./routes/course.routes")(app);
+require("./routes/learning_journey.routes")(app);
 
 
-app.listen(PORT, () => {
+
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+module.exports = server;

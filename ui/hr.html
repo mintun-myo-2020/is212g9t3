@@ -110,16 +110,16 @@
                                     <div class="card-body">
                                         <!--First Row with welcome message -->
                                         <h5 class="card-title text-primary">Welcome back Human Resource Manager 🎉</h5>
-                                     
+
                                         <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
                                             profile</a>
-                                            <div class="card-body pb-0 px-0 px-md-4">
-                                                <img src="../ui/img/man.png" height="140" alt="View Badge User" />
-                                            </div>
+                                        <div class="card-body pb-0 px-0 px-md-4">
+                                            <img src="../ui/img/man.png" height="140" alt="View Badge User" />
+                                        </div>
                                     </div>
 
 
-                                    
+
 
                                 </div>
 
@@ -143,6 +143,7 @@
                                             <input type="text" id="myStaff" onkeyup="myStaff()"
                                                 placeholder="Search for names..">
                                             <div class="table-responsive">
+
                                             <table id="myTableStaff" class="table">
                                                 <thead>
                                                     <tr>
@@ -176,13 +177,14 @@
                                                 </tbody>
                                             </table>
                                         </div>
+
                                         </div>
 
 
                                     </div>
                                 </div>
 
-                            <!--End Search for staff-->
+                                <!--End Search for staff-->
 
                                 <!--View skill-->
                                 <div class="col-12 mb-4">
@@ -196,45 +198,46 @@
 
                                                 <!--Start of search -->
                                                 <h5>View all Skills</h5>
-                                                
+
                                                 <input type="text" id="mySkill" onkeyup="mySkill()"
                                                     placeholder="Search for names..">
-                                                <div class ="table-responsive">
-                                                <table id="myTableSkill" class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Skill ID</th>
-                                                            <th scope="col">Skill Name</th>
-                                                            <th scope="col">Skill Status</th>
-                                                            <th scope="col">Competency Level</th>
-                                                            <th scope="col">Actions</th>
+                                                <div class="table-responsive">
+                                                    <table id="myTableSkill" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Skill ID</th>
+                                                                <th scope="col">Skill Name</th>
+                                                                <th scope="col">Skill Status</th>
+                                                                <th scope="col">Competency Level</th>
+                                                                <th scope="col">Actions</th>
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr v-for="each in skills">
-                                                            <th scope="row">{{ each.skill_id }}</th>
-                                                            <td>{{ each.skill_name }}</td>
-                                                            <td>{{ each.skill_status }}</td>
-                                                            <td>{{ each.skill_id }}</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="each in skills">
+                                                                <th scope="row">{{ each.skill_id }}</th>
+                                                                <td>{{ each.skill_name }}</td>
+                                                                <td>{{ each.skill_status }}</td>
+                                                                <td>{{ each.skill_id }}</td>
 
 
-                                                            <!--need to connect to back end and delete-->
-                                                            <td>
-                                                                <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModalSkill"></i>
+                                                                <!--need to connect to back end and delete-->
+                                                                <td>
+                                                                    <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                                                                        data-bs-target="#editModalSkill"></i>
 
-                                                                <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteModalSkill" @click = "deleteSkill(each.skill_id)">
-                                                                </iconify-icon>
+                                                                    <iconify-icon icon="bx:trash"
+                                                                        style="color: crimson;" data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModalSkill"
+                                                                        @click="deleteSkill(each.skill_id)">
+                                                                    </iconify-icon>
 
-                                                            </td>
+                                                                </td>
 
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -255,39 +258,40 @@
                                                 <input type="text" id="myRole" onkeyup="myRole()"
                                                     placeholder="Search for names..">
                                                 <div class="table-responsive">
-                                                <table id="myTableRole" class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Role ID</th>
-                                                            <th scope="col">Role Name</th>
+                                                    <table id="myTableRole" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Role ID</th>
+                                                                <th scope="col">Role Name</th>
 
-                                                            <th scope="col">Actions</th>
+                                                                <th scope="col">Actions</th>
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr v-for = "each in roles">
-                                                            <th scope="row"> {{each.role_id}}</th>
-                                                            <td>{{each.role_name}}</td>
-
-
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="each in roles">
+                                                                <th scope="row"> {{each.role_id}}</th>
+                                                                <td>{{each.role_name}}</td>
 
 
-                                                            <!--need to connect to back end and delete-->
-                                                            <td>
-                                                                <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModalRole"></i>
 
-                                                                <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    @click = deleteRole(each.role_id)>
-                                                                </iconify-icon>
 
-                                                            </td>
+                                                                <!--need to connect to back end and delete-->
+                                                                <td>
+                                                                    <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                                                                        data-bs-target="#editModalRole"></i>
 
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                                    <iconify-icon icon="bx:trash"
+                                                                        style="color: crimson;"
+                                                                        @click=deleteRole(each.role_id)>
+                                                                    </iconify-icon>
+
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -308,44 +312,45 @@
                                                 <input type="text" id="myViewCourse" onkeyup="myViewCourse()"
                                                     placeholder="Search for names..">
                                                 <div class="table-responsive">
-                                                <table id="myTableCourse" class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Course ID</th>
-                                                            <th scope="col">Course Name</th>
-                                                            <th scope="col">Course Desc</th>
-                                                            <th scope="col">Course Status</th>
-                                                            <th scope="col">Course Type</th>
-                                                            <th scope="col">Course Category</th>
+                                                    <table id="myTableCourse" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Course ID</th>
+                                                                <th scope="col">Course Name</th>
+                                                                <th scope="col">Course Desc</th>
+                                                                <th scope="col">Course Status</th>
+                                                                <th scope="col">Course Type</th>
+                                                                <th scope="col">Course Category</th>
 
-                                                            <th scope="col">Actions</th>
+                                                                <th scope="col">Actions</th>
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr v-for = "each in courses">
-                                                            <th scope="row">{{each.course_id}}</th>
-                                                            <td>{{each.course_name}}</td>
-                                                            <td>{{each.course_desc}}</td>
-                                                            <td>{{each.course_status}}</td>
-                                                            <td>{{each.course_type}}</td>
-                                                            <td>{{each.course_category}}</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="each in courses">
+                                                                <th scope="row">{{each.course_id}}</th>
+                                                                <td>{{each.course_name}}</td>
+                                                                <td>{{each.course_desc}}</td>
+                                                                <td>{{each.course_status}}</td>
+                                                                <td>{{each.course_type}}</td>
+                                                                <td>{{each.course_category}}</td>
 
-                                                            <!--need to connect to back end and delete-->
-                                                            <td>
-                                                                <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModalCourse"></i>
-                                                                
-                                                                <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    @click = "deleteCourse(each.course_id)">
-                                                                </iconify-icon>
+                                                                <!--need to connect to back end and delete-->
+                                                                <td>
+                                                                    <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                                                                        data-bs-target="#editModalCourse"></i>
 
-                                                            </td>
+                                                                    <iconify-icon icon="bx:trash"
+                                                                        style="color: crimson;"
+                                                                        @click="deleteCourse(each.course_id)">
+                                                                    </iconify-icon>
 
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -439,167 +444,168 @@
     </div>
 
 
-<!--Create Skill Modal -->
-<div class="modal fade" id="createSkillModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div id="role-select" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Skill</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!--Form submission-->
-                <form action="#">
-                    <!--UPDATE THE FORM TMR-->
-                    <div class="mb-3 mt-3">
-                        <div class="form-group">
-                            <label>Skill Name</label>
-                            <input type="text" class="form-control" required>
+    <!--Create Skill Modal -->
+    <div class="modal fade" id="createSkillModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="role-select" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Skill</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--Form submission-->
+                    <form action="#">
+                        <!--UPDATE THE FORM TMR-->
+                        <div class="mb-3 mt-3">
+                            <div class="form-group">
+                                <label>Skill Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Skill Status</option>
-                            <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{ skill.skill_name }}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3 mt-3">
-                        <div class="form-group">
-                            <label>Competency Level</label>
-                            <input type="text" class="form-control" required>
+                        <div class="mb-3 mt-3">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Skill Status</option>
+                                <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{ skill.skill_name }}
+                                </option>
+                            </select>
                         </div>
-                    </div>
-                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" @click="createSkill()">Create</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                    </div>
-                </form>
+                        <div class="mb-3 mt-3">
+                            <div class="form-group">
+                                <label>Competency Level</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <!--Need to read from database when user click the role and skills will show the courses related to it-->
 
 
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" @click="createSkill()">Create</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </form>
+
+
+
+                </div>
 
             </div>
-
         </div>
     </div>
-</div>
-<!--End of Create Skillmodal-->
+    <!--End of Create Skillmodal-->
 
-<!--Create Role Modal -->
-<div class="modal fade" id="createRoleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div id="role-select" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Skill</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!--Form submission-->
-                <form action="#">
-                    <!--UPDATE THE FORM TMR-->
-                    <div class="mb-3 mt-3">
-                        <div class="form-group">
-                            <label>Role Name</label>
-                            <input type="text" class="form-control" required>
+    <!--Create Role Modal -->
+    <div class="modal fade" id="createRoleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="role-select" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Skill</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--Form submission-->
+                    <form action="#">
+                        <!--UPDATE THE FORM TMR-->
+                        <div class="mb-3 mt-3">
+                            <div class="form-group">
+                                <label>Role Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
                         </div>
-                    </div>
-                   
-                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                    </div>
-                </form>
+                        <!--Need to read from database when user click the role and skills will show the courses related to it-->
 
 
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </form>
+
+
+
+                </div>
 
             </div>
-
         </div>
     </div>
-</div>
-<!--End of Create Role modal-->
+    <!--End of Create Role modal-->
 
 
-<!--Start of edit Staff modal-->
-<div class="modal fade" id="editModalStaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div id="role-select" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Staff</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!--Form submission-->
-                <form action="#">
+    <!--Start of edit Staff modal-->
+    <div class="modal fade" id="editModalStaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="role-select" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Staff</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--Form submission-->
+                    <form action="#">
 
-                    <div class="mb-3 mt-3">
-                        <div class="form-group">
-                            <label>Staff ID </label>
+                        <div class="mb-3 mt-3">
+                            <div class="form-group">
+                                <label>Staff ID </label>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3 mt-3">
-                        <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" class="form-control" required>
+                        <div class="mb-3 mt-3">
+                            <div class="form-group">
+                                <label>{{passedData.staff_fname}}</label>
+                                <input type="text" class="form-control" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" class="form-control" required>
+                        <div class="mb-3 mt-3">
+                            <div class="form-group">
+                                <label>{{passedData.staff_lname}}</label>
+                                <input type="text" class="form-control" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Deparment</option>
-                            <!-- <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{skill.skill_name }}
+                        <div class="mb-3 mt-3">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>{{passedData.dept}}</option>
+                                <!-- <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{skill.skill_name }}
                             </option> -->
-                        </select>
-                    </div>
-
-                 
-                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Skills</option>
-                            <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{skill.skill_name }}
-                            </option>
-                        </select>
-                    </div>
-                    <!--Show all the completed courses for each staff-->
-                    <div class="mb-3 mt-3">
-                        <label>Courses Completed</label>
-                        <br>
-                        <button type="button" class="btn btn-outline-primary">Primary</button>
-                    </div>
+                            </select>
+                        </div>
 
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary align-items-center">Submit</button>
+                        <!--Need to read from database when user click the role and skills will show the courses related to it-->
+                        <div class="mb-3 mt-3">
+                            <select class="form-select" v-model="selected" aria-label="Default select example">
+                                <option disabled value="">Please select one</option>
+                                <option>Sales</option>
+                                <option>Engineer</option>
+                                <option>C</option>
+                            </select>
+                        </div>
+                        <!--Show all the completed courses for each staff-->
+                        <div class="mb-3 mt-3">
+                            <label>Courses Completed</label>
+                            <br>
+                            <button type="button" class="btn btn-outline-primary">Primary</button>
+                        </div>
 
-                    </div>
-                </form>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary align-items-center">Submit</button>
+
+                        </div>
+                    </form>
 
 
+
+                </div>
 
             </div>
-
         </div>
     </div>
-</div>
-<!--End of edit Staff modal-->
+    <!--End of edit Staff modal-->
 
 
     <!--Script Files-->
@@ -799,7 +805,7 @@
                             <input type="text" class="form-control" required>
                         </div>
                     </div>
-                    
+
 
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
@@ -809,7 +815,7 @@
                         </select>
                     </div>
 
-                 
+
                     <!--Need to read from database when user click the role and skills will show the courses related to it-->
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
@@ -819,7 +825,7 @@
                         </select>
                     </div>
                     <!--Show all the completed courses for each staff-->
-                
+
 
 
                     <div class="modal-footer">
@@ -902,7 +908,7 @@
                             <input type="text" class="form-control" required>
                         </div>
                     </div>
-                   
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary align-items-center">Submit</button>
@@ -989,7 +995,7 @@
                             <input type="text" class="form-control" required>
                         </div>
                     </div>
-                   
+
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Course Status</option>
