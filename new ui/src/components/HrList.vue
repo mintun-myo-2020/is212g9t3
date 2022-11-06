@@ -52,11 +52,11 @@
       </table>
       
 
-      <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
+      <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
         Remove All
-      </button>
+      </button> -->
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <div v-if="currentTutorial">
         <h4>Tutorial</h4>
         <div>
@@ -71,13 +71,10 @@
 
         <router-link :to="'/tutorials/' + currentTutorial.id" class="badge badge-warning">Edit</router-link>
       </div>
-    </div>
+    </div> -->
   </div>
-
-
-
     <div class="list row">
-    <div class="col-md-8">
+    <div class="col-md-6">
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search by Name"
           v-model="title"/>
@@ -205,7 +202,6 @@ export default {
       StaffDataService.delete(id)
         .then(response => {
           console.log(response.data);
-          
           this.refreshList();
         })
         .catch(e => {
