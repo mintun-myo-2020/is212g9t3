@@ -21,6 +21,23 @@ const main = Vue.createApp({
                 }
                 
             },
+            lj:{
+                staff_id: 150566,
+                lj_name: 'Creating Learning Journey!',
+                role_id: '',
+                skills: [],
+                courses: []
+            },
+            skilltoRole: {
+                skillSkillId: '',
+                roleRoleId: ''
+            },
+            skilltoCourse: {
+                skillSkillId: '',
+                courseCourseId: ''
+            }, 
+            userdata:0,
+            
            
         }
     },

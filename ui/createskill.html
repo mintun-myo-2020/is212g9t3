@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="/ui/css/style.css" />
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/10ee65637f.js" crossorigin="anonymous"></script>
+
+    <!--Datatable CDN-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="app">
+
+    <!--Side navigation bar-->
+    <div class="container-fluid">
+        <div class="sidebar">
+            <div class="logo-details">
+                <!-- <i class="bx bxl-c-plus-plus icon"></i> -->
+                <div class="logo_name">Learning Journey</div>
+                <i class="bx bx-menu" id="btn"></i>
+            </div>
+            <ul class="nav-list">
+               
+                <li>
+                    <a href="../ui/learning_journey.html">
+                        <i class="bx bx-user"></i>
+                        <span class="links_name">Learning Journey</span>
+                    </a>
+                    <span class="tooltip">Learning Journey</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bx bx-chat"></i>
+                        <span class="links_name">Courses</span>
+                    </a>
+                    <span class="tooltip">Courses</span>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <i class="bx bx-heart"></i>
+                        <span class="links_name">Saved</span>
+                    </a>
+                    <span class="tooltip">Saved</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bx bx-cog"></i>
+                        <span class="links_name">Setting</span>
+                    </a>
+                    <span class="tooltip">Setting</span>
+                </li>
+                <li class="profile container">
+                    <div class="profile-details">
+                        <img src="img/me.jpg" />
+                        <div class="name_job">
+                            <div class="name">Shu Ling</div>
+                            <div class="job">Human Resource Manager</div>
+                        </div>
+                    </div>
+                    <i class="bx bx-log-out" id="log_out"></i>
+                </li>
+            </ul>
+        </div>
+
+        <section class="home-section ">
+            <!-- Content wrapper-->
+            <div class="content-wrapper ">
+                <div class="container-xxl flex-grow-1 container-p-y">
+
+                    <div class="row container-fluid">
+                        <div class="col-lg-8">
+                            
+                            <!--Second row -->
+                            <div class="card ">
+                                <div class="card-body">
+                                    <!-- <div class="d-flex justify-content-between flex-sm-row flex-column gap-3"> -->
+                                    <!-- <div
+                                            class="d-flex flex-sm-column flex-row align-items-start justify-content-between"> -->
+                                    <div class="card-title">
+                                        <h5 class="text-nowrap mb-2"></h5>
+
+                                        <!--Start of search -->
+                                        <h5>Create New Skill</h5>
+
+                                        
+                                    <form v-on:submit.prevent=createSkill() class="was-validated">
+                                        <div class="mb-3 mt-3">
+                                          <label for="uname" class="form-label">Skill Name:</label>
+                                          <input v-model="form.skill_name.name" type="text" class="form-control" id="skill_name" placeholder="Enter skillname" name="skill_name" required>
+                                          <div class="valid-feedback">Valid.</div>
+                                          <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                        
+                                        
+                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+
+                                    
+                                        
+                                        <!--End of search staff-->    
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            
+                        </div>
+                   
+
+                    </div>
+
+             
+
+
+
+
+
+                </div>
+                
+            </div>
+          
+
+
+
+        </section>
+    </div>
+    </div>
+    </div>
+    <script>
+
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", () => {
+            // Sidebar open when you click on the search iocn
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+            if (sidebar.classList.contains("open")) {
+                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+            } else {
+                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+            }
+        }
+
+
+        function myLJ() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myLJ");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableLJ");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        
+
+    </script>
+</body>
+
+
+
+
+
+
+<!--End of modal-->
+<!-- Vue.js 3 CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>  
+
+<!-- Axios CDN -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- Refer to my own external JS -->
+<script src="./js/vue.js"></script>
+
+</html>
