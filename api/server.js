@@ -3,11 +3,14 @@ const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
-  origin: ["http://localhost:5500", 
-    "http://127.0.0.1:5500",
-    "http://127.0.0.1:5501"]
-};
+// var corsOptions = {
+//   origin: ["http://localhost:5500", 
+//     "http://127.0.0.1:5500",
+//     "http://127.0.0.1:5501","http://localhost:8080"],
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// };
+
 const db = require("./models");
 
 db.sequelize.sync({alter: true})
@@ -19,7 +22,7 @@ db.sequelize.sync({alter: true})
   });   
 
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());

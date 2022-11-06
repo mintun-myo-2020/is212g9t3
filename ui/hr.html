@@ -143,39 +143,41 @@
                                             <input type="text" id="myStaff" onkeyup="myStaff()"
                                                 placeholder="Search for names..">
                                             <div class="table-responsive">
-                                                <table id="myTableStaff" class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Staff ID</th>
-                                                            <th scope="col">First Name</th>
-                                                            <th scope="col">Last Name</th>
-                                                            <th scope="col">Department</th>
-                                                            <th scope="col">Skills Accquired</th>
-                                                            <th scope="col">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr v-for="each in staff">
-                                                            <th scope="row">{{each.staff_id}}</th>
-                                                            <td>{{each.staff_fname}}</td>
-                                                            <td>{{each.staff_lname}}</td>
-                                                            <td>{{each.dept}}</td>
-                                                            <td>{{each.email}}</td>
-                                                            <!--need to connect to back end and delete-->
-                                                            <td>
-                                                                <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                    data-bs-target="#editModalStaff" @click=sendInfo(staff_id:each.staff_id,staff_fname:each.staff_fname,staff_lname:each.staff_lname,dept:each.dept,email:each.email)></i>
 
-                                                                <iconify-icon icon="bx:trash" style="color: crimson;"
-                                                                    @click=deleteStaff(each.staff_id)>
-                                                                </iconify-icon>
+                                            <table id="myTableStaff" class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Staff ID</th>
+                                                        <th scope="col">First Name</th>
+                                                        <th scope="col">Last Name</th>
+                                                        <th scope="col">Department</th>
+                                                        <th scope="col">Skills Accquired</th>
+                                                        <th scope="col">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="each in staff">
+                                                        <th scope="row">{{each.staff_id}}</th>
+                                                        <td>{{each.staff_fname}}</td>
+                                                        <td>{{each.staff_lname}}</td>
+                                                        <td>{{each.dept}}</td>
+                                                        <td>{{each.email}}</td>
+                                                        <!--need to connect to back end and delete-->
+                                                        <td>
+                                                            <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                                                                data-bs-target="#editModalStaff" ></i>
 
-                                                            </td>
+                                                            <iconify-icon icon="bx:trash" style="color: crimson;"
+                                                            @click = deleteStaff(each.staff_id)>
+                                                            </iconify-icon>
 
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                         </div>
 
 
@@ -364,6 +366,8 @@
 
                         <!--Start of Second Col Home progression -->
                         <div class="col-lg-4 mb-4">
+                            <button type="button" class="btn btn-primary" onclick="assignSkilltoRole()">Assign skill to role</button>
+
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
@@ -413,12 +417,12 @@
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary float-right" data-bs-toggle="modal"
-                                data-bs-target="#createSkillModal">
+                                data-bs-target="#createSkillModal" onClick="createSkill()">
                                 Create Skill
                             </button>
 
                             <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal"
-                                data-bs-target="#createRoleModal">
+                                data-bs-target="#createRoleModal" onClick="createNewRole()">
                                 Create Role
                             </button>
 
@@ -717,6 +721,22 @@
                     }
                 }
             }
+        }
+
+        function createSkill(){
+            window.location.href="http://127.0.0.1:5500/ui/createskill.html"
+        }
+
+        function createNewRole(){
+            window.location.href="http://127.0.0.1:5500/ui/createRole.html"
+        }
+
+        function assignSkilltoRole(){
+            window.location.href="http://127.0.0.1:5500/ui/assignSkilltoRole.html"
+        }
+
+        function assignSkilltoCourse(){
+            window.location.href="http://127.0.0.1:5500/ui/assignSkilltoCourse.html"
         }
     </script>
 </body>
