@@ -115,37 +115,18 @@
                                                         <th scope="col">Learning Journey ID</th>
                                                         <th scope="col">Learning Journey Name</th>
                                                         <th scope="col">Role</th>
-                                                        <th scope="col">Courses</th>
-                                                        <th scope="col">Skills Accquired</th>
-                                                        <th scope="col">Status</th>
                                                         <th scope="col">Actions</th>
                                                         
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr v-for="lj of ljs">
-                                                        <th scope="row">1</th>
+                                                        <th scope="row">{{lj.lj_id}}</th>
                                                         <td>{{lj.lj_name}}</td>
-                                                        <td>Engineer</td>
-                                                        <td>
-                                                            <span>Effective Leadership</span> 
-                                                            <hr>
-                                                            <span>Managing People</span>
-                                
-                                                        </td>
-                                                        <td>
-                                                            <span> Speaking </span> 
-                                                            <hr>
-                                                            <span>Management</span>
-                                
-                                                        </td>
-                                                        <td>In-Progress</td>
-                                                        <!--need to connect to back end and delete-->
-                                                        
-                                                        
+                                                        <td>{{lj.roleRoleId}}</td>
                                                          <td>
                                                             <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                data-bs-target="#editLJModal"></i>
+                                                                data-bs-target="#editLJModal" @click="getLearningJourney(lj.lj_id)"></i>
 
                                                             <iconify-icon icon="bx:trash" style="color: crimson;"
                                                                 data-bs-toggle="modal"
@@ -353,15 +334,14 @@
     <div id="role-select" class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Learning Journey {{}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Learning Journey</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="#"></button>
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=createLearningJourney()>
+                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=updateLearningJourney()>
                     <div class="mb-3 mt-3">
                         <select class="form-select" aria-label="Default select example" v-model="lj.role_id" :required @change="getRole()">
-                            
                             <option>Select a role</option>
                             <option v-for="role in roles" :value="role.role_id"  > {{ role.role_name }} </option>
                         </select>
