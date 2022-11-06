@@ -1,6 +1,5 @@
 .env
 api/.env
 api/node_modules
-db.config.js
 new ui/node_modules
 
