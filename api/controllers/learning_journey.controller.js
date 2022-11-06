@@ -100,7 +100,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
         
-    const staff_id = req.body.staff_id;
+    const staff_id = req.body.staffStaffId;
     const lj_name = req.body.lj_name;
     const role_id = req.body.role_id;
     const skills = req.body.skills; // array of skill ids
@@ -136,15 +136,12 @@ exports.update = (req, res) => {
       LearningJourney.findByPk(id)
       .then(lj => {
         for (let course of courses){
-          lj.setCourses([course]);
+          lj.addCourses([course]);
         }
         for (let skill of skills) {
-          lj.setSkills([skill]);
+          lj.addSkills([skill]);
         };
       })
-
-
-
 
   };
 
