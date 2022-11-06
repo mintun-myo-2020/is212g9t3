@@ -39,15 +39,9 @@
           <td>{{tutorial.dept}}</td>
           <td>{{tutorial.email}}</td>
           <td>
-              <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                  data-bs-target="#editModalStaff"></i>
-
-              <iconify-icon icon="bx:trash" style="color: crimson;"
-              @click = deleteStaff(each.staff_id)>
-              </iconify-icon>
 
               <button type="button" class="btn btn-warning">Edit</button>
-               <button type="button" class="btn btn-danger">Delete</button>
+               <button type="button" class="btn btn-danger"  @click="deleteTutorial(tutorial.staff_id)">Delete</button>
 
           </td>
 
@@ -138,7 +132,20 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    },
+
+    deleteTutorial(id) {
+      StaffDataService.delete(id)
+        .then(response => {
+          console.log(response.data);
+          this.$router.push({ name: "tutorials" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
+
+
   },
   mounted() {
     this.retrieveTutorials();

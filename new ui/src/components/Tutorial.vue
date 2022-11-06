@@ -107,6 +107,7 @@ export default {
     },
 
     deleteTutorial() {
+      console.log('here')
       StaffDataService.delete(this.currentTutorial.id)
         .then(response => {
           console.log(response.data);
