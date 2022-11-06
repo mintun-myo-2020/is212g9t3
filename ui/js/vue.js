@@ -8,6 +8,7 @@ const main = Vue.createApp({
     data() {
 
         return {
+            lj_data: [],
             roles: [],
             skills: [],
             courses: [],
@@ -210,7 +211,7 @@ const main = Vue.createApp({
 
         axios.get(`http://localhost:8080/api/learningjourney/${lj_id}`)
           .then(function (response) {
-            console.log(this.lj_id);
+            console.log(response.data);
           })
           .catch(function (error) {
             console.log(error);
@@ -237,6 +238,18 @@ const main = Vue.createApp({
             location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
             console.log(response);
             alert("Hello! I am an alert box!!");
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    deleteLearningJourney(lj_id){
+        axios.delete(`http://localhost:8080/api/learningjourney/${lj_id}`)
+          .then(function (response) {
+            alert("Learning Journey Deleted!", location)
+            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            console.log(response);
           })
           .catch(function (error) {
             console.log(error);

@@ -130,7 +130,7 @@
 
                                                             <iconify-icon icon="bx:trash" style="color: crimson;"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#deleteLJModal">
+                                                                data-bs-target="#deleteLJModal" v-on:click="deleteLearningJourney(lj.lj_id)">
                                                             </iconify-icon>
 
                                                         </td>
@@ -378,44 +378,6 @@
     </div>
 </div>
 
-
-<!--Delete LJ Modal-->
-<div class="modal fade" id="deleteLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div id="role-select" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!--Form submission-->
-                <form action="#">
-                    <div class="mb-3 mt-3">
-                        <div class="form-group">
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
-                        </div>
-                    </div>
-
-
-                    <!--Show all the completed courses for each staff-->
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                        <input type="submit" class="btn btn-danger" value="Delete">
-
-                    </div>
-
-
-                </form>
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
 
 </body>
 
