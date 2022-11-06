@@ -86,7 +86,7 @@
                 </li>
                 <li class="profile container">
                     <div class="profile-details">
-                        <img src="img/me.jpg" />
+                        <img src="../ui/img/me.jpg" />
                         <div class="name_job">
                             <div class="name">Shu Ling</div>
                             <div class="job">Human Resource Manager</div>
@@ -366,8 +366,7 @@
 
                         <!--Start of Second Col Home progression -->
                         <div class="col-lg-4 mb-4">
-                            <button type="button" class="btn btn-primary" onclick="assignSkilltoRole()">Assign skill to role</button>
-
+                            
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
@@ -420,11 +419,13 @@
                                 data-bs-target="#createSkillModal" onClick="createSkill()">
                                 Create Skill
                             </button>
-
+                            <br>
                             <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal"
                                 data-bs-target="#createRoleModal" onClick="createNewRole()">
                                 Create Role
                             </button>
+                            <br>
+                            <button type="button" class="btn btn-success" onclick="assignSkilltoRole()">Assign skill to role</button>
 
                         </div>
 
