@@ -1,6 +1,6 @@
 const db = require("../models");
-const { Skill, Role, Course } = require("../models");
-const LearningJourney = db.learningJourneys;
+const { Skill, Role, Course, Staff,  } = require("../models");
+const LearningJourney = db.LearningJourney;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new LearningJourney
@@ -12,43 +12,34 @@ exports.create = (req, res) => {
       });
       return;
     }
-  
-    lj_name - req.body.lj_name
-    role_id = req.body.role_id;
-    skills = req.body.skills; // array of skill ids
-    courses = req.body.courses; // array of course ids
+    
+    const staff_id = req.body.staff_id;
+    const lj_name = req.body.lj_name;
+    const role_id = req.body.role_id;
+    const skills = req.body.skills; // array of skill ids
+    const courses = req.body.courses; // array of course ids
 
     // Create a LearningJourney
     const learningJourney = {
-      lj_name: lj_name
+      lj_name: lj_name,
+      staffStaffId: staff_id,
+      roleRoleId: role_id,
     };
 
-    // Save LearningJourney in the database
     LearningJourney.create(learningJourney)
       .then(data => {
-        res.send(data);
+        LearningJourney.findByPk(data.lj_id)
+        .then(lj => {
+          for (course of courses){
+            lj.setCourses([course]);
+          }
+          for (skill of skills) {
+            lj.setSkills([skill]);
+          }
+          res.send(lj);
+        })     
+        
       })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the LearningJourney."
-        });
-      });
-
-    // Create associations with roles and skills (foreach id)
-
-    const assignment = {
-        skills : skills,
-        courses: courses
-      };
-    
-    LearningJourney.findOne({
-    where: { skill_id: assignment.skillSkillId }
-    }).then(skill => {
-        skill.setCourses([assignment.courseCourseId])
-        res.sendStatus(200);
-    }).catch(e => console.log(e));
-  
 
   };
 
@@ -95,7 +86,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
   
     LearningJourney.update(req.body, {
-      where: { id: id }
+      where: { lj_id: id }
     })
       .then(num => {
         if (num == 1) {
@@ -110,7 +101,7 @@ exports.update = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating LearningJourney with id=" + id
+          message: err
         });
       });
   };
@@ -120,7 +111,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
   
     LearningJourney.destroy({
-      where: { id: id }
+      where: { lj_id: id }
     })
       .then(num => {
         if (num == 1) {
@@ -157,20 +148,30 @@ exports.deleteAll = (req, res) => {
       });
   };
 
-// Find all published LearningJourneys
-exports.findAllPublished = (req, res) => {
-    LearningJourney.findAll({ where: { published: true } })
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving learningJourneys."
-        });
-      });
+//Remove course from lj
+exports.removeCourseLj = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  const removal = {
+    learningjourneyLjId: req.body.learningjourneyLjId,
+    courseCourseId: req.body.courseCourseId
   };
 
+  LearningJourney.findOne({
+    where: { lj_id: removal.learningjourneyLjId }
+    }).then(lj => {
+        lj.removeCourses([removal.courseCourseId])
+        res.sendStatus(200);
+    }).catch(e => console.log(e));
+
+
+};
 
 
 
