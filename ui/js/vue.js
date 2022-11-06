@@ -298,7 +298,7 @@ const main = Vue.createApp({
         }
         
         return new Promise((resolve, reject) => {
-            axios.put(`http://localhost:8080/api/skill/${this.userdata}`, )
+            axios.put(`http://localhost:8080/api/skill/${this.userdata}`, this.updateSkillList )
             .then(response => { 
             console.log(response)
             resolve(response)
