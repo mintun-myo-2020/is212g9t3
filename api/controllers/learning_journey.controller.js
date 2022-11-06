@@ -98,17 +98,31 @@ exports.findLjbyStaffId = (req, res) => {
 // Update a LearningJourney by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
-  
-    LearningJourney.update(req.body, {
+
+        
+    const staff_id = req.body.staff_id;
+    const lj_name = req.body.lj_name;
+    const role_id = req.body.role_id;
+    const skills = req.body.skills; // array of skill ids
+    const courses = req.body.courses; // array of course ids
+
+    const learningJourney = {
+      lj_name: lj_name,
+      staffStaffId: staff_id,
+      roleRoleId: role_id,
+    }
+
+    LearningJourney.update(learningJourney, {
       where: { lj_id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "LearningJourney was updated successfully."
+            message: `${num}`
           });
         } else {
           res.send({
+            
             message: `Cannot update LearningJourney with id=${id}. Maybe LearningJourney was not found or req.body is empty!`
           });
         }
@@ -118,6 +132,20 @@ exports.update = (req, res) => {
           message: err
         });
       });
+
+      LearningJourney.findByPk(id)
+      .then(lj => {
+        for (let course of courses){
+          lj.setCourses([course]);
+        }
+        for (let skill of skills) {
+          lj.setSkills([skill]);
+        };
+      })
+
+
+
+
   };
 
 // Delete a LearningJourney with the specified id in the request
