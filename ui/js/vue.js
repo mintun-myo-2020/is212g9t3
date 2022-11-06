@@ -27,7 +27,12 @@ const main = Vue.createApp({
                    
                 },
                 role_name : {
-                    name : ''
+                    name : '',
+                }, 
+                staff_fname : {
+                    name : '',
+                    lname : '',
+                    email : '',
                 }
             },
             lj:{
@@ -52,6 +57,9 @@ const main = Vue.createApp({
 
             updateRoleList:[],
             updateRoleobj:{},
+            
+            updateStaffList:[],
+            updateStaffobj:{},
             
            
             ljs:[],
@@ -298,10 +306,7 @@ const main = Vue.createApp({
         
         for (idx in this.skills) {
             this.updateSkillobj = this.skills[idx];
-            // console.log(this.skills[idx])
-            // console.log(this.userdata)
-            // console.log("space")
-            // console.log(this.updateSkillobj.skill_id)
+           
             if (this.updateSkillobj.skill_id === this.userdata){
                 this.updateSkillList = this.updateSkillobj
                 console.log(this.updateSkillList)
@@ -390,6 +395,52 @@ const main = Vue.createApp({
             axios.put(`http://localhost:8080/api/role/${role_id}`, 
             {role_name: this.form.role_name.name,
             archived:0})
+           
+            .then(response => {
+            alert("Role updated", location)
+            location.href = "http://127.0.0.1:5500//ui/hr.html"
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
+       },
+
+       updateStaff (staff_id) {
+        this.userdata = staff_id;
+        
+        for (idx in this.staff) {
+            this.updateStaffobj = this.staff[idx];
+            
+            if (this.updateStaffobj.staff_id === this.userdata){
+                this.updateStaffList = this.updateStaffobj
+                console.log(this.updateStaffList)
+            }
+            else {
+                console.log("cannot push")
+            }
+        }
+        
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/api/staff/${this.userdata}`, )
+            .then(response => { 
+            
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        }
+        )
+    },
+
+    newStaff(staff_id){
+    
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/staff/${staff_id}`, 
+            {staff_fname: this.form.staff_fname.name,
+            staff_lname: this.form.staff_fname.lname, staff_dept:"",email: this.form.staff_fname.email,})
            
             .then(response => {
             alert("Role updated", location)
