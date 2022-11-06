@@ -4,7 +4,7 @@
   "description": "Node.js Rest Apis with Express, Sequelize & MySQL.",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test mocha --exit",
     "start": "NODE_ENV=development nodemon server.js"
   },
   "author": "",
