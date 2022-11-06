@@ -52,11 +52,7 @@ Libraries/Frameworks used:
 
 Ensure that you have the following installed on your machine. You can follow [this installation guide](https://docs.google.com/document/d/1hSqhVbgbclf-eOvBx5BQhaTJHxbUSUN4wZTrLNUMyUk/edit?usp=sharing).
 
-* Python 3 
-
 * Visual Studio Code 
-
-* Docker Desktop 
 
 * WAMP/MAMP Server 
 
