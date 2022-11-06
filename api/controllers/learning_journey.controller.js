@@ -30,10 +30,10 @@ exports.create = (req, res) => {
       .then(data => {
         LearningJourney.findByPk(data.lj_id)
         .then(lj => {
-          for (course of courses){
+          for (let course of courses){
             lj.setCourses([course]);
           }
-          for (skill of skills) {
+          for (let skill of skills) {
             lj.setSkills([skill]);
           }
           res.send(lj)
@@ -171,7 +171,6 @@ exports.removeCourseLj = (req, res) => {
         lj.removeCourses([removal.courseCourseId])
         res.sendStatus(200);
     }).catch(e => console.log(e));
-
 
 };
 

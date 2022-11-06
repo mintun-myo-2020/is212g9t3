@@ -71,8 +71,9 @@ describe('Test LJ endpoints', function() {
 describe('Test enrolled courses by staff', function() {
     it('Get enrolled courses of a staff', function(done) {
       let staff_id = 1;
+      let endpoint = '/api/staff/enrolledcourses/' + staff_id;
       request(app)
-        .get('/api/staff/enrolledcourses/' + staff_id)
+        .get(endpoint)
         .expect(200,done)
     });
   });
