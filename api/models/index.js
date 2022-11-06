@@ -1,16 +1,16 @@
 const dbConfig = require("../config/db.config.js");
-
+const env = process.env.NODE_ENV;
 const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
+const sequelize = new Sequelize(dbConfig[env].DB, dbConfig[env].USER, dbConfig[env].PASSWORD, {
+  host: dbConfig[env].HOST,
+  dialect: dbConfig[env].dialect,
   operatorsAliases: 0,
 
   pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
+    max: dbConfig[env].pool.max,
+    min: dbConfig[env].pool.min,
+    acquire: dbConfig[env].pool.acquire,
+    idle: dbConfig[env].pool.idle
   }
 });
 
@@ -37,10 +37,15 @@ const LJCourse = sequelize.define('ljcourse', {},
 db.LearningJourney.belongsToMany(db.Course, {through: LJCourse})
 db.Course.belongsToMany(db.LearningJourney, {through: LJCourse})
 
+// many to many association between Course and LJ
+const LJSkill = sequelize.define('ljskill', {},
+{tableName: 'ljskill', timestamps: false});
+db.LearningJourney.belongsToMany(db.Skill, {through: LJSkill})
+db.Skill.belongsToMany(db.LearningJourney, {through: LJSkill})
 
 // many to many association between Skill and Course
-
 var SkillCourse = sequelize.define('skillcourse', {},
+
 {tableName:'skillcourse',timestamps:false}
 );
 db.Skill.belongsToMany(db.Course, {through: SkillCourse})
@@ -56,13 +61,6 @@ var roleskill = sequelize.define('roleskill',
 db.Skill.belongsToMany(db.Role, {through: roleskill});
 db.Role.belongsToMany(db.Skill, {through: roleskill});
 
-// many to many association between LearningJourney and Role
-const LJRole = sequelize.define('ljrole', {},
-{tableName: 'ljrole', timestamps: false}
-);
-db.LearningJourney.belongsToMany(db.Role, {through: LJRole});
-db.Role.belongsToMany(db.LearningJourney, {through: LJRole});
-
 //staff course
 var staffcourse = sequelize.define('staffcourse',
 {
@@ -70,18 +68,6 @@ var staffcourse = sequelize.define('staffcourse',
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    allowNull: false
-  },
-  reg_status: {
-    type: DataTypes.STRING,
-    primaryKey: false,
-    autoIncrement: false,
-    allowNull: false
-  },
-  completion_status: {
-    type: DataTypes.STRING,
-    primaryKey: false,
-    autoIncrement: false,
     allowNull: false
   }
 },

@@ -261,12 +261,13 @@ const main = Vue.createApp({
     },
 
 
+
     getRoleSkill(){
 
     }
 
+
     }
-    
 
 })
 

@@ -3,19 +3,19 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes =  [
   {
     path: "/",
-    alias: "/",
-    name: "role",
-    component: () => import("./components/HrList")
+    alias: "/course",
+    name: "course",
+    component: () => import("./components/courseList")
   },
   {
-    path: "/tutorials/:id",
-    name: "tutorial-details",
-    component: () => import("./components/Tutorial")
+    path: "/course/:id",
+    name: "course-details",
+    component: () => import("./components/course")
   },
   {
     path: "/add",
     name: "add",
-    component: () => import("./components/AddTutorial")
+    component: () => import("./components/AddCourse")
   }
 ];
 

@@ -9,6 +9,7 @@ USER = 'admin'
 PASSWORD = 'adminadmin'
 
 module.exports = {
+  development: {
     HOST: HOST,
     USER: USER,
     PASSWORD: PASSWORD,
@@ -20,4 +21,18 @@ module.exports = {
       acquire: 30000,
       idle: 10000
     }
+  },
+  test: {
+    HOST: HOST,
+    USER: USER,
+    PASSWORD: PASSWORD,
+    DB: "SPMLJPS_TEST",
+    dialect: "mysql",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  }
   };

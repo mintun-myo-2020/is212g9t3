@@ -6,9 +6,11 @@ module.exports = app => {
     // Retrieve all Staffs
     router.get("/", staff.findAll);
   
-  
     // Retrieve a single Staff with id
     router.get("/:staff_id", staff.findOne);
+
+    // Retrieve COURSES enrolled by staff with staffid
+    router.get("/enrolledcourses/:staff_id", staff.findEnrolledCourses);
   
     // Update a Staff with id
     router.put("/:staff_id", staff.update);
