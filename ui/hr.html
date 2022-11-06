@@ -279,7 +279,7 @@
                                                                 <!--need to connect to back end and delete-->
                                                                 <td>
                                                                     <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                        data-bs-target="#editModalRole"></i>
+                                                                        data-bs-target="#editModalRole" @click= "updateRole(each.role_id)"></i>
 
                                                                     <iconify-icon icon="bx:trash"
                                                                         style="color: crimson;"
@@ -743,7 +743,7 @@
 </body>
 <!-- Modal -->
 
-<!--Start of delete Staff modal-->
+<!-- Start of delete Staff modal-->
 <div class="modal fade" id="deleteModalStaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div id="role-select" class="modal-dialog">
         <div class="modal-content">
@@ -780,7 +780,7 @@
         </div>
     </div>
 </div>
-<!--End of delete Staff modal-->
+<!--End of delete Staff modal -->
 
 <!--Start of edit Skills modal-->
 <div class="modal fade" id="editModalSkill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -888,18 +888,19 @@
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form action="#">
+                <form v-on:submit.prevent=newRole(this.updateRoleList.role_id)>
 
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <label>Role ID </label>
+                            <div>{{userdata}}</div>
                         </div>
                     </div>
 
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <label>Role Name</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" :placeholder="updateRoleList.role_name" v-model="form.role_name.name" id="{{this.updateRoleList.role_id}}" required>
                         </div>
                     </div>
 

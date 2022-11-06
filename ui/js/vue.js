@@ -49,6 +49,9 @@ const main = Vue.createApp({
             userdata:0,
             updateSkillList:[],
             updateSkillobj:{},
+
+            updateRoleList:[],
+            updateRoleobj:{},
             
            
             ljs:[],
@@ -288,7 +291,7 @@ const main = Vue.createApp({
         })
     },
 
-    //update skill 
+    //update skill send to modal
   
     updateSkill (skill_id) {
         this.userdata = skill_id;
@@ -320,7 +323,7 @@ const main = Vue.createApp({
         }
         )
     },
-
+    // update skill
    newSkill(skill_id){
     
     return new Promise((resolve, reject) => {
@@ -329,7 +332,7 @@ const main = Vue.createApp({
         archived:0})
        
         .then(response => {
-        alert("Skill updated added", location)
+        alert("Skill updated", location)
         location.href = "http://127.0.0.1:5500//ui/hr.html"
         console.log(response)
         resolve(response)
@@ -352,6 +355,52 @@ const main = Vue.createApp({
         })
 
     },
+    //send to modal first
+    updateRole (role_id) {
+        this.userdata = role_id;
+        
+        for (idx in this.roles) {
+            this.updateRoleobj = this.roles[idx];
+            
+            if (this.updateRoleobj.role_id === this.userdata){
+                this.updateRoleList = this.updateRoleobj
+                console.log(this.updateRoleList)
+            }
+            else {
+                console.log("cannot push")
+            }
+        }
+        
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/role/${this.userdata}`, )
+            .then(response => { 
+            
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        }
+        )
+    },
+
+    newRole(role_id){
+    
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/role/${role_id}`, 
+            {role_name: this.form.role_name.name,
+            archived:0})
+           
+            .then(response => {
+            alert("Role updated", location)
+            location.href = "http://127.0.0.1:5500//ui/hr.html"
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
+       },
 
 }
 
