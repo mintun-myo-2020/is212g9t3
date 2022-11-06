@@ -12,6 +12,9 @@ module.exports = app => {
   // Retrieve a single learningJourney with id
   router.get("/:id", learningJourney.findOne);
 
+  // Retrieve a single learningJourney with staffid
+  router.get("/staff/:id", learningJourney.findLjbyStaffId);
+
   // Update a learningJourney with id
   router.put("/:id", learningJourney.update);
 

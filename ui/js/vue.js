@@ -41,10 +41,19 @@ const main = Vue.createApp({
                 courseCourseId: ''
             }, 
             userdata:0,
+            updateSkillList:[],
+            updateSkillobj:{},
             
            
-            }
-        
+            ljs:[],
+            updatedLj:{
+                lj_name: 'Creating Learning Journey!',
+                role_id: '',
+                skills: [],
+                courses: []
+            },
+            testlj:{}
+        }
     },
 
     // 'hook'
@@ -54,7 +63,7 @@ const main = Vue.createApp({
         let skill_endpoint_ = "http://localhost:8080/api/skill"
         let course_endpoint_ = "http://localhost:8080/api/course"
         let staff_endpoint_ = "http://localhost:8080/api/staff"
-        
+        let lj_endpoint_ = "http://localhost:8080/api/learningjourney/staff/150566"
 
         axios.get(role_endpoint_)
         .then(response => {
@@ -63,6 +72,18 @@ const main = Vue.createApp({
             // Assign response.data.records (Array) to
             // 'people' data property
             this.roles = response.data
+        })
+        .catch(error => {
+            console.log( error.message )
+        })
+
+        axios.get(lj_endpoint_)
+        .then(response => {
+            console.log( response.data )
+
+            // Assign response.data.records (Array) to
+            // 'people' data property
+            this.ljs = response.data
         })
         .catch(error => {
             console.log( error.message )
@@ -182,8 +203,30 @@ const main = Vue.createApp({
         })
     },
 
+    getLearningJourney(lj_id){
+        axios.get(`http://localhost:8080/api/learningjourney/${lj_id}`)
+          .then(function (response) {
+            this.testlj = response.data;
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
     createLearningJourney(){
         axios.post('http://localhost:8080/api/learningjourney', this.lj)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+
+    updateLearningJourney(lj_id){
+        axios.put(`http://localhost:8080/api/learningjourney/${lj_id}`)
           .then(function (response) {
             console.log(response);
           })

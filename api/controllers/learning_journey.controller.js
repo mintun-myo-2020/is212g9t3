@@ -82,6 +82,18 @@ exports.findOne = (req, res) => {
         });
       });
   };
+  //Find learning journey by staffid
+exports.findLjbyStaffId = (req, res) => {
+    const id = req.params.id;
+  
+    LearningJourney.findAll({
+      where: { staffStaffId: id }
+      }).then(data => {
+          res.send(data);
+      }).catch(e => console.log(e));
+
+
+  };
 
 // Update a LearningJourney by the id in the request
 exports.update = (req, res) => {
