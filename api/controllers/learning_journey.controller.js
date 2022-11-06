@@ -24,8 +24,6 @@ exports.create = (req, res) => {
       lj_name: lj_name,
       staffStaffId: staff_id,
       roleRoleId: role_id,
-      skills: skills,
-      courses: courses
     };
 
     LearningJourney.create(learningJourney)
@@ -39,7 +37,6 @@ exports.create = (req, res) => {
             lj.setSkills([skill]);
           }
           res.send(lj);
-          // res.send(lj.courses);
         })     
         
       })
@@ -168,8 +165,8 @@ exports.removeCourseLj = (req, res) => {
 
   LearningJourney.findOne({
     where: { lj_id: removal.learningjourneyLjId }
-    }).then(skill => {
-        skill.removeCourses([removal.courseCourseId])
+    }).then(lj => {
+        lj.removeCourses([removal.courseCourseId])
         res.sendStatus(200);
     }).catch(e => console.log(e));
 

@@ -15,8 +15,8 @@ describe('Test LJ endpoints', function() {
         .post('/api/learningjourney')
         .send({
           lj_name: "Test",
-          staffStaffId: 1,
-          roleRoleId: 1,
+          staff_id: 1,
+          role_id: 1,
           skills: [1],
           courses: ["FIN003"]
         })
@@ -39,8 +39,8 @@ describe('Test LJ endpoints', function() {
         .put('/api/learningjourney/' + id)
         .send({
           lj_name: "UPDATED test",
-          staffStaffId: 2,
-          roleRoleId: 2,
+          staff_id: 2,
+          role_id: 2,
           skills: [1],
           courses: ["FIN004"]
         })
@@ -51,17 +51,17 @@ describe('Test LJ endpoints', function() {
     //     .delete('/api/learningjourney')
     //     .expect(200,done)
     // });
-    it('Delete learning journey by id', function(done) {
-      let id = 2;
-      request(app)
-        .delete('/api/learningjourney/' + id)
-        .expect(200,done)
-    });
+    // it('Delete learning journey by id', function(done) {
+    //   let id = 2;
+    //   request(app)
+    //     .delete('/api/learningjourney/' + id)
+    //     .expect(200,done)
+    // });
     it('Remove courses from learning journey', function(done) {
       request(app)
         .post('/api/learningjourney/removecourse')
         .send({
-          learningjourneyLjId: 1,
+          learningjourneyLjId: 4,
           courseCourseId:"FIN003"
       })
         .expect(200,done)
@@ -69,11 +69,10 @@ describe('Test LJ endpoints', function() {
   });
 
 describe('Test enrolled courses by staff', function() {
-    it('Get learning journey by id', function(done) {
+    it('Get enrolled courses of a staff', function(done) {
       let id = 150233;
       request(app)
         .get('/api/staff/enrolledcourses' + id)
         .expect(404,done)
     });
   });
-
