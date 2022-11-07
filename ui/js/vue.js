@@ -201,6 +201,19 @@ const main = Vue.createApp({
         })
     })
     },
+    archiveRole(role_id) {
+        console.log("hello")
+        axios.put(`http://localhost:8080/api/role/archive/${role_id}`,{"archived":true})
+        .then(function (response) {
+          console.log(response.data);
+          document.location.reload();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      
+    },
 
     createRole(){
         return new Promise((resolve, reject) => {
@@ -268,30 +281,7 @@ const main = Vue.createApp({
           console.log(error);
         });
 
-        // return new Promise((resolve, reject) => {
-        //     axios.put(`http://localhost:8080/api/skill/${skill_id}`,
-        //     ).then(response => {
-        //         this.userdata = skill_id;
-        //         for (idx in this.skills) {
-        //             this.updateSkillobj = this.skills[idx];
-        //             if (this.updateSkillobj.skill_id === this.userdata){
-        //                 this.updateSkillList = this.updateSkillobj
-        //                 this.archive_check = false
-        //                this.updateSkillList.archived = this.archive_check
-        //                 console.log(this.updateSkillList.archived)
-        //                 console.log(this.llj_name)
-        //                 location.href = "http://127.0.0.1:5500/ui/hr.html"
-        //             }
-        //             else {
-        //                 console.log("cannot push")
-        //             }
-        //         }
-        //     resolve(response)
-            
-        //     }).catch(error => {
-        //     reject(error)
-        //     })
-        // })
+      
     },
 
     getLearningJourney(lj_id){

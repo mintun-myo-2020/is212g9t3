@@ -145,22 +145,22 @@ exports.unassign = (req, res) => {
 // Archive a skill by the skill_id in the request
 
 exports.archive = (req, res) => {
-    const skill_id = req.params.role_id;
+    const role_id = req.params.role_id;
   
     // set archived to 1 in database 
     // to archive, body : {"archived": 1}
     // to UNarchive, body : {"archived": 0}
-    skill.update(req.body, {
+    role.update(req.body, {
       where: { role_id: role_id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "skill was updated successfully."
+            message: "Role was updated successfully."
           });
         } else {
           res.send({
-            message: `Cannot update skill with role_id=${role_id}. Maybe skill was not found or req.body is empty!`
+            message: `Cannot update role with role_id=${role_id}. Maybe role was not found or req.body is empty!`
           });
         }
       })
