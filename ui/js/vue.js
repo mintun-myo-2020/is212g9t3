@@ -31,7 +31,14 @@ const main = Vue.createApp({
                     name : '',
                     lname : '',
                     email : '',
+                },
+                lj_name : {
+                    name : '',
+                    skill_id: '',
+                    role_id: '',
+                    course_id: '',
                 }
+
             },
             lj:{
                 staff_id: 150608,
@@ -58,6 +65,11 @@ const main = Vue.createApp({
             
             updateStaffList:[],
             updateStaffobj:{},
+
+            updateLJList:[],
+            updateLJobj:{},
+            llj_name:'',
+            
             
            
             ljs:[],
@@ -264,18 +276,59 @@ const main = Vue.createApp({
 
     },
 
-    updateLearningJourney(lj_id){
-        axios.put(`http://localhost:8080/api/learningjourney/${lj_id}`,this.lj)
-          .then(function (response) {
-            alert("Learning Journey Updated!", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
-            console.log(response);
-            alert("Hello! I am an alert box!!");
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    newLJ(lj_id){
+    
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/learningjourney/${lj_id}`, 
+            {
 
+			lj_name: this.form.lj_name.name,
+            	courses: [],
+                	skills: []
+})
+           
+            .then(response => {
+            alert("Learning Journey updated", location)
+            location.href = "http://127.0.0.1:5500//ui/learning_journey.html"
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        })
+       },
+
+ updateLearningJourney (lj_id) {
+        this.userdata = lj_id;
+
+        
+        for (idx in this.ljs) {
+            console.log(lj_id)
+            
+            this.updateLJobj = this.ljs[idx];
+            
+            if (this.updateLJobj.lj_id === this.userdata){
+                this.updateLJList = this.updateLJobj
+                this.llj_name = this.updateLJList.lj_name
+                console.log(this.updateLJList)
+                console.log(this.llj_name)
+            }
+            else {
+                console.log("cannot push")
+            }
+        }
+        
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/api/learningjourney/${this.userdata}`,this.userdata )
+            .then(response => { 
+            
+            console.log(response)
+            resolve(response)
+            }).catch(error => {
+             console.log(error)
+            })
+        }
+        )
     },
     deleteLearningJourney(lj_id){
         axios.delete(`http://localhost:8080/api/learningjourney/${lj_id}`)
