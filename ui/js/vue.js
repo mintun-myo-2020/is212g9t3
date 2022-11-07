@@ -377,21 +377,29 @@ const main = Vue.createApp({
 
    getCoursesofSkill(skills){
     this.courses = [];
+    let keys = [];
     for(var i in skills){
         skill_id = skills[i];
         axios.get(`http://localhost:8080/api/course/by-skill/` + skill_id)
         .then(response => {
             for(j in response.data){
-                if(this.courses.length > 0){
-                    for(index in this.courses){
-                        if(this.courses[index].course_id != response.data[j].course_id || this.courses.length == 0){
+                if (this.courses.length > 0){
+
+                        if (!keys.includes(response.data[j].course_id)){
                             this.courses.push(response.data[j]);
-                        }
-                    }
-                }
-                else{
+                            keys.push(response.data[j].course_id);
+
+                }} else {
+                    
                     this.courses.push(response.data[j]);
                 }
+                    // for(index in this.courses){
+                    //     if(this.courses[index].course_id != response.data[j].course_id || this.courses.length == 0){
+                    //         this.courses.push(response.data[j]);
+                    //     }
+                    // }
+                
+
             }
             
         })
