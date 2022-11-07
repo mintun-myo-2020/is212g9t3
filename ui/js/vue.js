@@ -136,6 +136,18 @@ const main = Vue.createApp({
         .catch(error => {
             console.log( error.message )
         })
+
+        axios.get(lj_endpoint_)
+        .then(response => {
+            console.log( response.data )
+
+            // Assign response.data.records (Array) to
+            // 'people' data property
+            this.ljs = response.data
+        })
+        .catch(error => {
+            console.log( error.message )
+        })
     },
     methods : {
     deleteCourse ( course_id ) {
