@@ -17,6 +17,7 @@ Libraries/Frameworks used:
 * [VueJs](https://vuejs.org/)
 * [JQuery](https://jquery.com/)
 * [Bootstrap](https://getbootstrap.com/)
+* [ExpressJS](https://expressjs.com/)
 
 
 
@@ -62,7 +63,7 @@ Ensure that you have the following installed on your machine. You can follow [th
 Run these commands on your VSC terminal first 
 ```
 cd api
-
+npm install
 npm start
 
 ```
@@ -81,6 +82,12 @@ Our database is running on the AWS RDS service.
    ```sh
    git clone https://github.com/mintun-myo-2020/is212g9t3.git
    ```
+
+### 4. Running the application
+
+Ensure that you are using a Windows device. Run your wamp and type 'localhost' in your browser. Look for the Add Vitual Host link. Create a new virtual host called 'g9t3'. Add the webroot of ur file under the path input. Create the virtualhost. Once done, it will prompt you to restart. Please restart your wamp and ensure that the logo is green in colour. 
+
+Open a new brower and type g9t3
 
 ### Report and documentation
 
