@@ -133,7 +133,7 @@ exports.findLjbyStaffId = (req, res) => {
     .then(data => {
       if (data) {
         for(var course of data.courses){
-          lj_courses.push(course.course_name);
+          lj_courses.push({"course_id": course.course_id,"course_name":course.course_name});
         }
         res.send(lj_courses);
       } else {

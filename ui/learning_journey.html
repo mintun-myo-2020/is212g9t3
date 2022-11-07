@@ -86,7 +86,7 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
 
                     <div class="row">
-                        <div class="col-lg-8 mb-4 order-0">
+                        <div class="col-lg mb-4 order-0">
                             
                             <!--Second row -->
                             <div class="card">
@@ -125,21 +125,16 @@
                                                     <tr v-for="lj of ljs">
                                                         <th scope="row">{{lj.lj_id}}</th>
                                                         <td>{{lj.lj_name}}</td>
-                                                        <td>{{lj.roleRoleId}}</td>
+                                                        <td>{{lj.role_name}}</td>
                                                         <td>
-                                                            <span v-if="lj.lj_id % 4 == 0">Business Finance</span>
-                                                            <span v-else-if="lj.lj_id % 5 == 0">General Management</span>
-                                                            <span v-else="lj.lj_id % 4 == 0">Project Development</span>
+                                                            <ol ><li v-for="skill in lj.skills">{{skill}}</li></ol>
                                                         </td>
                                                         <td>
-                                                            <span v-if="lj.lj_id % 4 == 0">Systems Thinking and Design</span>
-                                                            <span v-else-if="lj.lj_id % 5 == 0">Lean Six Signma Green Belt Certification</span>
-                                                            <span v-else="lj.lj_id % 4 == 0">People Management</span>
+                                                            <ol><li v-for="course in lj.courses">{{course.course_name}}</li>
+                                                            <i class='bx bxs-edit-alt'></i>
+                                                            </ol>
                                                         </td>
                                                          <td>
-                                                            <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                data-bs-target="#editLJModal"  @click="updateLearningJourney(lj.lj_id)"></i>
-
                                                             <iconify-icon icon="bx:trash" style="color: crimson;"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#deleteLJModal" v-on:click="deleteLearningJourney(lj.lj_id)">
@@ -163,59 +158,6 @@
 
                             
                         </div>
-                        <!--End of first Col-->
-
-                        <!--The other half col-->
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-
-                                    </div>
-                                    <span class="fw-semibold d-block mb-1">My Progression</span>
-
-                                    <div class="d-flex align-items-center progmain">
-                                        <span class="stars">
-                                            <span><i class="progressicon fa fa-desktop "></i></span>
-                                        </span>
-                                        <div class="col text-nowrap">
-                                            Web Design
-                                            <div class="progress">
-
-                                                <div class="progress-bar bg-danger" role="progressbar"
-                                                    style="width: 5%;" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="d-flex align-items-center progmain">
-                                        <span class="stars">
-                                            <span><i class="progressicon fa-solid fa-person-digging"></i></span>
-                                        </span>
-                                        <div class="col text-nowrap">
-                                            Leadership
-                                            <div class="progress">
-
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 75%;" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <!--END of second col-->
 
 
 
@@ -327,10 +269,9 @@
                     </div>
 
                     <div class="mb-3" v-if="showCourses == true">
-                        
                         <p>Select courses</p>
                         <span v-for="course in courses">
-                          <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_name}} </span> <br>
+                          <input type="checkbox" :value="course.course_id" v-model="lj.courses" v-if="enrolled_courses.includes(course) == false"> <span class="checkbox-label"> {{course.course_id}} {{course.course_name}} </span> <br>
                         </span>
                         <br>
                         
@@ -350,9 +291,8 @@
 </div>
 
 <!-- Edit Learning Journey Modal-->
-<!-- Edit Learning Journey Modal-->
 <form v-on:submit.prevent=newLJ(this.updateLJList.lj_id)>
-    <!-- Edit Learning Journey Modal-->
+
     <div class="modal fade" id="editLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div id="role-select" class="modal-dialog modal-xl">
             <div class="modal-content">
