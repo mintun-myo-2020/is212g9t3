@@ -18,6 +18,9 @@ module.exports = app => {
   // Retrieve skills of a learningJourney with ljid
   router.get("/skills/:id", learningJourney.findLjSkills);
 
+  // Retrieve skills of a learningJourney with ljid
+  router.get("/courses/:id", learningJourney.findLjCourses);
+
   // Update a learningJourney with id
   router.put("/:id", learningJourney.update);
 

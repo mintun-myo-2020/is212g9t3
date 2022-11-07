@@ -122,6 +122,33 @@ exports.findLjbyStaffId = (req, res) => {
     });
     };
 
+
+  exports.findLjCourses = (req, res) => {
+    const lj_id = req.params.id;
+    var lj_courses = [];
+    LearningJourney.findOne({
+      where: { lj_id: lj_id },
+      include: db.Course
+    })
+    .then(data => {
+      if (data) {
+        for(var course of data.courses){
+          lj_courses.push(course.course_name);
+        }
+        res.send(lj_courses);
+      } else {
+        res.status(404).send({
+          message: `Cannot find lj with lj_id=${lj_id}.`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving lj with lj_id=" + lj_id
+      });
+    });
+    };
+
 // Update a LearningJourney by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;

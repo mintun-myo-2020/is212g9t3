@@ -1,9 +1,12 @@
 // Create a new Vue instance
 
+<<<<<<< Updated upstream
 // const { default: axios } = require("axios")
 
 // const { each } = require("bluebird")
 
+=======
+>>>>>>> Stashed changes
 const main = Vue.createApp({
     watch() {
 
