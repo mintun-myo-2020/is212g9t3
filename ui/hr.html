@@ -86,7 +86,7 @@
                 </li>
                 <li class="profile container">
                     <div class="profile-details">
-                        <img src="img/me.jpg" />
+                        <img src="../ui/img/me.jpg" />
                         <div class="name_job">
                             <div class="name">Shu Ling</div>
                             <div class="job">Human Resource Manager</div>
@@ -151,7 +151,7 @@
                                                         <th scope="col">First Name</th>
                                                         <th scope="col">Last Name</th>
                                                         <th scope="col">Department</th>
-                                                        <th scope="col">Skills Accquired</th>
+                                                        <th scope="col">Email</th>
                                                         <th scope="col">Actions</th>
                                                     </tr>
                                                 </thead>
@@ -165,7 +165,7 @@
                                                         <!--need to connect to back end and delete-->
                                                         <td>
                                                             <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                data-bs-target="#editModalStaff" ></i>
+                                                                data-bs-target="#editModalStaff" @click= "updateStaff(each.staff_id)"></i>
 
                                                             <iconify-icon icon="bx:trash" style="color: crimson;"
                                                             @click = deleteStaff(each.staff_id)>
@@ -279,7 +279,7 @@
                                                                 <!--need to connect to back end and delete-->
                                                                 <td>
                                                                     <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                        data-bs-target="#editModalRole"></i>
+                                                                        data-bs-target="#editModalRole" @click= "updateRole(each.role_id)"></i>
 
                                                                     <iconify-icon icon="bx:trash"
                                                                         style="color: crimson;"
@@ -366,8 +366,7 @@
 
                         <!--Start of Second Col Home progression -->
                         <div class="col-lg-4 mb-4">
-                            <button type="button" class="btn btn-primary" onclick="assignSkilltoRole()">Assign skill to role</button>
-
+                            
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
@@ -420,11 +419,13 @@
                                 data-bs-target="#createSkillModal" onClick="createSkill()">
                                 Create Skill
                             </button>
-
+                            <br>
                             <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal"
                                 data-bs-target="#createRoleModal" onClick="createNewRole()">
                                 Create Role
                             </button>
+                            <br>
+                            <button type="button" class="btn btn-success" onclick="assignSkilltoRole()">Assign skill to role</button>
 
                         </div>
 
@@ -545,31 +546,32 @@
                 </div>
                 <div class="modal-body">
                     <!--Form submission-->
-                    <form action="#">
+                    <form  v-on:submit.prevent=newStaff(this.updateStaffList.staff_id)>
 
                         <div class="mb-3 mt-3">
                             <div class="form-group">
                                 <label>Staff ID </label>
+                                <div>{{userdata}}</div>
                             </div>
                         </div>
 
                         <div class="mb-3 mt-3">
                             <div class="form-group">
-                                <label>{{passedData.staff_fname}}</label>
-                                <input type="text" class="form-control" required>
+                                <label>First Name</label>
+                                <input type="text" class="form-control" :placeholder="updateStaffList.staff_fname" v-model="form.staff_fname.name" id="{{this.updateStaffList.staff_id}}" required>
                             </div>
                         </div>
                         <div class="mb-3 mt-3">
                             <div class="form-group">
-                                <label>{{passedData.staff_lname}}</label>
-                                <input type="text" class="form-control" required>
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" :placeholder="updateStaffList.staff_lname" v-model="form.staff_fname.lname" id="{{this.updateStaffList.staff_id}}" required>
                             </div>
                         </div>
 
                         <div class="mb-3 mt-3">
                             <select class="form-select" aria-label="Default select example">
-                                <option selected>{{passedData.dept}}</option>
-                                <!-- <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{skill.skill_name }}
+                                <option selected>Department</option>
+                                <!-- <option v-for="staf in staff" v-bind:value="skill.skill_id"> {{skill.skill_name }}
                             </option> -->
                             </select>
                         </div>
@@ -577,24 +579,19 @@
 
                         <!--Need to read from database when user click the role and skills will show the courses related to it-->
                         <div class="mb-3 mt-3">
-                            <select class="form-select" v-model="selected" aria-label="Default select example">
-                                <option disabled value="">Please select one</option>
-                                <option>Sales</option>
-                                <option>Engineer</option>
-                                <option>C</option>
-                            </select>
+                            
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" :placeholder="updateStaffList.email" v-model="form.staff_fname.email" id="{{this.updateStaffList.staff_id}}" required>
+                            </div>
                         </div>
                         <!--Show all the completed courses for each staff-->
-                        <div class="mb-3 mt-3">
-                            <label>Courses Completed</label>
-                            <br>
-                            <button type="button" class="btn btn-outline-primary">Primary</button>
-                        </div>
+                       
 
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary align-items-center">Submit</button>
+                            <button type="submit" class="btn btn-primary align-items-center">Update</button>
 
                         </div>
                     </form>
@@ -743,7 +740,7 @@
 </body>
 <!-- Modal -->
 
-<!--Start of delete Staff modal-->
+<!-- Start of delete Staff modal-->
 <div class="modal fade" id="deleteModalStaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div id="role-select" class="modal-dialog">
         <div class="modal-content">
@@ -780,7 +777,7 @@
         </div>
     </div>
 </div>
-<!--End of delete Staff modal-->
+<!--End of delete Staff modal -->
 
 <!--Start of edit Skills modal-->
 <div class="modal fade" id="editModalSkill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -888,18 +885,19 @@
             </div>
             <div class="modal-body">
                 <!--Form submission-->
-                <form action="#">
+                <form v-on:submit.prevent=newRole(this.updateRoleList.role_id)>
 
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <label>Role ID </label>
+                            <div>{{userdata}}</div>
                         </div>
                     </div>
 
                     <div class="mb-3 mt-3">
                         <div class="form-group">
                             <label>Role Name</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" :placeholder="updateRoleList.role_name" v-model="form.role_name.name" id="{{this.updateRoleList.role_id}}" required>
                         </div>
                     </div>
 
