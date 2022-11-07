@@ -343,16 +343,7 @@ const main = Vue.createApp({
         });
     },
     createLearningJourney(){
-        if(this.lj.courses.length == 0){
-            // alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
-        }
-        else if(this.lj.skills.length == 0){
-            // alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
-        }
-        else if(this.lj.role_id != ''){
-            // alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
-        }
-        else{
+        
             axios.post('http://localhost:8080/api/learningjourney', this.lj)
             .then(function (response) {
               alert("Learning Journey successfully added", location)
@@ -362,7 +353,7 @@ const main = Vue.createApp({
             .catch(function (error) {
               console.log(error);
             });
-        }
+        
 
 
     },
