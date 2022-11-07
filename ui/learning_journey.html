@@ -298,7 +298,6 @@
                     <div class="mb-3 mt-3">
                         <p>Select role</p>
                         <select class="form-select"  v-model="lj.role_id" aria-label="Default select example" :required >
-                            <option selected>Select a role</option>
                             <option v-for="role in roles" :value="role.role_id"> {{ role.role_name }} </option>
                         </select>
                         <button type="button" class="btn btn-primary" @click="getSkillsofRole(lj.role_id)">Confirm role</button>
@@ -324,7 +323,6 @@
                         <br>
                         
                     </div>
-                    {{lj}}
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Create</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
