@@ -11,6 +11,9 @@ module.exports = app => {
   
     // Retrieve a single Course with id
     router.get("/:course_id", course.findOne);
+
+    // Retrieve all Courses associated with skill
+    router.get("/by-skill/:skill_id", course.findBySkill);
   
     // Update a Course with id
     router.put("/:course_id", course.update);

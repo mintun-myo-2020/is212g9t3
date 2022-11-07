@@ -1,3 +1,4 @@
+const { Skill } = require("../models");
 const db = require("../models");
 const course = db.Course;
 const Op = db.Sequelize.Op;
@@ -71,6 +72,25 @@ exports.findOne = (req, res) => {
         });
       });
   };
+
+
+// Find all courses associated with a skill
+exports.findBySkill = (req, res) => {
+  const skill_id= req.params.skill_id;
+
+  course.findAll({
+    include: Skill,
+    where: {'$skills.skill_id$': skill_id}
+  }).then(data =>{
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving courses."
+    });
+  })
+}
 
 // Update a course by the course_id in the request
 exports.update = (req, res) => {

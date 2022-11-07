@@ -31,8 +31,8 @@ const main = Vue.createApp({
                 }
             },
             lj:{
-                staff_id: 150566,
-                lj_name: 'Creating Learning Journey!',
+                staff_id: 150608,
+                lj_name: '',
                 role_id: '',
                 skills: [],
                 courses: []
@@ -53,13 +53,17 @@ const main = Vue.createApp({
            
             ljs:[],
             updatedLj:{
-                lj_name: 'Creating Learning Journey!',
+                lj_name: '',
                 role_id: '',
                 skills: [],
                 courses: []
             },
             lj_id:'',
-            currentLj: {}
+            currentLj: {},
+            showSkills: false,
+            showCourses: false
+
+            
 
         }
     },
@@ -71,7 +75,7 @@ const main = Vue.createApp({
         let skill_endpoint_ = "http://localhost:8080/api/skill"
         let course_endpoint_ = "http://localhost:8080/api/course"
         let staff_endpoint_ = "http://localhost:8080/api/staff"
-        let lj_endpoint_ = "http://localhost:8080/api/learningjourney/staff/150566"
+        let lj_endpoint_ = "http://localhost:8080/api/learningjourney/staff/150608"
 
         axios.get(role_endpoint_)
         .then(response => {
@@ -351,17 +355,36 @@ const main = Vue.createApp({
     })
    },
 
-    getRoleSkill(sr_id){
-        console.log(this.sr_id)
-        return new Promise((resolve, reject) => {
-            axios.post(`http://localhost:8080/api/skill//by-role/`, this.sr_id).then(response => {
-            console.log(response)
-            this.selectedRole = response.body
-            resolve(response)
-            }).catch(error => {
-            reject(error)
-            })
+   getSkillsofRole(role_id){
+    this.lj.skills = [];
+    axios.get(`http://localhost:8080/api/skill/by-role/` + role_id)
+    .then(response => {
+        this.skills = response.data;
+    })
+    .catch(function (error) {
+    console.log(error);
+    });
+    this.showSkills = true;
+    },
+
+   getCoursesofSkill(skills){
+    this.courses = [];
+    for(var i in skills){
+        skill_id = skills[i];
+        axios.get(`http://localhost:8080/api/course/by-skill/` + skill_id)
+        .then(response => {
+            console.log(response.data);
+            if(response.data.length >= 1){
+                this.courses += response.data;
+            }
+            
         })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
+    console.log(this.courses);
+    this.showCourses = true;
 
     },
 

@@ -10,7 +10,7 @@ module.exports = app => {
     router.get("/", skill.findAll);  
 
     // Retrieve ALL skill based on role_id
-    router.get("/by-role/:role_name", skill.findByRole);
+    router.get("/by-role/:role_id", skill.findByRole);
   
     // Retrieve a single Skill with id
     router.get("/:skill_id", skill.findOne);
