@@ -63,7 +63,7 @@ Run these commands on your VSC terminal first
 ```
 cd api
 
-npm run
+npm start
 
 ```
 
@@ -82,70 +82,22 @@ Our database is running on the AWS RDS service.
    git clone https://github.com/mintun-myo-2020/is212g9t3.git
    ```
 
-## 5. User Scenarios 
-There are a total of 3 scenarios accross 3 user interfaces (UI's). You can watch the video walkthrough in this [link](https://youtu.be/RGE3e-d1_ns). Assume that the user is already logged in to HealPark. 
-
-**Demo Credentials**
-Username: JamesXMM123
-Password: woshixmm123 
-<br />
-
-Using the demo credentials, log on to HealPark at http://localhost/G08T06/app/client/landing_page.html  
-
-Once you are logged in, you will be directed to http://localhost/G08T06/app/client/booking_history.html 
-
-
-#### **5.1 User makes a journal entry** 
-
-**1. Click on `Journal` navigation button at the top.**
-You will be redirected to http://localhost/esd_G08T06/app/client/journal.html <br />
-Click on `ADD JOURNAL ENTRY` button. 
-
-A pop up window will appear and prompt you to enter your entry. 
-**Demo Entry**
-`I am very sad that my esm prof gave me A+`
-```
-After entering the Demo entry, click the "SUBMIT" button.
-Upon submiting the entry, it will be added to the journal's dashboard and you're able to see your mood emoji. 
-```
-
-### **5.2 User converse with chatbot** 
-**1. Click on the MoMo Character (bottom right of the screen).**<br />
-The chat window with the bot will pop up. 
-Click on "Type here..."<br /><br />
-**Demo Entry** <br />
-user input: Hi <br />
-Expected response from momo: How are you feeling? <br />
-user input: depressed<br />
-Expected response from momo: Stay Strong!<br /> <br />
-
-### **5.3 User makes a booking with a Therapist** 
-You can check your past booking at http://localhost/esd_G08T06/app/client/booking_history.html <br />
-Click on `BOOK NOW`  button. <br />
-You will be redirected to http://localhost/esd_G08T06/app/client/booking_page.html
-
-Since you are already logged on, the username and name will be a fixed value. You are required to enter your mobile number, appointment date and time. 
-
-**Demo Inputs** <br />
-Phone Number: 92215510 <br />
-Appointment Date: ***select any date from calendar dropdown*** <br />
-Appointment Time: ***select any available timeslot*** <br />
-
-After keying the `Demo Inputs`, enter your credit/debit card details. <br />
-
-**Dummy Card** 
-Card number: 4242 4242 4242 4242 <br />
-MM/YY: 04/42<br />
-CVC: 424<br />
-
-After all the details are filled, proceed to click the "SUBMIT PAYMENT" button. <br />
-
-You will be redirected to the confirmation page at http://localhost/esd_G08T06/app/client/payment.php <br />
-
-
-To continue with entering your own personal journal or reflection - Click `Back to HealPark` at the bottom of the screen. 
-
-
 ### Report and documentation
 
-For the project's report and documentation, please see [here](https://smu-my.sharepoint.com/:w:/g/personal/isham_2020_scis_smu_edu_sg/EaFbdmy8w_VDvEAacMiiMt4BhfCuK-3yeIa6D5XM4VC5kQ?e=v16ZT7)
+For the project's report and documentation, please see [here]
+Documentation : 
+(https://docs.google.com/document/d/16R12Hg1gnAka7VhhsPrpDCVk9n9Sb6QKi-ezsutoAGU/edit?usp=sharing)
+
+Estimation Records :
+(https://docs.google.com/spreadsheets/d/1nmviVNLTPG-afacBLkS13u8WTmgXBuQEC3HqPUw6F8w/edit?usp=sharing)
+
+Final Product Backlog :
+(https://docs.google.com/spreadsheets/d/1fodKrLXjXTF-jutsX4mg32zu0EZDw_QL7I_NRqyOimo/edit?usp=sharing)
+
+Defination Of Done :
+(https://docs.google.com/spreadsheets/d/1hrlhjDHc8Obcd7xO_upZ9Qn1aINRHeBw-Nqo1Y9mg_M/edit?usp=sharing)
+
+C4 Diagraam :
+(https://docs.google.com/document/d/18xJJ-ThyMHYP7gAD3UNIfgwG2H5oKDKwkTknpi5VNh0/edit?usp=sharing)
+
+
