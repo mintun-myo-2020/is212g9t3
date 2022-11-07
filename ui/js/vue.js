@@ -335,7 +335,7 @@ const main = Vue.createApp({
         {"learningjourneyLjId":ljId,"courseCourseId":courseId})
         .then(function (response) {
             alert(`${courseId} removed from ${ljId}`);
-            location.href = "http://localhost:8080/ui/learning_journey.html";
+            location.href = "learning_journey.html";
             console.log(response);
         })
         .catch(function (error) {
@@ -344,13 +344,13 @@ const main = Vue.createApp({
     },
     createLearningJourney(){
         if(this.lj.courses.length == 0){
-            alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
+            // alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
         }
         else if(this.lj.skills.length == 0){
-            alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
+            // alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
         }
         else if(this.lj.role_id != ''){
-            alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
+            // alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
         }
         else{
             axios.post('http://localhost:8080/api/learningjourney', this.lj)
@@ -647,7 +647,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Role updated", location)
-            location.href = "http://localhost:8080//ui/hr.html"
+            location.href = "hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -693,7 +693,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Role updated", location)
-            location.href = "http://localhost:8080//ui/hr.html"
+            location.href = "hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
