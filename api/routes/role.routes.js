@@ -19,7 +19,7 @@ module.exports = app => {
     router.put("/:role_id", role.update);
 
     // Archive a Role with id
-    router.put("/:role_id", role.archive);
+    router.put("/archive/:role_id", role.archive);
 
     // Unassign skill from role
     router.delete("/unassign-skill/:skill_id", role.unassign);

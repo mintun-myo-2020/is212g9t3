@@ -217,13 +217,13 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-
                                                             <tr v-for="each in skills">
-                                                                <span v-if="archived">
+                                                                
                                                                     <th scope="row" v:model="each.skill_id">{{
                                                                         each.skill_id }}</th>
                                                                     <td>{{ each.skill_name }}</td>
-                                                                    <td>{{ each.archived }}</td>
+                                                                    <td v-if="each.archived == 1">archived</td>
+                                                                    <td v-else>{{ each.archived }}</td>
 
                                                                     <!--need to connect to back end and delete-->
                                                                     <td>
@@ -231,21 +231,24 @@
                                                                             data-bs-toggle="modal"
                                                                             data-bs-target="#editModalSkill"
                                                                             @click="updateSkill(each.skill_id)"></i>
+                                                                        <span v-if="each.archived == 1">
+                                                                            
+                                                                    </span>
+                                                                    <span v-else>
 
                                                                         <iconify-icon icon="bx:trash"
-                                                                            style="color: crimson;"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#deleteModalSkil"
-                                                                            @click="archiveSkill(each.skill_id)">
-                                                                        </iconify-icon>
-
+                                                                                style="color: crimson;"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#deleteModalSkil"
+                                                                                @click="archiveSkill(each.skill_id)">
+                                                                            </iconify-icon>
+                                                                    </span>
                                                                     </td>
 
 
-                                                                </span>
+                                                               
                                                                 
                                                             </tr>
-
 
 
 
@@ -278,33 +281,44 @@
                                                             <tr>
                                                                 <th scope="col">Role ID</th>
                                                                 <th scope="col">Role Name</th>
-
+                                                                <th scope="col>">Status</th>
                                                                 <th scope="col">Actions</th>
 
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr v-for="each in roles">
-                                                                <th scope="row"> {{each.role_id}}</th>
-                                                                <td>{{each.role_name}}</td>
-
-
-
+                                                                
+                                                                <th scope="row" v:model="each.role_id">{{
+                                                                    each.role_id }}</th>
+                                                                <td>{{ each.role_name }}</td>
+                                                                <td v-if="each.archived == 1">archived</td>
+                                                                <td v-else>{{ each.archived }}</td>
 
                                                                 <!--need to connect to back end and delete-->
                                                                 <td>
-                                                                    <i class='bx bxs-edit-alt' data-bs-toggle="modal"
+                                                                    <i class='bx bxs-edit-alt'
+                                                                        data-bs-toggle="modal"
                                                                         data-bs-target="#editModalRole"
                                                                         @click="updateRole(each.role_id)"></i>
+                                                                    <span v-if="each.archived == 1">
+                                                                        
+                                                                </span>
+                                                                <span v-else>
 
                                                                     <iconify-icon icon="bx:trash"
-                                                                        style="color: crimson;"
-                                                                        @click=deleteRole(each.role_id)>
-                                                                    </iconify-icon>
-
+                                                                            style="color: crimson;"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#deleteModalRole"
+                                                                            @click="archiveRole(each.role_id)">
+                                                                        </iconify-icon>
+                                                                </span>
                                                                 </td>
 
-                                                            </tr>
+
+                                                           
+                                                            
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
