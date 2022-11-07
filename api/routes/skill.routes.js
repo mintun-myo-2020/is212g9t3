@@ -19,7 +19,7 @@ module.exports = app => {
     router.put("/:skill_id", skill.update);
 
     // Archive a Skill with id
-    router.put("/:skill_id", skill.archive)
+    router.put("/archive/:skill_id", skill.archive)
   
     // Delete a Skill with id
     router.delete("/:skill_id", skill.delete);
