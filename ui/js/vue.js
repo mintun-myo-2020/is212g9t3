@@ -49,7 +49,7 @@ const main = Vue.createApp({
                 courses: []
             },
             skilltoRole: {
-                skillSkillId: '',
+                skillSkillId: [],
                 roleRoleId: ''
             },
             skilltoCourse: {
@@ -447,6 +447,20 @@ const main = Vue.createApp({
     },
     unassignSkilltoCourse(){
         axios.post('http://localhost:8080/api/skill/unassigncourse', this.skilltoCourse)
+          .then(function (response) {
+            alert("Course has successfully been unassigned!", location)
+            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    
+    unassignSkillfromRole(){
+        console.log(this.skilltoRole)
+        axios.post('http://localhost:8080/api/skill/unassignskill', this.skilltoRole)
           .then(function (response) {
             alert("Course has successfully been unassigned!", location)
             location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
