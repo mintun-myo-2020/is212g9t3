@@ -472,7 +472,7 @@ const main = Vue.createApp({
     
     unassignSkillfromRole(){
         console.log(this.skilltoRole)
-        axios.post('http://localhost:8080/api/skill/unassignskill', this.skilltoRole)
+        axios.post('http://localhost:8080/api/role/unassignskill', this.skilltoRole)
           .then(function (response) {
             alert("Course has successfully been unassigned!", location)
             location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
