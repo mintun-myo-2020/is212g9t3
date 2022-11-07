@@ -222,7 +222,8 @@
                                                                     <th scope="row" v:model="each.skill_id">{{
                                                                         each.skill_id }}</th>
                                                                     <td>{{ each.skill_name }}</td>
-                                                                    <td>{{ each.archived }}</td>
+                                                                    <td v-if="each.archived == 1">archived</td>
+                                                                    <td v-else>{{ each.archived }}</td>
 
                                                                     <!--need to connect to back end and delete-->
                                                                     <td>
@@ -230,14 +231,18 @@
                                                                             data-bs-toggle="modal"
                                                                             data-bs-target="#editModalSkill"
                                                                             @click="updateSkill(each.skill_id)"></i>
+                                                                        <span v-if="each.archived == 1">
+                                                                            
+                                                                    </span>
+                                                                    <span v-else>
 
                                                                         <iconify-icon icon="bx:trash"
-                                                                            style="color: crimson;"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#deleteModalSkil"
-                                                                            @click="archiveSkill(each.skill_id)">
-                                                                        </iconify-icon>
-
+                                                                                style="color: crimson;"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#deleteModalSkil"
+                                                                                @click="archiveSkill(each.skill_id)">
+                                                                            </iconify-icon>
+                                                                    </span>
                                                                     </td>
 
 
