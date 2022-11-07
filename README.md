@@ -17,6 +17,7 @@ Libraries/Frameworks used:
 * [VueJs](https://vuejs.org/)
 * [JQuery](https://jquery.com/)
 * [Bootstrap](https://getbootstrap.com/)
+* [ExpressJS](https://expressjs.com/)
 
 
 
@@ -62,7 +63,7 @@ Ensure that you have the following installed on your machine. You can follow [th
 Run these commands on your VSC terminal first 
 ```
 cd api
-
+npm install
 npm start
 
 ```
