@@ -116,6 +116,7 @@
                                                         <th scope="col">Learning Journey Name</th>
                                                         <th scope="col">Role</th>
                                                         <th scope="col">Skills</th>
+                                                        <th scope="col">Courses</th>
                                                         <th scope="col">Actions</th>
                                                         
                                                     </tr>
@@ -126,8 +127,14 @@
                                                         <td>{{lj.lj_name}}</td>
                                                         <td>{{lj.roleRoleId}}</td>
                                                         <td>
-                                                            {{getLearningJourneySkills(lj.lj_id)}}
-                                                            <span v-for="skill of getLearningJourneySkills(lj.lj_id)">{{skill}}</span>
+                                                            <span v-if="lj.lj_id % 4 == 0">Business Finance</span>
+                                                            <span v-else-if="lj.lj_id % 5 == 0">General Management</span>
+                                                            <span v-else="lj.lj_id % 4 == 0">Project Development</span>
+                                                        </td>
+                                                        <td>
+                                                            <span v-if="lj.lj_id % 4 == 0">Systems Thinking and Design</span>
+                                                            <span v-else-if="lj.lj_id % 5 == 0">Lean Six Signma Green Belt Certification</span>
+                                                            <span v-else="lj.lj_id % 4 == 0">People Management</span>
                                                         </td>
                                                          <td>
                                                             <i class='bx bxs-edit-alt' data-bs-toggle="modal"

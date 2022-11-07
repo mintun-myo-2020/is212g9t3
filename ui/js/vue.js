@@ -1,12 +1,5 @@
 // Create a new Vue instance
 
-<<<<<<< Updated upstream
-// const { default: axios } = require("axios")
-
-// const { each } = require("bluebird")
-
-=======
->>>>>>> Stashed changes
 const main = Vue.createApp({
     watch() {
 
@@ -246,8 +239,8 @@ const main = Vue.createApp({
     async getLearningJourneySkills(lj_id){
         this.lj_id = lj_id;
         const res = await axios.get(`http://localhost:8080/api/learningjourney/skills/${lj_id}`);
-        // console.log(res.data);
-        return res.data;
+        console.log(res.data[0]);
+        return res.data[0];
         // axios.get(`http://localhost:8080/api/learningjourney/skills/${lj_id}`)
         //   .then(function (response) {
         //     console.log(response.data)
