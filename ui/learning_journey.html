@@ -130,8 +130,11 @@
                                                             <ol ><li v-for="skill in lj.skills">{{skill}}</li></ol>
                                                         </td>
                                                         <td>
-                                                            <ol><li v-for="course in lj.courses">{{course.course_name}}</li>
-                                                            <i class='bx bxs-edit-alt'></i>
+                                                            <ol><li v-for="course in lj.courses">{{course.course_name}}
+                                                                <span v-if="lj.courses.length > 1"> 
+                                                                    <button @click="removeCourse(lj.lj_id,course.course_id,lj.courses)"><iconify-icon icon="fluent:delete-24-filled" style="color: red;"></iconify-icon></button>
+                                                                </span>
+                                                            </li>
                                                             </ol>
                                                         </td>
                                                          <td>

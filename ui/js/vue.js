@@ -299,7 +299,18 @@ const main = Vue.createApp({
           console.log(error);
         });
     },
-
+    removeCourse(ljId,courseId){
+        axios.post(`http://localhost:8080/api/learningjourney/removecourse`,
+        {"learningjourneyLjId":ljId,"courseCourseId":courseId})
+        .then(function (response) {
+            alert(`${courseId} removed from ${ljId}`);
+            location.href = "http://127.0.0.1:5500/ui/learning_journey.html";
+            console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
     createLearningJourney(){
         axios.post('http://localhost:8080/api/learningjourney', this.lj)
           .then(function (response) {
