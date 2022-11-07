@@ -447,6 +447,18 @@ const main = Vue.createApp({
           });
 
     },
+    unassignSkilltoCourse(){
+        axios.post('http://localhost:8080/api/skill/unassigncourse', this.skilltoCourse)
+          .then(function (response) {
+            alert("Course has successfully been unassigned!", location)
+            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
 
     getRole(){
         console.log(this.role_lj)
@@ -525,10 +537,12 @@ const main = Vue.createApp({
    getCoursesofSkill(skills){
     this.courses = [];
     let keys = [];
+
     for(var i in skills){
         skill_id = skills[i];
         axios.get(`http://localhost:8080/api/course/by-skill/` + skill_id)
         .then(response => {
+            console.log(response)
             for(j in response.data){
                 if (this.courses.length > 0){
 
