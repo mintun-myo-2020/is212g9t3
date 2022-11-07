@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="app">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="/ui/css/style.css" />
+    <!-- Boxicons CDN Link -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/10ee65637f.js" crossorigin="anonymous"></script>
+
+    <!--Datatable CDN-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <!--Side navigation bar-->
+        <div class="sidebar">
+            <div class="logo-details">
+                <!-- <i class="bx bxl-c-plus-plus icon"></i> -->
+                <div class="logo_name">Learning Journey</div>
+                <i class="bx bx-menu" id="btn"></i>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <i class="bx bx-search"></i>
+                    <input type="text" placeholder="Search..." />
+                    <span class="tooltip">Search</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bx bx-grid-alt"></i>
+                        <span class="links_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bx bx-user"></i>
+                        <span class="links_name">Learning Journey</span>
+                    </a>
+                    <span class="tooltip">Learning Journey</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bx bx-chat"></i>
+                        <span class="links_name">Courses</span>
+                    </a>
+                    <span class="tooltip">Courses</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bx bx-pie-chart-alt-2"></i>
+                        <span class="links_name">Analytics</span>
+                    </a>
+                    <span class="tooltip">Analytics</span>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="bx bx-heart"></i>
+                        <span class="links_name">Saved</span>
+                    </a>
+                    <span class="tooltip">Saved</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bx bx-cog"></i>
+                        <span class="links_name">Setting</span>
+                    </a>
+                    <span class="tooltip">Setting</span>
+                </li>
+                <li class="profile container">
+                    <div class="profile-details">
+                        <img src="../ui/img/me.jpg" />
+                        <div class="name_job">
+                            <div class="name">Shu Ling</div>
+                            <div class="job">Human Resource Manager</div>
+                        </div>
+                    </div>
+                    <i class="bx bx-log-out" id="log_out"></i>
+                </li>
+            </ul>
+        </div>
+        <!--Welcome Statement-->
+        <section class="home-section ">
+            <!-- Content wrapper-->
+            <div class="content-wrapper ">
+                <div class="container-xxl flex-grow-1 container-p-y content-row">
+                    <div class="row">
+                        <!--First Col-->
+                        <div class="col-lg-8 mb-4 order-0">
+                            <div class="card">
+                                <div class="d-flex align-items-end row">
+
+                                    <div class="card-body">
+                                        <!--First Row with welcome message -->
+                                        <h5 class="card-title text-primary">Welcome back Human Resource Manager 🎉</h5>
+
+                                        <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
+                                            profile</a>
+                                        <div class="card-body pb-0 px-0 px-md-4">
+                                            <img src="../ui/img/man.png" height="140" alt="View Badge User" />
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div>
+
+                            <!--Add "My homework"-->
+
+                            <!--Search for staff-->
+                            <div class="col-12 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- <div class="d-flex justify-content-between flex-sm-row flex-column gap-3"> -->
+                                        <!-- <div
+                                                    class="d-flex flex-sm-column flex-row align-items-start justify-content-between"> -->
+                                        <!-- <div class="card-title">
+                                            <h5 class="text-nowrap mb-2"></h5>
+
+                                            <!--Start of search -->
+                                            <h5>Search for Staff</h5>
+
+                                            <input type="text" id="myStaff" onkeyup="myStaff()"
+                                                placeholder="Search for names..">
+                                            <div class="table-responsive">
+
+                                                <table id="myTableStaff" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Staff ID</th>
+                                                            <th scope="col">First Name</th>
+                                                            <th scope="col">Last Name</th>
+                                                            <th scope="col">Department</th>
+                                                            <th scope="col">Email</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <tr v-for="each in staff">
+                                                            <th scope="row">{{each.staff_id}}</th>
+                                                            <td>{{each.staff_fname}}</td>
+                                                            <td>{{each.staff_lname}}</td>
+                                                            <td>{{each.dept}}</td>
+                                                            <td>{{each.email}}</td>
+                                                            <!--need to connect to back end and delete-->
+                                                            
+
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div> -->
+
+
+                                    </div>
+                                </div>
+
+                                <!--End Search for staff-->
+
+                                <!--View skill-->
+                                <div class="col-12 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <!-- <div class="d-flex justify-content-between flex-sm-row flex-column gap-3"> -->
+                                            <!-- <div
+                                                    class="d-flex flex-sm-column flex-row align-items-start justify-content-between"> -->
+                                            <div class="card-title">
+                                                <h5 class="text-nowrap mb-2"></h5>
+
+                                                <!--Start of search -->
+                                                <h5>View all Skills</h5>
+
+                                                <input type="text" id="mySkill" onkeyup="mySkill()"
+                                                    placeholder="Search for names..">
+                                                <div class="table-responsive">
+                                                    <table id="myTableSkill" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Skill ID</th>
+                                                                <th scope="col">Skill Name</th>
+                                                                
+
+                                                                
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="each in skills">
+                                                                
+                                                                    <th scope="row" v:model="each.skill_id">{{
+                                                                        each.skill_id }}</th>
+                                                                    <td>{{ each.skill_name }}</td>
+                                                               
+
+                                                                    <!--need to connect to back end and delete-->
+                                                                    
+
+
+                                                               
+                                                                
+                                                            </tr>
+
+
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End View skill-->
+
+                                <!--View Role-->
+                                <div class="col-12 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <div class="card-title">
+                                                <h5 class="text-nowrap mb-2"></h5>
+
+                                                <!--Start of search -->
+                                                <h5>View all Roles</h5>
+
+                                                <input type="text" id="myRole" onkeyup="myRole()"
+                                                    placeholder="Search for names..">
+                                                <div class="table-responsive">
+                                                    <table id="myTableRole" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Role ID</th>
+                                                                <th scope="col">Role Name</th>
+                                                               
+                                                                
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="each in roles">
+                                                                
+                                                                <th scope="row" v:model="each.role_id">{{
+                                                                    each.role_id }}</th>
+                                                                <td>{{ each.role_name }}</td>
+                                                                
+
+                                                                <!--need to connect to back end and delete-->
+                                                              
+
+
+                                                           
+                                                            
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End View Role-->
+
+                                <!--View Course-->
+                                <div class="col-12 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <div class="card-title">
+                                                <h5 class="text-nowrap mb-2"></h5>
+
+                                                <!--Start of search -->
+                                                <h5>View all Courses</h5>
+
+                                                <input type="text" id="myViewCourse" onkeyup="myViewCourse()"
+                                                    placeholder="Search for names..">
+                                                <div class="table-responsive">
+                                                    <table id="myTableCourse" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Course ID</th>
+                                                                <th scope="col">Course Name</th>
+                                                                <th scope="col">Course Desc</th>
+                                                                <th scope="col">Course Status</th>
+                                                                <th scope="col">Course Type</th>
+                                                                <th scope="col">Course Category</th>
+
+                                                                
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="each in courses">
+                                                                <th scope="row">{{each.course_id}}</th>
+                                                                <td>{{each.course_name}}</td>
+                                                                <td>{{each.course_desc}}</td>
+                                                                <td>{{each.course_status}}</td>
+                                                                <td>{{each.course_type}}</td>
+                                                                <td>{{each.course_category}}</td>
+
+                                                                <!--need to connect to back end and delete-->
+                                                               
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End of view course-->
+
+
+                            </div>
+                            <!--End Search for staff-->
+
+                        </div>
+                        <!--Last Col-->
+
+                        <!--Start of Second Col Home progression -->
+                     
+
+                        <!--End of Second Col-->
+
+
+                    </div>
+
+                </div>
+            </div>
+    </div>
+
+
+
+
+    </section>
+    </div>
+    </div>
+
+
+
+
+    <!--Script Files-->
+    <script>
+        // modal
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", () => {
+            // Sidebar open when you click on the search iocn
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+            if (sidebar.classList.contains("open")) {
+                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+            } else {
+                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+            }
+        }
+        //
+        function myStaff() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myStaff");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableStaff");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function mySkill() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("mySkill");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableSkill");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function myRole() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myRole");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableRole");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function myViewCourse() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myViewCourse");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableCourse");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function createSkill() {
+            window.location.href = "http://127.0.0.1:5500/ui/createskill.html"
+        }
+
+        function createNewRole() {
+            window.location.href = "http://127.0.0.1:5500/ui/createRole.html"
+        }
+
+        function assignSkilltoRole() {
+            window.location.href = "http://127.0.0.1:5500/ui/assignSkilltoRole.html"
+        }
+
+        function assignSkilltoCourse() {
+            window.location.href = "http://127.0.0.1:5500/ui/assignSkilltoCourse.html"
+        }
+    </script>
+</body>
+
+
+
+
+
+
+
+<!-- Vue.js 3 CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<!-- Axios CDN -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- Refer to my own external JS -->
+<script src="./js/vue.js"></script>
+
+</html>

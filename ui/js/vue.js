@@ -49,7 +49,7 @@ const main = Vue.createApp({
                 courses: []
             },
             skilltoRole: {
-                skillSkillId: '',
+                skillSkillId: [],
                 roleRoleId: ''
             },
             skilltoCourse: {
@@ -201,6 +201,19 @@ const main = Vue.createApp({
         })
     })
     },
+    archiveRole(role_id) {
+        console.log("hello")
+        axios.put(`http://localhost:8080/api/role/archive/${role_id}`,{"archived":true})
+        .then(function (response) {
+          console.log(response.data);
+          document.location.reload();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      
+    },
 
     createRole(){
         return new Promise((resolve, reject) => {
@@ -208,7 +221,7 @@ const main = Vue.createApp({
             {role_name: this.form.role_name.name})
             .then(response => {
                 alert("Role successfully added", location)
-            location.href = "http://127.0.0.1:5500/ui/hr.html"
+            location.href = "http://localhost:8080/ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -248,7 +261,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Skill successfully added", location)
-            location.href = "http://127.0.0.1:5500/ui/hr.html"
+            location.href = "http://localhost:8080/ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -268,30 +281,7 @@ const main = Vue.createApp({
           console.log(error);
         });
 
-        // return new Promise((resolve, reject) => {
-        //     axios.put(`http://localhost:8080/api/skill/${skill_id}`,
-        //     ).then(response => {
-        //         this.userdata = skill_id;
-        //         for (idx in this.skills) {
-        //             this.updateSkillobj = this.skills[idx];
-        //             if (this.updateSkillobj.skill_id === this.userdata){
-        //                 this.updateSkillList = this.updateSkillobj
-        //                 this.archive_check = false
-        //                this.updateSkillList.archived = this.archive_check
-        //                 console.log(this.updateSkillList.archived)
-        //                 console.log(this.llj_name)
-        //                 location.href = "http://127.0.0.1:5500/ui/hr.html"
-        //             }
-        //             else {
-        //                 console.log("cannot push")
-        //             }
-        //         }
-        //     resolve(response)
-            
-        //     }).catch(error => {
-        //     reject(error)
-        //     })
-        // })
+      
     },
 
     getLearningJourney(lj_id){
@@ -345,7 +335,7 @@ const main = Vue.createApp({
         {"learningjourneyLjId":ljId,"courseCourseId":courseId})
         .then(function (response) {
             alert(`${courseId} removed from ${ljId}`);
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html";
+            location.href = "http://localhost:8080/ui/learning_journey.html";
             console.log(response);
         })
         .catch(function (error) {
@@ -390,7 +380,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Learning Journey updated", location)
-            location.href = "http://127.0.0.1:5500//ui/learning_journey.html"
+            location.href = "http://localhost:8080//ui/learning_journey.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -435,7 +425,7 @@ const main = Vue.createApp({
         axios.delete(`http://localhost:8080/api/learningjourney/${lj_id}`)
           .then(function (response) {
             alert("Learning Journey Deleted!", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            location.href = "http://localhost:8080/ui/learning_journey.html"
             console.log(response);
           })
           .catch(function (error) {
@@ -447,7 +437,7 @@ const main = Vue.createApp({
         axios.post('http://localhost:8080/api/role/assignskill', this.skilltoRole)
           .then(function (response) {
             alert("Skill has successfully been assigned!", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            location.href = "http://localhost:8080/ui/learning_journey.html"
             console.log(response);
           })
           .catch(function (error) {
@@ -459,6 +449,32 @@ const main = Vue.createApp({
         axios.post('http://localhost:8080/api/skill/assigncourse', this.skilltoCourse)
           .then(function (response) {
             alert("Course has successfully been assigned!", location)
+            location.href = "http://localhost:8080/ui/learning_journey.html"
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    unassignSkilltoCourse(){
+        axios.post('http://localhost:8080/api/skill/unassigncourse', this.skilltoCourse)
+          .then(function (response) {
+            alert("Course has successfully been unassigned!", location)
+            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },
+    
+    unassignSkillfromRole(){
+        console.log(this.skilltoRole)
+        axios.post('http://localhost:8080/api/skill/unassignskill', this.skilltoRole)
+          .then(function (response) {
+            alert("Course has successfully been unassigned!", location)
             location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
             console.log(response);
           })
@@ -521,7 +537,7 @@ const main = Vue.createApp({
        
         .then(response => {
         alert("Skill updated", location)
-        location.href = "http://127.0.0.1:5500//ui/hr.html"
+        location.href = "http://localhost:8080//ui/hr.html"
         console.log(response)
         resolve(response)
         }).catch(error => {
@@ -545,10 +561,12 @@ const main = Vue.createApp({
    getCoursesofSkill(skills){
     this.courses = [];
     let keys = [];
+
     for(var i in skills){
         skill_id = skills[i];
         axios.get(`http://localhost:8080/api/course/by-skill/` + skill_id)
         .then(response => {
+            console.log(response)
             for(j in response.data){
                 if (this.courses.length > 0){
 
@@ -616,7 +634,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Role updated", location)
-            location.href = "http://127.0.0.1:5500//ui/hr.html"
+            location.href = "http://localhost:8080//ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -662,7 +680,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Role updated", location)
-            location.href = "http://127.0.0.1:5500//ui/hr.html"
+            location.href = "http://localhost:8080//ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
