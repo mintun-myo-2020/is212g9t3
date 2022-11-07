@@ -70,6 +70,10 @@ const main = Vue.createApp({
             updateLJList:[],
             updateLJobj:{},
             llj_name:'',
+
+            archive_check: true,
+            archived_before: true,
+            archived_after : false,
             
             ljskill: [],
            
@@ -125,29 +129,29 @@ const main = Vue.createApp({
         })
 
         
-        // axios.get(skill_endpoint_)
-        // .then(response => {
-        //     console.log( response.data )
+        axios.get(skill_endpoint_)
+        .then(response => {
+            console.log( response.data )
 
-        //     // Assign response.data.records (Array) to
-        //     // 'people' data property
-        //     this.skills = response.data
-        // })
-        // .catch(error => {
-        //     console.log( error.message )
-        // })
+            // Assign response.data.records (Array) to
+            // 'people' data property
+            this.skills = response.data
+        })
+        .catch(error => {
+            console.log( error.message )
+        })
 
-        // axios.get(course_endpoint_)
-        // .then(response => {
-        //     console.log( response.data )
+        axios.get(course_endpoint_)
+        .then(response => {
+            console.log( response.data )
 
-        //     // Assign response.data.records (Array) to
-        //     // 'people' data property
-        //     this.courses = response.data
-        // })
-        // .catch(error => {
-        //     console.log( error.message )
-        // })
+            // Assign response.data.records (Array) to
+            // 'people' data property
+            this.courses = response.data
+        })
+        .catch(error => {
+            console.log( error.message )
+        })
 
         axios.get(staff_endpoint_)
         .then(response => {
@@ -249,6 +253,35 @@ const main = Vue.createApp({
             resolve(response)
             }).catch(error => {
              console.log(error)
+            })
+        })
+    },
+
+    archiveSkill ( skill_id ) {
+        console.log("hello")
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/api/skill/${skill_id}`,
+            ).then(response => {
+                this.userdata = skill_id;
+                for (idx in this.skills) {
+                    
+                    this.updateSkillobj = this.skills[idx];
+                    
+                    if (this.updateSkillobj.skill_id === this.userdata){
+                        this.updateSkillList = this.updateSkillobj
+                        this.archive_check = false
+                       this.updateSkillList.archived = this.archive_check
+                        console.log(this.updateSkillList.archived)
+                        console.log(this.llj_name)
+                    }
+                    else {
+                        console.log("cannot push")
+                    }
+                }
+            resolve(response)
+            
+            }).catch(error => {
+            reject(error)
             })
         })
     },
