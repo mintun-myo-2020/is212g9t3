@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" id="app">
 
 <head>
     <meta charset="UTF-8" />
@@ -18,176 +18,136 @@
         crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/10ee65637f.js" crossorigin="anonymous"></script>
+
+    <!--Datatable CDN-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+
 </head>
 
 <body>
 
     <div class="container-fluid">
         <!--Side navigation bar-->
-       
+        
         <!--Welcome Statement-->
         <section class="home-section ">
             <!-- Content wrapper-->
             <div class="content-wrapper ">
-                <div class="container-xxl flex-grow-1 container-p-y">
-
+                <div class="container-xxl flex-grow-1 container-p-y content-row">
                     <div class="row">
+                        <!--First Col-->
                         <div class="col-lg-8 mb-4 order-0">
                             <div class="card">
                                 <div class="d-flex align-items-end row">
 
                                     <div class="card-body">
                                         <!--First Row with welcome message -->
-                                        <h5 class="card-title text-primary">Welcome back, Manager 🎉</h5>
-                                        <!-- <p class="mb-4">
-                                                You have completed <span class="fw-bold">72%</span> of learning today.
-                                                Check
-                                                your new badge in
-                                                your profile.
-                                            </p> -->
+                                        <h5 class="card-title text-primary">Welcome back Manager 🎉</h5>
 
                                         <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
                                             profile</a>
-                                    </div>
-
-
-                                    <div class="card-body pb-0 px-0 px-md-4">
-                                        <img src="../ui/img/man.png" height="140" alt="View Badge User" />
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Second row -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <!-- <div class="d-flex justify-content-between flex-sm-row flex-column gap-3"> -->
-                                    <!-- <div
-                                            class="d-flex flex-sm-column flex-row align-items-start justify-content-between"> -->
-                                    <div class="card-title">
-                                        <h5 class="text-nowrap mb-2"></h5>
-
-                                        <!--Start of search -->
-                                        <h5>Search for Staff</h5>
-
-                                        <input type="text" id="myStaff" onkeyup="myStaff()"
-                                            placeholder="Search for names..">
-
-                                            <table id="myTableStaff" class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Staff ID</th>
-                                                        <th scope="col">First Name</th>
-                                                        <th scope="col">Last Name</th>
-                                                        <th scope="col">Skills Accquired</th>
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <!--need to connect to back end and delete-->
-                                                        
-
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat fat</td>
-
-                                                       
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-
-                                        <!--End of search staff-->    
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <!--End of first Col-->
-
-                        <!--The other half col-->
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-
-                                    </div>
-                                    <span class="fw-semibold d-block mb-1">My Progression</span>
-
-                                    <div class="d-flex align-items-center progmain">
-                                        <span class="stars">
-                                            <span><i class="progressicon fa fa-desktop "></i></span>
-                                        </span>
-                                        <div class="col text-nowrap">
-                                            Web Design
-                                            <div class="progress">
-
-                                                <div class="progress-bar bg-danger" role="progressbar"
-                                                    style="width: 5%;" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100">
-                                                </div>
-                                            </div>
+                                        <div class="card-body pb-0 px-0 px-md-4">
+                                            <img src="../ui/img/man.png" height="140" alt="View Badge User" />
                                         </div>
-
                                     </div>
-
-                                    <div class="d-flex align-items-center progmain">
-                                        <span class="stars">
-                                            <span><i class="progressicon fa-solid fa-person-digging"></i></span>
-                                        </span>
-                                        <div class="col text-nowrap">
-                                            Leadership
-                                            <div class="progress">
-
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 75%;" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
 
 
 
 
                                 </div>
-                            </div>
-                        </div>
-                        <!--END of second col-->
 
+                            </div>
+
+                            <!--Add "My homework"-->
+
+                            <!--Search for staff-->
+                            <div class="col-12 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- <div class="d-flex justify-content-between flex-sm-row flex-column gap-3"> -->
+                                        <!-- <div
+                                                    class="d-flex flex-sm-column flex-row align-items-start justify-content-between"> -->
+                                        <!-- <div class="card-title">
+                                            <h5 class="text-nowrap mb-2"></h5>
+
+                                            <!--Start of search -->
+                                            <h5>Search for Staff</h5>
+
+                                            <input type="text" id="myStaff" onkeyup="myStaff()"
+                                                placeholder="Search for names..">
+                                            <div class="table-responsive">
+
+                                                <table id="myTableStaff" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Staff ID</th>
+                                                            <th scope="col">First Name</th>
+                                                            <th scope="col">Last Name</th>
+                                                            <th scope="col">Department</th>
+                                                            <th scope="col">Email</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <tr v-for="each in staff">
+                                                            <th scope="row">{{each.staff_id}}</th>
+                                                            <td>{{each.staff_fname}}</td>
+                                                            <td>{{each.staff_lname}}</td>
+                                                            <td>{{each.dept}}</td>
+                                                            <td>{{each.email}}</td>
+                                                            <!--need to connect to back end and delete-->
+                                                            
+
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div> -->
+
+
+                                    </div>
+                                </div>
+
+                                <!--End Search for staff-->
+
+                           
+                               
+                       
+
+
+                            </div>
+                            <!--End Search for staff-->
+
+                        </div>
+                        <!--Last Col-->
+
+                        <!--Start of Second Col Home progression -->
+                     
+
+                        <!--End of Second Col-->
 
 
                     </div>
 
-                    <!--End of row-->
-
-
-
-
-
-
                 </div>
-                
             </div>
-          
+    </div>
 
 
 
-        </section>
+
+    </section>
     </div>
     </div>
 
 
+
+
+    <!--Script Files-->
     <script>
         // modal
         let sidebar = document.querySelector(".sidebar");
@@ -235,55 +195,97 @@
                 }
             }
         }
+
+        function mySkill() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("mySkill");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableSkill");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function myRole() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myRole");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableRole");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function myViewCourse() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myViewCourse");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTableCourse");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function createSkill() {
+            window.location.href = "http://127.0.0.1:5500/ui/createskill.html"
+        }
+
+        function createNewRole() {
+            window.location.href = "http://127.0.0.1:5500/ui/createRole.html"
+        }
+
+        function assignSkilltoRole() {
+            window.location.href = "http://127.0.0.1:5500/ui/assignSkilltoRole.html"
+        }
+
+        function assignSkilltoCourse() {
+            window.location.href = "http://127.0.0.1:5500/ui/assignSkilltoCourse.html"
+        }
     </script>
 </body>
-<!-- Modal -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div id="role-select" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Learning Journey</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!--Form submission-->
-                <form action="#">
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select a role</option>
-                            <option v-for="role in roles" v-bind:value="role.role_id"> {{ role.role_name }} </option>
-                        </select>
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select a skill</option>
-                            <option v-for="skill in skills" v-bind:value="skill.skill_id"> {{ skill.skill_name }}
-                            </option>
-                        </select>
-                    </div>
-                    <!--Need to read from database when user click the role and skills will show the courses related to it-->
-                    <div class="mb-3">
-                        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btn-check-outlined">Leadership management</label>
-                        <br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    
-                    </div>
-                </form>
 
 
-                
-            </div>
 
-        </div>
-    </div>
-</div>
 
-<!--End of modal-->
+
+
+
 <!-- Vue.js 3 CDN -->
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
