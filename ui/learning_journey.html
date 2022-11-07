@@ -131,7 +131,7 @@
                                                         </td>
                                                          <td>
                                                             <i class='bx bxs-edit-alt' data-bs-toggle="modal"
-                                                                data-bs-target="#editLJModal" @click="getLearningJourney(lj.lj_id)"></i>
+                                                                data-bs-target="#editLJModal"  @click="updateLearningJourney(lj.lj_id)"></i>
 
                                                             <iconify-icon icon="bx:trash" style="color: crimson;"
                                                                 data-bs-toggle="modal"
@@ -343,6 +343,7 @@
 </div>
 
 <!-- Edit Learning Journey Modal-->
+<!-- Edit Learning Journey Modal-->
 <div class="modal fade" id="editLJModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div id="role-select" class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -352,26 +353,33 @@
             </div>
             <div class="modal-body">
 
-                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=updateLearningJourney(lj_id)>
+                <form action="#" id="'newModalForm" class="needs-validation" novalidate v-on:submit.prevent=this.updateLJList.lj_id>
+                    {{llj_name}}
                     <div class="mb-3 mt-3">
-                        <select class="form-select" aria-label="Default select example" v-model="updatedLj.role_id" :required @change="getRole()">
-                            <option>Select a role</option>
-                            <option v-for="role in roles" :value="role.role_id"  > {{ role.role_name }} </option>
+                        <p>Select role</p>
+                        <select class="form-select"  v-model="lj.role_id" aria-label="Default select example" :required >
+                            <option selected>Select a role</option>
+                            <option v-for="role in roles" :value="role.role_id"> {{ role.role_name }} </option>
                         </select>
+                        <button type="button" class="btn btn-primary" @click="getSkillsofRole(lj.role_id)">Confirm role</button>
+
                     </div>
-                    <div class="mb-3 mt-3">
+
+                    <div class="mb-3 mt-3" v-if="showSkills == true">
                             <p>Select skills</p>
-                            <span v-for="skill in skills">
-                              <input type="checkbox" :value="skill.skill_id" v-model="updatedLj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
+                            <span v-for="skill in skills" :key="skill">
+                              <input type="checkbox" :value="skill.skill_id" v-model="lj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
                             </span>
-
                             <hr>
+                            <button type="button" class="btn btn-primary" @click="getCoursesofSkill(lj.skills)">Confirm skills selected</button>
 
                     </div>
-                    <div class="mb-3">
+
+                    <div class="mb-3" v-if="showCourses == true">
+                        
                         <p>Select courses</p>
                         <span v-for="course in courses">
-                          <input type="checkbox" :value="course.course_id" v-model="updatedLj.courses"> <span class="checkbox-label"> {{course.course_id}} </span> <br>
+                          <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_name}} </span> <br>
                         </span>
                         <br>
                         
