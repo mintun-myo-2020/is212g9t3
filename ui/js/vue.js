@@ -1,5 +1,7 @@
 // Create a new Vue instance
 
+const { default: axios } = require("axios")
+
 // const { each } = require("bluebird")
 
 const main = Vue.createApp({
@@ -101,29 +103,29 @@ const main = Vue.createApp({
         })
 
         
-        axios.get(skill_endpoint_)
-        .then(response => {
-            console.log( response.data )
+        // axios.get(skill_endpoint_)
+        // .then(response => {
+        //     console.log( response.data )
 
-            // Assign response.data.records (Array) to
-            // 'people' data property
-            this.skills = response.data
-        })
-        .catch(error => {
-            console.log( error.message )
-        })
+        //     // Assign response.data.records (Array) to
+        //     // 'people' data property
+        //     this.skills = response.data
+        // })
+        // .catch(error => {
+        //     console.log( error.message )
+        // })
 
-        axios.get(course_endpoint_)
-        .then(response => {
-            console.log( response.data )
+        // axios.get(course_endpoint_)
+        // .then(response => {
+        //     console.log( response.data )
 
-            // Assign response.data.records (Array) to
-            // 'people' data property
-            this.courses = response.data
-        })
-        .catch(error => {
-            console.log( error.message )
-        })
+        //     // Assign response.data.records (Array) to
+        //     // 'people' data property
+        //     this.courses = response.data
+        // })
+        // .catch(error => {
+        //     console.log( error.message )
+        // })
 
         axios.get(staff_endpoint_)
         .then(response => {
@@ -236,6 +238,20 @@ const main = Vue.createApp({
           .catch(function (error) {
             console.log(error);
           });
+
+    },
+    async getLearningJourneySkills(lj_id){
+        this.lj_id = lj_id;
+        const res = await axios.get(`http://localhost:8080/api/learningjourney/skills/${lj_id}`);
+        return res.data;
+        // axios.get(`http://localhost:8080/api/learningjourney/skills/${lj_id}`)
+        //   .then(function (response) {
+        //     console.log(response.data)
+        //     return response.data;
+        //   })
+        //   .catch(function (error) {
+        //     console.log(error);
+        //   });
 
     },
     createLearningJourney(){

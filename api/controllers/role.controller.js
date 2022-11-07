@@ -88,7 +88,6 @@ exports.findAssociatedSkills = (req, res) => {
   })
 }
 
-
 // Update a role by the role_id in the request
 exports.update = (req, res) => {
     const role_id = req.params.role_id;
@@ -142,7 +141,6 @@ exports.unassign = (req, res) => {
 
 
 }
-
 
 // Archive a skill by the skill_id in the request
 
@@ -240,9 +238,6 @@ exports.assignSkill = (req, res) => {
     }).catch(e => console.log(e));
 
 };
-
-
-
 
 //Unassign skill from role
 exports.unassignSkill = (req, res) => {

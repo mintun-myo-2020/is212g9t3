@@ -82,6 +82,7 @@ exports.findOne = (req, res) => {
         });
       });
   };
+
   //Find learning journey by staffid
 exports.findLjbyStaffId = (req, res) => {
     const id = req.params.id;
@@ -94,6 +95,32 @@ exports.findLjbyStaffId = (req, res) => {
 
 
   };
+
+  exports.findLjSkills = (req, res) => {
+    const lj_id = req.params.id;
+    var lj_skills = [];
+    LearningJourney.findOne({
+      where: { lj_id: lj_id },
+      include: db.Skill
+    })
+    .then(data => {
+      if (data) {
+        for(var skill of data.skills){
+          lj_skills.push(skill.skill_name);
+        }
+        res.send(lj_skills);
+      } else {
+        res.status(404).send({
+          message: `Cannot find lj with lj_id=${lj_id}.`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving lj with lj_id=" + lj_id
+      });
+    });
+    };
 
 // Update a LearningJourney by the id in the request
 exports.update = (req, res) => {

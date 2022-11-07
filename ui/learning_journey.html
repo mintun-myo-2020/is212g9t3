@@ -115,6 +115,7 @@
                                                         <th scope="col">Learning Journey ID</th>
                                                         <th scope="col">Learning Journey Name</th>
                                                         <th scope="col">Role</th>
+                                                        <th scope="col">Skills</th>
                                                         <th scope="col">Actions</th>
                                                         
                                                     </tr>
@@ -124,6 +125,10 @@
                                                         <th scope="row">{{lj.lj_id}}</th>
                                                         <td>{{lj.lj_name}}</td>
                                                         <td>{{lj.roleRoleId}}</td>
+                                                        <td>
+                                                            {{getLearningJourneySkills(lj.lj_id)}}
+                                                            <span v-for="skill of getLearningJourneySkills(lj.lj_id)">{{skill}}</span>
+                                                        </td>
                                                          <td>
                                                             <i class='bx bxs-edit-alt' data-bs-toggle="modal"
                                                                 data-bs-target="#editLJModal" @click="getLearningJourney(lj.lj_id)"></i>
