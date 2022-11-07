@@ -102,70 +102,31 @@
 
                                         
                                         <form v-on:submit.prevent=unassignSkilltoCourse() class="was-validated">
-                                            <!-- <div class="mb-3 mt-3">
-
-                                                <div class="mb-3 mt-3">
-                                                    <p>Select skills</p>
-                                                    <span v-for="skill in skills" :key="skill">
-                                                      <input type="radio" :value="skill.skill_id" v-model="skilltoCourse.skillSkillId"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
-                                                    </span>
-                                                    <hr>
-                                                    <button type="button" class="btn btn-primary" @click="getCoursesofSkill(lj.courses)">Confirm skills selected</button>
+                                            <div class="mb-3 mt-3">
+                                                <p>Select Skill</p>
+                                                <select class="form-select"  v-model="skilltoCourse.skillSkillId" aria-label="Default select example">
+                                                    <option selected>Select a Skill</option>
+                                                    <option v-for="skill in skills" :value="skill.skills"> {{ skill.skill_name }} </option>
+                                                </select>
+                                                <button type="button" class="btn btn-primary" @click="getCourseBySkill(skilltoCourse.skillSkillId)">Confirm Skill</button>
                         
                                             </div>
-                                           
-                                            <div class="mb-3" >
-
-                                                <button type="button" class="btn btn-primary" @click="getCoursesofSkill(lj.courses)">Confirm skills selected</button>
-                                                
-                                                <p>Select courses</p>
-                                                <span v-for="course in courses">
-                                                  <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_name}} </span> <br>
-                                                </span>
-                                                <br>
-                                                
+                        
+                                            <div class="mb-3 mt-3" v-if="showCourses == true">
+                                                    <p>Select Courses</p>
+                                                    <span v-for="course in courses">
+                                                      <input type="checkbox" :value="course.course_id" v-model="skilltoCourse.courseCourseId"> <span class="checkbox-label" > {{course.course_name}} </span> <br>
+                                                    </span>
+                                                    <hr>
+                        
                                             </div>
-                                            </div> -->
-
-                                        <!-- <label for="skill" class="form-label">Skill Name: </label>
-                                          <select name="skill" id="skills" v-model="skilltoCourse.skillSkillId" @change="getCoursesofSkill(skilltoCourse.skillSkillId)">
-                                            <option v-for="skill in skills" :value="skill.skill_id">{{skill.skill_name}}</option>
-                                          </select>
-                                          <br>
-                                   
-                                            <p>Select courses</p>
-                                            <span v-for="course in courses">
-                                              <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_name}} </span> <br>
-                                            </span>
-                                            <br> -->
-
-                                            
-                                            <div class="mb-3 mt-3">
-                                                <p>Select skills</p>
-                                                <span v-for="skill in skills" :key="skill">
-                                                  <input type="checkbox" :value="skill.skill_id" v-model="lj.skills"> <span class="checkbox-label" > {{skill.skill_name}} </span> <br>
-                                                </span>
-                                                <hr>
-                                                <button type="button" class="btn btn-primary" @click="getCoursesofSkill(lj.skills)">Confirm skills selected</button>
-                    
-                                        </div>
-                    
-                                        <div class="mb-3">
-                                            
-                                            <p>Select courses</p>
-                                            <span v-for="course in courses">
-                                              <input type="checkbox" :value="course.course_id" v-model="lj.courses"> <span class="checkbox-label"> {{course.course_name}} </span> <br>
-                                            </span>
-                                            <br>
-                                            
-                                        </div>
 
                                           <br>
 
                                         
                                         
                                         
-                                      <button type="submit" class="btn btn-primary">Unassign Course from skill</button>
+                                      <button type="submit" class="btn btn-primary">Unassign Skill from Role</button>
                                     </form>
 
                                     

@@ -53,8 +53,8 @@ const main = Vue.createApp({
                 roleRoleId: ''
             },
             skilltoCourse: {
-                skillSkillId: '',
-                courseCourseId: ''
+                skillSkillId: [],
+                courseCourseId: []
             }, 
 
             userdata:0,
@@ -547,15 +547,28 @@ const main = Vue.createApp({
    },
 
    getSkillsofRole(role_id){
-    this.lj.skills = [];
-    axios.get(`http://localhost:8080/api/skill/by-role/` + role_id)
-    .then(response => {
-        this.skills = response.data;
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
-    this.showSkills = true;
+        this.lj.skills = [];
+        axios.get(`http://localhost:8080/api/skill/by-role/` + role_id)
+        .then(response => {
+            this.skills = response.data;
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+        this.showSkills = true;
+    },
+
+    getCourseBySkill(skill_id){
+        this.lj.courses = [];
+        axios.get(`http://localhost:8080/api/course/by-skill/` + skill_id)
+        .then(response => {
+            this.courses = response.data;
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+        this.showCourses = true;
+
     },
 
    getCoursesofSkill(skills){
