@@ -221,7 +221,7 @@ const main = Vue.createApp({
             {role_name: this.form.role_name.name})
             .then(response => {
                 alert("Role successfully added", location)
-            location.href = "http://127.0.0.1:5500/ui/hr.html"
+            location.href = "http://localhost:8080/ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -261,7 +261,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Skill successfully added", location)
-            location.href = "http://127.0.0.1:5500/ui/hr.html"
+            location.href = "http://localhost:8080/ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -335,7 +335,7 @@ const main = Vue.createApp({
         {"learningjourneyLjId":ljId,"courseCourseId":courseId})
         .then(function (response) {
             alert(`${courseId} removed from ${ljId}`);
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html";
+            location.href = "http://localhost:8080/ui/learning_journey.html";
             console.log(response);
         })
         .catch(function (error) {
@@ -346,7 +346,7 @@ const main = Vue.createApp({
         axios.post('http://localhost:8080/api/learningjourney', this.lj)
           .then(function (response) {
             alert("Learning Journey successfully added", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            location.href = "http://localhost:8080/ui/learning_journey.html"
             console.log(response);
           })
           .catch(function (error) {
@@ -368,7 +368,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Learning Journey updated", location)
-            location.href = "http://127.0.0.1:5500//ui/learning_journey.html"
+            location.href = "http://localhost:8080//ui/learning_journey.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -413,7 +413,7 @@ const main = Vue.createApp({
         axios.delete(`http://localhost:8080/api/learningjourney/${lj_id}`)
           .then(function (response) {
             alert("Learning Journey Deleted!", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            location.href = "http://localhost:8080/ui/learning_journey.html"
             console.log(response);
           })
           .catch(function (error) {
@@ -425,7 +425,7 @@ const main = Vue.createApp({
         axios.post('http://localhost:8080/api/role/assignskill', this.skilltoRole)
           .then(function (response) {
             alert("Skill has successfully been assigned!", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            location.href = "http://localhost:8080/ui/learning_journey.html"
             console.log(response);
           })
           .catch(function (error) {
@@ -437,7 +437,7 @@ const main = Vue.createApp({
         axios.post('http://localhost:8080/api/skill/assigncourse', this.skilltoCourse)
           .then(function (response) {
             alert("Course has successfully been assigned!", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+            location.href = "http://localhost:8080/ui/learning_journey.html"
             console.log(response);
           })
           .catch(function (error) {
@@ -499,7 +499,7 @@ const main = Vue.createApp({
        
         .then(response => {
         alert("Skill updated", location)
-        location.href = "http://127.0.0.1:5500//ui/hr.html"
+        location.href = "http://localhost:8080//ui/hr.html"
         console.log(response)
         resolve(response)
         }).catch(error => {
@@ -594,7 +594,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Role updated", location)
-            location.href = "http://127.0.0.1:5500//ui/hr.html"
+            location.href = "http://localhost:8080//ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
@@ -640,7 +640,7 @@ const main = Vue.createApp({
            
             .then(response => {
             alert("Role updated", location)
-            location.href = "http://127.0.0.1:5500//ui/hr.html"
+            location.href = "http://localhost:8080//ui/hr.html"
             console.log(response)
             resolve(response)
             }).catch(error => {
