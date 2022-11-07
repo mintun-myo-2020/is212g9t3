@@ -122,7 +122,6 @@ exports.update = (req, res) => {
 
 exports.archive = (req, res) => {
     const skill_id = req.params.skill_id;
-  
     // set archived to 1 in database 
     // to archive, body : {"archived": 1}
     // to UNarchive, body : {"archived": 0}
