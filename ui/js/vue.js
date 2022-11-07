@@ -381,9 +381,17 @@ const main = Vue.createApp({
         skill_id = skills[i];
         axios.get(`http://localhost:8080/api/course/by-skill/` + skill_id)
         .then(response => {
-            console.log(response.data);
-            if(response.data.length >= 1){
-                this.courses += response.data;
+            for(j in response.data){
+                if(this.courses.length > 0){
+                    for(index in this.courses){
+                        if(this.courses[index].course_id != response.data[j].course_id || this.courses.length == 0){
+                            this.courses.push(response.data[j]);
+                        }
+                    }
+                }
+                else{
+                    this.courses.push(response.data[j]);
+                }
             }
             
         })
