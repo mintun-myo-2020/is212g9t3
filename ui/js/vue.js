@@ -353,15 +353,27 @@ const main = Vue.createApp({
         });
     },
     createLearningJourney(){
-        axios.post('http://localhost:8080/api/learningjourney', this.lj)
-          .then(function (response) {
-            alert("Learning Journey successfully added", location)
-            location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        if(this.lj.courses.length == 0){
+            alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
+        }
+        else if(this.lj.skills.length == 0){
+            alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
+        }
+        else if(this.lj.role_id != ''){
+            alert('Please ensure that a Role, Skill(s) and Course(s) have been selected to create a Learning Journey');
+        }
+        else{
+            axios.post('http://localhost:8080/api/learningjourney', this.lj)
+            .then(function (response) {
+              alert("Learning Journey successfully added", location)
+              location.href = "http://127.0.0.1:5500/ui/learning_journey.html"
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+
 
     },
 

@@ -255,7 +255,7 @@ exports.unassignSkill = (req, res) => {
   };
 
   role.findByPk(assignment.roleRoleId).then( rolez => {
-    rolez.addSkill(rolez, {through: roleskill}).then(
+    rolez.removeSkills(rolez, {through: roleskill}).then(
       res.sendStatus(200)
     )
   }).catch(e => console.log(e));

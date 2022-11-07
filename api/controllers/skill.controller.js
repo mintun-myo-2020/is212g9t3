@@ -227,7 +227,7 @@ exports.unassignCourse = (req, res) => {
     skillSkillId: req.body.skillSkillId
   };
 
-  skill.findOne({
+  skill.findByPk(assignment.skillSkillId).then({
     where: { skill_id: assignment.skillSkillId }
     }).then(skill => {
         skill.removeCourses([assignment.courseCourseId])
